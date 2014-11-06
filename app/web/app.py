@@ -1,4 +1,4 @@
-from bottle import route, run, response
+from bottle import route, run, abort, response,static_file
 from json import dumps
 
 response.content_type = 'application/json'
@@ -10,20 +10,28 @@ users = [
             { "id": 4, "name": "Liu Liang", "photo":"http://uxhongkong.com/interviews/img/people/thumb-cornelius-rachieru.jpg" }
 ]
 
+assets = "public/assets/"
+
+mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
 
 @route('/')
 def index():
-    return dumps(users)
+    return static_file("index.html", root="public/views/", mimetype="text/html")
 
+@route("/users")
+def users():
+    return dumps(users)
 
 @route('/users/<id>')
 def user(id):
     for u in users:
-        if u['id'] == id:
+        if u['id'] == int(id):
             return dumps(u)
-    return dumps({})
+    abort(404, "No such user.")
 
-
+@route("/assets/<type>/<filename:path>")
+def assets(type, filename):
+    return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
 
 run(host='localhost', port=8080, debug=True)
 
