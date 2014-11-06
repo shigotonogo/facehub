@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang='en-GB'>
+<head>
+  <meta charset='utf-8'>
+  <title>profile page</title>
+  <link rel="stylesheet" href="../assets/css/dropzone.css">
+</head>
+
+<body>
+  <h1>my profile</h1>
+ 
+  <div id='container'></div>
+
+  <script id='template' type='text/ractive'>
+    {{#list}}
+      <div class='profile'>
+        <img class="photo" src="{{photo}}" alt="{{name}}">
+        <div class="name">
+          name:{{name}}
+        </div>
+      </div>
+    {{#list}}
+  </script>
+
+  <script src='../assets/js/lib/jquery.min.1.9.1.js'></script>
+  <script src='../assets/js/lib/ractive.js'></script>
+  <script src='../assets/js/lib/dropzone.js'></script>
+  <script type="text/javascript" src="../assets/js/page/profile.js"></script>
+</body>
+</html>
