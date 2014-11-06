@@ -11,4 +11,4 @@ class UserService:
 		return self.user_col.find_one({'name': name})
 
 	def save(self, user):
-		return self.user_col.save(user.__values__())
+		return self.user_col.save(user.__dict__)

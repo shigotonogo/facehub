@@ -1,21 +1,18 @@
-from base import Base
 
-class User(Base):
+class User(object):
 
-	def __init__(self):
-		self.values={}
+	@property
+	def name(self):
+		return self.__dict__['name']
 
-	def __values__(self):
-		return self.values
+	@name.setter
+	def name(self, value):
+		self.__dict__['name']=value
 
-	def set_name(self, name):
-		self.values['name']=name
+	@property
+	def department(self):
+		return self.__dict__['department']
 
-	def get_name(self):
-		return self.values['name']
-
-	def set_image(self, image):
-		self.values['image']=image
-
-	def get_image(self):
-		return self.values['image']
+	@department.setter
+	def department(self, value):
+		self.__dict__['department'] = value
