@@ -1,18 +1,22 @@
-(function(){
-    $.get('/',function(data){
-        var ractive = new Ractive({
-          el: 'container',
+(function() {
+    // $.get('/',function(data){
 
-          template: '#template',
+    // });
+    // 
+    var ractive = new Ractive({
+        el: 'info',
 
-          data: {
-            'list' : [
-                { "id": 1, "name": "Yao Shaobo", "photo":"http://uxhongkong.com/interviews/img/people/thumb-alain-robillard-bastien.jpg" },
-                { "id": 2, "name": "Dong Yuwei", "photo":"http://uxhongkong.com/interviews/img/people/thumb-andrew-mayfield.jpg" },
-                { "id": 1, "name": "Dou Yutao", "photo":"http://uxhongkong.com/interviews/img/people/thumb-boon-yew-chew.jpg" },
-                { "id": 2, "name": "Liu Liang", "photo":"http://uxhongkong.com/interviews/img/people/thumb-cornelius-rachieru.jpg" }
-             ]
-          }
-        });
+        template: '#template',
+
+        data: {
+            "id": 1,
+            "name": "Yao Shaobo",
+            "photo": "http://uxhongkong.com/interviews/img/people/thumb-alain-robillard-bastien.jpg",
+            'mobile': 15502980060,
+            'skype': 'dyw@gmail.com',
+            'role': 'fe',
+            'team': 'myfun',
+            'email': 'dyw@thoughtworks.com'
+        }
     });
 })();

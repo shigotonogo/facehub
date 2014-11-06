@@ -1,0 +1,29 @@
+body {
+    background-color: #f2f2f2;
+}
+
+.title{
+    text-align: center;
+}
+#members{
+    width : 900px;
+    margin: 10px auto;
+}
+
+.copyright {
+    text-align: center;
+}
+
+.profile{
+    width: 160px;
+    margin: 10px;
+    display: inline-block;
+    background-color: white;
+}
+
+.profile .name{
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    height: 45px;
+    line-height: 45px
+}

@@ -2,29 +2,30 @@
 <html lang='en-GB'>
 <head>
   <meta charset='utf-8'>
-  <title>team list</title>
-  <link rel="stylesheet" href="assets/css/dropzone.css">
+  <title>team members</title>
+  <link rel="stylesheet" href="/assets/css/page/index.css">
 </head>
 
 <body>
-  <h1>my profile</h1>
-
-  <div id='container'></div>
+  <h1 class='title'>Thoughtworks in Xi'an</h1>
+ 
+  <div id='members'></div>
 
   <script id='template' type='text/ractive'>
-    {{#list}}
+    {{#users}}
       <div class='profile'>
-        <img class="photo" src="{{photo}}" alt="{{name}}">
+        <img class="photo" src="{{photo}}" alt="{{name}}" width='160' height='160'>
         <div class="name">
-          name:{{name}}
+          {{name}}
         </div>
       </div>
-    {{/list}}
+    {{/users}}
   </script>
 
-  <script src='assets/js/lib/jquery.min.1.9.1.js'></script>
-  <script src='assets/js/lib/ractive.js'></script>
-  <script src='assets/js/lib/dropzone.js'></script>
-  <script type="text/javascript" src="assets/js/page/profile.js"></script>
+  <div class="copyright">© Shigotongo.2014</div>
+
+  <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
+  <script src='/assets/js/lib/ractive.js'></script>
+  <script type="text/javascript" src="/assets/js/page/index.js"></script>
 </body>
 </html>
