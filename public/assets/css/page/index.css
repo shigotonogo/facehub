@@ -1,22 +1,29 @@
 body {
     background-color: #f2f2f2;
+    font-family:  'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
 }
 
 .title{
+    font-family: "Open Sans", 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
     text-align: center;
+    font-size: 32px;
+    color: #333;
 }
 #members{
-    width : 900px;
+    width : 1000px;
     margin: 10px auto;
 }
 
 .copyright {
     text-align: center;
+    font-size: 12px;
+    color:#999;
+    margin:30px auto;
 }
 
 .profile{
     width: 160px;
-    margin: 10px;
+    margin: 0 20px 35px 20px;
     display: inline-block;
     background-color: white;
 }
@@ -25,5 +32,6 @@ body {
     text-align: center;
     border-bottom: 1px solid #ccc;
     height: 45px;
-    line-height: 45px
+    line-height: 45px;
+    font-style: 13px;
 }
