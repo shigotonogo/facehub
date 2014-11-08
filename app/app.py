@@ -18,12 +18,12 @@ data = {
 }
 
 
-@route("/users")
+@route("/api/users")
 @json_response
 def users():
     return data
 
-@route('/users/<id>')
+@route('/api/users/<id>')
 def user(id):
     for u in users_list:
         if u['id'] == int(id):
