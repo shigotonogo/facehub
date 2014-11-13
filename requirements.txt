@@ -1,5 +1,4 @@
 bottle
 nose2
 six
-wsgiref
 pymongo
