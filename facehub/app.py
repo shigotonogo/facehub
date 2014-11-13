@@ -1,4 +1,4 @@
-from bottle import route, run, abort, response, static_file, debug, default_app
+from bottle import route, run, abort, response, static_file, debug, default_app, request
 from decorators import json_response
 from users import user_service, user
 import logging
@@ -42,7 +42,7 @@ def createUser():
     phoneNumber = request.forms.get('phoneNumber', None)
     skype = request.forms.get('skype', None)
 
-    if not name and not position and not project and not email:
+    if name is not None and position is not None and project is not None and email is not None:
         user = User()
         user.name = name
         user.position = position
