@@ -1,5 +1,7 @@
 from bottle import route, run, abort, response, static_file, debug, default_app
 from decorators import json_response
+from users import user_service, user
+import logging
 
 
 users_list = [
@@ -30,6 +32,36 @@ def user(id):
             return u
     abort(404, "No such user.")
 
+@route('/api/users', method='POST')
+@json_response
+def createUser():
+    name = request.forms.get('name', None)
+    position = request.forms.get('position', None)
+    email = request.forms.get('email', None)
+    project = request.forms.get('project', None)
+    phoneNumber = request.forms.get('phoneNumber', None)
+    skype = request.forms.get('skype', None)
+
+    if not name and not position and not project and not email:
+        user = User()
+        user.name = name
+        user.position = position
+        user.project = project
+        user.email = email
+        user.phoneNumber = phoneNumber
+        user.skype = skype
+
+        try:
+            userId = UserService.save(user)
+        except Exception as e:
+            logging.exception("unexpected error {}", e)
+        if not userId:
+            logging.error("can't save the user in mongo")
+            return {'status': 'error',
+                    'message': "failed save user."}
+    else:
+        return {'status': 'error',
+                'message': "the field is not satisfied."}
 
 if __name__ == '__main__':
     assets = "public/assets/"
