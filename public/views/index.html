@@ -3,17 +3,20 @@
 <head>
   <meta charset='utf-8'>
   <title>team members</title>
+  <link rel="stylesheet" href="/assets/css/lib/magnific-popup.css">
   <link rel="stylesheet" href="/assets/css/page/index.css">
+  <link rel="stylesheet" href="/assets/css/page/profile.css">
 </head>
 
 <body>
   <h1 class='title'>ThoughtWorks in Xi'an</h1>
 
   <div id='members'></div>
+  <div id='current-profile'></div>
 
   <script id='template' type='text/ractive'>
     {{#users}}
-      <div class='profile'>
+      <div class='profile' data-user-id="{{id}}">
         <img class="photo" src="{{photo}}" alt="{{name}}" width='160' height='160'>
         <div class="name">
           {{name}}
@@ -22,10 +25,42 @@
     {{/users}}
   </script>
 
+<script id="current-template" type='text/reactive'>
+  <div class='profile'>
+      <div class='top'>
+        <div class='pull-left'>
+          <img class="photo" src="{{photo}}" alt="{{name}}">
+          <div class="name">
+            {{name}}
+          </div>
+        </div>
+        <div class='pull-right'>
+          <div>
+             role:{{role}}
+           </div> 
+           <div>
+             team:{{team}}
+           </div>
+           <div>
+             email:{{email}}
+           </div>
+        </div>
+      </div>
+      <div class='bottom'>
+        <div>
+          mobile:{{mobile}}
+        </div>
+        <div>
+          skype:{{skype}}
+        </div>
+      </div>
+    </div>
+</script>
   <div class="copyright">© Shigotongo.2014</div>
 
   <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
   <script src='/assets/js/lib/ractive.js'></script>
+  <script src='/assets/js/lib/jquery.magnific-popup.js'></script>
   <script type="text/javascript" src="/assets/js/page/index.js"></script>
 </body>
 </html>
