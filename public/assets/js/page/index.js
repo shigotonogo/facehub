@@ -1,6 +1,6 @@
 (function(){
     $.ajax({
-      url: '/users',
+      url: '/api/users',
       success: function(data){
         console.log(data)
         var ractive = new Ractive({

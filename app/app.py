@@ -1,7 +1,6 @@
-from bottle import route, run, abort, response, static_file, debug
-from json import dumps
+from bottle import route, run, abort, response, static_file, debug, default_app
+from decorators import json_response
 
-response.content_type = 'application/json'
 
 users_list = [
     { "id": 1, "name": "Yao Shaobo", "photo":"http://uxhongkong.com/interviews/img/people/thumb-alain-robillard-bastien.jpg" },
@@ -18,28 +17,34 @@ data = {
     'users' : users_list
 }
 
-assets = "public/assets/"
-mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
 
-@route('/')
-def index():
-    return static_file("index.html", root="public/views/", mimetype="text/html")
-
-@route("/users")
+@route("/api/users")
+@json_response
 def users():
-    return dumps(data)
+    return data
 
-@route('/users/<id>')
+@route('/api/users/<id>')
 def user(id):
     for u in users_list:
         if u['id'] == int(id):
-            return dumps(u)
+            return u
     abort(404, "No such user.")
 
-@route("/assets/<type>/<filename:path>")
-def assets(type, filename):
-    return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
 
-debug(True)
-run(host='localhost', port=8080, reloader=True)
+if __name__ == '__main__':
+    assets = "public/assets/"
+    mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
+
+    @route('/')
+    def index():
+        return static_file("index.html", root="public/views/", mimetype="text/html")
+
+    @route("/assets/<type>/<filename:path>")
+    def assets(type, filename):
+        return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
+
+    debug(True)
+    run(host='localhost', port=8080, reloader=True)
+else:
+    application = default_app()
 
