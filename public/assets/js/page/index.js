@@ -13,10 +13,8 @@
     };
 
     $('#members').delegate('.profile', 'click', function(src) {
-        console.log(src.currentTarget);
         $.ajax({
-            url: '/api/users/' + $(src.currentTarget).data(
-                'user-id'),
+            url: '/api/users/' + $(src.currentTarget).data('user-id'),
             dataType: 'json',
             success: popupCurrent
         });

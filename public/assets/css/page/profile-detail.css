@@ -1,0 +1,43 @@
+.mfp-container{
+    background-color: rgb(97,97,97);
+}
+.mfp-content {
+	text-align: center;
+}
+
+.mfp-bg {
+	background-color: #fff;
+	opacity: 0.98;
+}
+.mfp-close {
+	position: absolute;
+    top: -22px;
+    right: -22px;
+}
+
+.profile-detail{
+    width: 545px;
+    margin: 100px auto;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+}
+
+.profile-detail .section{
+    margin: 20px 0px;
+    text-align: left;
+}
+
+.profile-detail .name{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.profile-detail .photo{
+    max-width: 300px;
+    height: auto;
+}
+.gap{
+    color: rgb(153,153,153);
+}

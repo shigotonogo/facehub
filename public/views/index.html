@@ -5,7 +5,7 @@
   <title>team members</title>
   <link rel="stylesheet" href="/assets/css/lib/magnific-popup.css">
   <link rel="stylesheet" href="/assets/css/page/index.css">
-  <link rel="stylesheet" href="/assets/css/page/profile.css">
+  <link rel="stylesheet" href="/assets/css/page/profile-detail.css">
 </head>
 
 <body>
@@ -26,33 +26,35 @@
   </script>
 
 <script id="current-template" type='text/reactive'>
-  <div class='profile'>
-      <div class='top'>
-        <div class='pull-left'>
-          <img class="photo" src="{{photo}}" alt="{{name}}">
-          <div class="name">
-            {{name}}
-          </div>
-        </div>
-        <div class='pull-right'>
-          <div>
-             role:{{role}}
-           </div> 
-           <div>
-             team:{{team}}
-           </div>
-           <div>
-             email:{{email}}
-           </div>
-        </div>
+  <div class='profile-detail'>
+      <div class='pull-left'>
+        <img class="photo" src="{{photo}}" alt="{{name}}">
       </div>
-      <div class='bottom'>
-        <div>
-          mobile:{{mobile}}
+      <div class='pull-right'>
+        <div class="name section">
+          {{name}}
         </div>
-        <div>
-          skype:{{skype}}
-        </div>
+        <hr class='gap'>
+        <div class='position section'>
+            <div class="head"> Title </div>
+            {{position}}
+         </div> 
+         <div class='project section'>
+            <div class="head"> Team </div>
+           {{project}}
+         </div>
+         <div class='email section'>
+            <div class="head"> Email </div>
+           {{email}}
+         </div>
+         <div class='phone-number section'>
+            <div class="head"> Mobile </div>
+           {{phoneNumber}}
+         </div>
+         <div class='skype section'>
+            <div class="head"> Skype </div>
+           {{skype}}
+         </div>
       </div>
     </div>
 </script>

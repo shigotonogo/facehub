@@ -3,6 +3,13 @@ body {
     font-family:  'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
 }
 
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}
+
 .title{
     font-family: "Open Sans", 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
     text-align: center;
@@ -26,6 +33,7 @@ body {
     margin: 0 20px 35px 20px;
     display: inline-block;
     background-color: white;
+    cursor: pointer;
 }
 
 .profile .name{
