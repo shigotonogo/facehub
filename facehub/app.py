@@ -1,6 +1,7 @@
 from bottle import route, run, abort, response, static_file, debug, default_app, request
 from decorators import json_response
-from users import user_service, user
+from users.user_service import UserService
+from users.user import User
 import logging
 
 
@@ -43,16 +44,17 @@ def createUser():
     skype = request.forms.get('skype', None)
 
     if name is not None and position is not None and project is not None and email is not None:
-        user = User()
-        user.name = name
+        user = User(name)
         user.position = position
         user.project = project
         user.email = email
         user.phoneNumber = phoneNumber
         user.skype = skype
 
+        userId = None
         try:
-            userId = UserService.save(user)
+            user_service = UserService()
+            userId = user_service.save(user)
         except Exception as e:
             logging.exception("unexpected error {}", e)
         if not userId:
