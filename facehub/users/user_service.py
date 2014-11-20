@@ -1,7 +1,10 @@
-from pymongo import MongoClient
 import datetime
 
-class UserService:
+from pymongo import MongoClient
+
+
+class UserService(object):
+
 	def __init__(self):
 		self.client = MongoClient()
 		self.db = self.client.facehub

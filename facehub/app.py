@@ -1,9 +1,10 @@
-from bottle import route, run, abort, response, static_file, debug, default_app, request
-from decorators import json_response
-from users.user_service import UserService
-from users.user import User
 import logging
 
+from bottle import route, run, abort, response, static_file, debug, default_app, request
+
+from response_writer import render
+from users.user_service import UserService
+from users.user import User
 
 users_list = [
     { "id": 1, "name": "Yao Shaobo", "photo":"http://uxhongkong.com/interviews/img/people/thumb-alain-robillard-bastien.jpg", "position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
@@ -20,9 +21,8 @@ data = {
     'users' : users_list
 }
 
-
 @route("/api/users")
-@json_response
+@render(content_type="application/json")
 def users():
     return data
 
@@ -34,7 +34,7 @@ def user(id):
     abort(404, "No such user.")
 
 @route('/api/users', method='POST')
-@json_response
+@render(content_type="application/json")
 def createUser():
     name = request.forms.get('name', None)
     position = request.forms.get('position', None)
