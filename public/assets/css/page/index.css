@@ -36,6 +36,15 @@ body {
     cursor: pointer;
 }
 
+.profile .photo {
+    display: block;
+}
+
+.profile:hover .name{
+    color: #FFFFFF;
+    background-color: #FF0066;
+}
+
 .profile .name{
     text-align: center;
     border-bottom: 1px solid #ccc;
