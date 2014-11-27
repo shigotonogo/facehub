@@ -8,6 +8,9 @@ class UserService(BaseService):
     def find_by_name(self, name):
         return self.user_col.find_one({'name': name})
 
+    def find_by_id(self, id):
+        return self.mongodb['users'].find({'id' : id})
+
     def save(self, user):
         return self.user_col.save(user.__dict__)
 

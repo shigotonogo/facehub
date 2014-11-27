@@ -16,19 +16,22 @@ plugin = MongoPlugin(uri=MONGO_HOST, db=MONGO_DATABASE, json_mongo=True)
 app.install(plugin)
 
 
-@app.route("/api/users")
+@app.route("/api/users", method='GET')
 def users(mongodb):
     user_service = UserService(mongodb)
     users = json.loads(dumps(user_service.get_all_users()))
     return jsonify(users=users)
 
 
-@app.route('/api/users/<id>')
-def user(id):
-    for u in users_list:
-        if u['id'] == int(id):
-            return u
-    abort(404, "No such user.")
+@app.route('/api/users/<id:int>', method='GET')
+def user(mongodb, id):
+    user_service = UserService(mongodb)
+    users = user_service.find_by_id(id)
+    if users.count():
+        user = json.loads(dumps(users))[0]
+        return jsonify(user)
+    else:
+        abort(404, "No such user.")
 
 
 @app.route('/api/users', method='POST')
