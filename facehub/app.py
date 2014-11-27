@@ -73,7 +73,11 @@ if __name__ == '__main__':
     def index():
         return static_file("index.html", root="public/views/", mimetype="text/html")
 
-    @app.route("/assets/<type>/<filename:path>")
+    @route('/main-photo/<id>')
+    def main_photo(id):
+        return static_file("main-photo.html", root="public/views/", mimetype="text/html")
+
+    @route("/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
 

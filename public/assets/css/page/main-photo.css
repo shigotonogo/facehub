@@ -1,0 +1,11 @@
+#main-photo {
+	max-width: 740px;
+}
+.preview {
+	width: 300px;
+	height: 400px;
+	overflow: hidden;
+}
+.preview .background {
+	
+}
