@@ -9,7 +9,6 @@
                 src: $(current.toHTML()),
                 type: 'inline'
             }],
-            
             closeMarkup: '<div class="close-bg"><button title="%title%" type="button" class="mfp-close">&times;</button></div>'
         });
     };

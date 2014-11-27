@@ -2,7 +2,7 @@
     // $.get('/',function(data){
 
     // });
-    // 
+    //
     var ractive = new Ractive({
         el: 'info',
 
