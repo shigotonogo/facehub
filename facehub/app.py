@@ -42,6 +42,7 @@ def createUser(mongodb):
     project = request.forms.get('project', None)
     phone = request.forms.get('phone', None)
     skype = request.forms.get('skype', None)
+    photo = request.forms.get('photo', None)
 
     if name and position and project and email:
         user = dict(name=name,
@@ -49,7 +50,8 @@ def createUser(mongodb):
                     project=project,
                     email=email,
                     phoneNumber=phone,
-                    skype=skype)
+                    skype=skype,
+                    photo=photo)
 
         user_id = None
         try:
