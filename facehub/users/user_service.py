@@ -12,7 +12,8 @@ class UserService(BaseService):
         return self.mongodb['users'].find({'id' : id})
 
     def save(self, user):
-        return self.user_col.save(user.__dict__)
+        user['id'] = self.mongodb['users'].count() + 1
+        return self.mongodb['users'].save(user)
 
     def get_all_users(self):
         return self.mongodb['users'].find()

@@ -35,29 +35,29 @@ def user(mongodb, id):
 
 
 @app.route('/api/users', method='POST')
-def createUser():
+def createUser(mongodb):
     name = request.forms.get('name', None)
     position = request.forms.get('position', None)
     email = request.forms.get('email', None)
     project = request.forms.get('project', None)
-    phoneNumber = request.forms.get('phoneNumber', None)
+    phone = request.forms.get('phone', None)
     skype = request.forms.get('skype', None)
 
-    if name is not None and position is not None and project is not None and email is not None:
-        user = User(name)
-        user.position = position
-        user.project = project
-        user.email = email
-        user.phoneNumber = phoneNumber
-        user.skype = skype
+    if name and position and project and email:
+        user = dict(name=name,
+                    position=position,
+                    project=project,
+                    email=email,
+                    phoneNumber=phone,
+                    skype=skype)
 
-        userId = None
+        user_id = None
         try:
-            user_service = UserService()
-            userId = user_service.save(user)
+            user_service = UserService(mongodb)
+            user_id = user_service.save(user)
         except Exception as e:
             logging.exception("unexpected error {}", e)
-        if not userId:
+        if not user_id:
             logging.error("can't save the user in mongo")
             return {'status': 'error',
                     'message': "failed save user."}
