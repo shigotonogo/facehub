@@ -1,40 +1,37 @@
 import logging
+import json
+from bson.json_util import dumps
 
-from bottle import route, run, abort, response, static_file, debug, default_app, request
+from bottle import Bottle, run, abort, static_file, debug, default_app, request
+from bottle.ext.mongo import MongoPlugin
 
-from response_writer import render
+from utils import jsonify
 from users.user_service import UserService
 from users.user import User
+from settings import *
 
-users_list = [
-    { "id": 1, "name": "Yao Shaobo", "photo":"http://uxhongkong.com/interviews/img/people/thumb-alain-robillard-bastien.jpg", "position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 2, "name": "Dong Yuwei", "photo":"http://uxhongkong.com/interviews/img/people/thumb-andrew-mayfield.jpg","position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 3, "name": "Dou Yutao", "photo":"http://uxhongkong.com/interviews/img/people/thumb-boon-yew-chew.jpg","position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 4, "name": "Liu Liang", "photo":"http://uxhongkong.com/interviews/img/people/thumb-cornelius-rachieru.jpg", "position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 1, "name": "Yao Shaobo", "photo":"http://uxhongkong.com/interviews/img/people/thumb-alain-robillard-bastien.jpg","position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 2, "name": "Dong Yuwei", "photo":"http://uxhongkong.com/interviews/img/people/thumb-andrew-mayfield.jpg", "position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 3, "name": "Dou Yutao", "photo":"http://uxhongkong.com/interviews/img/people/thumb-boon-yew-chew.jpg", "position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" },
-    { "id": 4, "name": "Liu Liang", "photo":"http://uxhongkong.com/interviews/img/people/thumb-cornelius-rachieru.jpg", "position": "MD", "project": "REA myfun.com", "email": "zh.li@thoughtworks.com", "phoneNumber": "13060245883", "skype": "david.xie" }
-]
 
-data = {
-    'users' : users_list
-}
+app = Bottle()
+plugin = MongoPlugin(uri=MONGO_HOST, db=MONGO_DATABASE, json_mongo=True)
+app.install(plugin)
 
-@route("/api/users")
-@render(content_type="application/json")
-def users():
-    return data
 
-@route('/api/users/<id>')
+@app.route("/api/users")
+def users(mongodb):
+    user_service = UserService(mongodb)
+    users = json.loads(dumps(user_service.get_all_users()))
+    return jsonify(users=users)
+
+
+@app.route('/api/users/<id>')
 def user(id):
     for u in users_list:
         if u['id'] == int(id):
             return u
     abort(404, "No such user.")
 
-@route('/api/users', method='POST')
-@render(content_type="application/json")
+
+@app.route('/api/users', method='POST')
 def createUser():
     name = request.forms.get('name', None)
     position = request.forms.get('position', None)
@@ -69,16 +66,16 @@ if __name__ == '__main__':
     assets = "public/assets/"
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
 
-    @route('/')
+    @app.route('/')
     def index():
         return static_file("index.html", root="public/views/", mimetype="text/html")
 
-    @route("/assets/<type>/<filename:path>")
+    @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
 
     debug(True)
-    run(host='0.0.0.0', port=8080, reloader=True)
+    run(app=app, host='0.0.0.0', port=8080, reloader=True)
 else:
     application = default_app()
 

@@ -1,0 +1,2 @@
+MONGO_HOST = 'mongodb://192.168.59.103:49161'
+MONGO_DATABASE = 'facehub'

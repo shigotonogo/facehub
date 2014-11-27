@@ -1,17 +1,15 @@
-import datetime
 
-from pymongo import MongoClient
+class BaseService(object):
+    def __init__(self, mongodb):
+        self.mongodb = mongodb
 
 
-class UserService(object):
+class UserService(BaseService):
+    def find_by_name(self, name):
+        return self.user_col.find_one({'name': name})
 
-	def __init__(self):
-		self.client = MongoClient()
-		self.db = self.client.facehub
-		self.user_col = self.db.users
+    def save(self, user):
+        return self.user_col.save(user.__dict__)
 
-	def find_by_name(self, name):
-		return self.user_col.find_one({'name': name})
-
-	def save(self, user):
-		return self.user_col.save(user.__dict__)
+    def get_all_users(self):
+        return self.mongodb['users'].find()
