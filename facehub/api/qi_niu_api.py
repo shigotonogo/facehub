@@ -1,14 +1,16 @@
 import logging
+import os
 import qiniu.io
 import qiniu.conf
 import qiniu.rs
-import os
+import sys
+from facehub.settings import *
 
 class QiNiuAPi:
-    qiniu.conf.ACCESS_KEY = "p0XvMhHCUOwTAUmdJdRvYVL58Set1kIEWQZDk5rF"
-    qiniu.conf.SECRET_KEY = "PhFzLVRNFawZc9eM4fUPPyRlSTqWkALmgxRvegkL"
+    qiniu.conf.ACCESS_KEY = QINIU_ACCESS_KEY
+    qiniu.conf.SECRET_KEY = QINIU_SECRET_KEY
+    bucket_name = PROJECT_NAME
 
-    bucket_name = "facehub"
     token=None
 
     def upload(self, file_path):

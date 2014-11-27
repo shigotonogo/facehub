@@ -12,7 +12,7 @@ from settings import *
 
 
 app = Bottle()
-plugin = MongoPlugin(uri=MONGO_HOST, db=MONGO_DATABASE, json_mongo=True)
+plugin = MongoPlugin(uri=MONGO_HOST, db=PROJECT_NAME, json_mongo=True)
 app.install(plugin)
 
 
