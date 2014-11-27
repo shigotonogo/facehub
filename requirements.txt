@@ -2,3 +2,4 @@ bottle
 nose2
 six
 pymongo
+qiniu<7

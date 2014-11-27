@@ -4,6 +4,7 @@ import facehub
 
 reqs = [
       "bottle"
+      "qiniu"
 ]
 
 setup(
