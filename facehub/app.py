@@ -73,11 +73,11 @@ if __name__ == '__main__':
 
     @app.route('/')
     def index():
-        return static_file("index.html", root="public/views/", mimetype="text/html")
+        return static_file("index.html", root="../public/views/", mimetype="text/html")
 
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
-        return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
+        return static_file(filename, root="../public/assets/" + type, mimetype=mimetypes[type])
 
     debug(True)
     run(app=app, host='0.0.0.0', port=8080, reloader=True)

@@ -1,5 +1,6 @@
 bottle
+bottle-mongo
 nose2
 six
 pymongo
-qiniu<7
+qiniu
