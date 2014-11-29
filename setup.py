@@ -1,22 +1,23 @@
 from setuptools import setup, find_packages
 
-import facehub
+import services
 
 reqs = [
-      "bottle"
+      "bottle",
+      #"bottle-mongo",
       "qiniu"
 ]
 
 setup(
-      name = facehub.__name__,
-      version = facehub.__version__,
+      name = services.__name__,
+      version = services.__version__,
       packages = find_packages(),
       requires = reqs,
       install_requires = reqs,
-      author = facehub.__author__,
+      author = services.__author__,
       author_email = "he.fei@rea-group.com",
-      description = "facehub.",
-      long_description = "facehub.",
+      description = "Facehub.",
+      long_description = "Facehub.",
       license = "Proprietary",
       keywords = "content, CMS",
       url = "http://github.com/shigotonogo/facehub",

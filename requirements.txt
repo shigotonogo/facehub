@@ -1,6 +1,4 @@
 bottle
-bottle-mongo
-nose2
-six
+bottle-mongo>=0.2.4
 pymongo
 qiniu

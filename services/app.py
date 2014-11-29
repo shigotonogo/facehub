@@ -7,7 +7,6 @@ from bottle.ext.mongo import MongoPlugin
 
 from utils import jsonify
 from users.user_service import UserService
-from users.user import User
 from settings import *
 
 
