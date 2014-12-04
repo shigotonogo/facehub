@@ -1,9 +1,9 @@
 default: deps test
 
 deps:
-	pip install -r requirements.txt
+	pip install tox
 
 test:
-	nose2 -c nose2.cfg
+	tox
 
 .PHONY: deps test
