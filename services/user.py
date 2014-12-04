@@ -1,8 +1,9 @@
 import datetime
 
-from mongokit import Document, Connection
+from mongokit import Document
 
 class Users(Document):
+    __collection__ = 'users'
 
     structure = {
         'name': str,
