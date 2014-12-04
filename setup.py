@@ -4,7 +4,6 @@ import services
 
 reqs = [
       "bottle",
-      #"bottle-mongo",
       "qiniu"
 ]
 
@@ -15,7 +14,7 @@ setup(
       requires = reqs,
       install_requires = reqs,
       author = services.__author__,
-      author_email = "he.fei@rea-group.com",
+      author_email = "myfun.xian@gmail.com",
       description = "Facehub.",
       long_description = "Facehub.",
       license = "Proprietary",
