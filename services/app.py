@@ -78,6 +78,10 @@ if __name__ == '__main__':
     def assets(type, filename):
         return static_file(filename, root="../public/assets/" + type, mimetype=mimetypes[type])
 
+    @app.route('/edit')
+    def editPhoto():
+        return static_file("edit-photo.html", root="../public/views/", mimetype="text/html")
+
     debug(True)
     run(app=app, host='0.0.0.0', port=8080, reloader=True)
 else:

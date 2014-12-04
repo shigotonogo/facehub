@@ -1,0 +1,17 @@
+.raw-photo img{
+    max-width: 740px;
+}
+.preview.blank{
+    background-color: grey;
+}
+
+.preview {
+    overflow: hidden;
+    width: 300px;
+    height: 400px;
+}
+
+// .preview img{
+//     width: 300px;
+//     height: 400px;
+// }
