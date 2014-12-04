@@ -8,6 +8,7 @@ from bottle.ext.mongo import MongoPlugin
 from utils import jsonify
 from users.user_service import UserService
 from settings import *
+from image.image_utils import crop_image
 
 
 app = Bottle()
@@ -77,6 +78,16 @@ if __name__ == '__main__':
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="../public/assets/" + type, mimetype=mimetypes[type])
+
+    @app.route('/edit', method='POST')
+    def editPhoto():
+        img_src = request.forms.get("image", None)
+        x = request.forms.get("x", None)
+        y = request.forms.get("y", None)
+        width = request.forms.get("width", None)
+        height = request.forms.get("height", None)
+        image = crop_image(img_src, x, y, width, height, 2)
+
 
     @app.route('/edit')
     def editPhoto():
