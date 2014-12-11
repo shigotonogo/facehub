@@ -8,7 +8,10 @@ from bottle.ext.mongo import MongoPlugin
 from utils import jsonify
 from users.user_service import UserService
 from settings import *
+from api.qi_niu_api import QiNiuAPi
 from image.image_utils import crop_image
+
+qiNiuApi = QiNiuAPi()
 
 
 app = Bottle()
@@ -87,6 +90,7 @@ if __name__ == '__main__':
         width = request.forms.get("width", None)
         height = request.forms.get("height", None)
         image = crop_image(img_src, x, y, width, height, 2)
+        qiNiuApi.upload(image)
 
 
     @app.route('/edit')

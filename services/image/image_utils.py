@@ -3,7 +3,9 @@ import io
 import urllib.request
 
 def crop_image(image_src, x, y, width, height, scale = 1):
-    image = Image.open(io.StringIO(urllib.request.urlopen(image_src).read()))
-    image.crop((x, y, x + width, y + height))
-    image.resize((width * scale, height * scale), Image.NEAREST)
-    image.save("/tmp/test-image.png")
+    image = Image.open(io.BytesIO(urllib.request.urlopen(image_src).read()))
+    image.crop((int(x), int(y), int(x) + int(width), int(y) + int(height)))
+    image.resize((int(width) * scale, int(height) * scale), Image.NEAREST)
+    tmpImage= "/tmp%s" % uuid.uuid4()
+    image.save(tmpImage)
+    return tmpImage
