@@ -1,6 +1,4 @@
 bottle
-bottle-mongo>=0.2.4
-pymongo
 mongokit-py3
 qiniu
 nose2
