@@ -1,69 +1,62 @@
 import logging
-import json
-from bson.json_util import dumps
 
+from mongokit import Connection
 from bottle import Bottle, run, abort, static_file, debug, default_app, request
-from bottle.ext.mongo import MongoPlugin
 
 from utils import jsonify
-from users.user_service import UserService
+from model import User, Project
 from settings import *
 
 
 app = Bottle()
-plugin = MongoPlugin(uri=MONGO_HOST, db=PROJECT_NAME, json_mongo=True)
-app.install(plugin)
+
+connection = Connection(host=MONGO_HOST)
+connection.register([User, Project])
 
 
 @app.route("/api/users", method='GET')
 def users(mongodb):
-    user_service = UserService(mongodb)
-    users = json.loads(dumps(user_service.get_all_users()))
+    users = [user.to_json_type() for user in connection.facehub.User.find()]
     return jsonify(users=users)
 
 
 @app.route('/api/users/<id:int>', method='GET')
 def user(mongodb, id):
-    user_service = UserService(mongodb)
-    users = user_service.find_by_id(id)
-    if users.count():
-        user = json.loads(dumps(users))[0]
-        return jsonify(user)
+    user = connection.facehub.User.find_one(id)
+    if user is not None:
+        return jsonify(user.to_json_type())
     else:
         abort(404, "No such user.")
 
 
 @app.route('/api/users', method='POST')
 def createUser(mongodb):
-    name = request.forms.get('name', None)
-    position = request.forms.get('position', None)
-    email = request.forms.get('email', None)
-    project = request.forms.get('project', None)
-    phone = request.forms.get('phone', None)
-    skype = request.forms.get('skype', None)
-    photo = request.forms.get('photo', None)
 
-    if name and position and project and email:
-        user = dict(name=name,
-                    position=position,
-                    project=project,
-                    email=email,
-                    phoneNumber=phone,
-                    skype=skype,
-                    photo=photo)
+    project = connection.facehub.Project()
+    project['name'] = request.forms.get('project', None)
 
-        user_id = None
-        try:
-            user_service = UserService(mongodb)
-            user_id = user_service.save(user)
-        except Exception as e:
-            logging.exception("unexpected error {}", e)
-        if not user_id:
-            logging.error("can't save the user in mongo")
-            return {'status': 'error',
-                    'message': "failed save user."}
+    user = connection.facehub.User()
+    user['name'] = request.forms.get('name', None)
+    user['title'] = request.forms.get('title', None)
+    user['project'] = project
+    user['email'] = request.forms.get('email', None)
+    user['skype'] = request.forms.get('skype', None)
+    user['photo'] = request.forms.get('phone', None)
+    user['phone'] = request.forms.get('phone', None)
+
+    try:
+        project.save()
+        user.save()
+    except Exception as e:
+        logging.exception("unexpected error {}", e)
+    if not user_id:
+        logging.error("can't save the user in mongo")
+        return {'status': 'error',
+                'message': "failed save user."}
     else:
         return {'status': 'error',
+            'message': "the field is not satisfied."}
+
                 'message': "the field is not satisfied."}
 
 if __name__ == '__main__':
