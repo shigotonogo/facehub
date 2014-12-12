@@ -32,7 +32,6 @@ def user(mongodb, id):
     else:
         abort(404, "No such user.")
 
-
 @app.route('/api/users', method='POST')
 def createUser(mongodb):
     name = request.forms.get('name', None)
@@ -73,6 +72,11 @@ if __name__ == '__main__':
     @app.route('/')
     def index():
         return static_file("index.html", root="../public/views/", mimetype="text/html")
+
+
+    @app.route('/new', method='GET')
+    def new():
+        return static_file("new.html", root="../public/views/", mimetype="text/html")
 
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):

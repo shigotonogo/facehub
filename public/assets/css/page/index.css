@@ -1,6 +1,7 @@
 body {
     background-color: #f2f2f2;
     font-family:  'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
+    box-sizing: border-box;
 }
 
 .pull-left{
@@ -51,4 +52,23 @@ body {
     height: 45px;
     line-height: 45px;
     font-style: 13px;
+}
+
+.add-member {
+    float: right;
+    color: #ff0065;
+    margin-top: -52px;
+    margin-right: 200px;
+}
+
+.add-member-image{
+    background: url("/assets/images/add-member.png") no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.add-member-text {
+    text-decoration: none;
+    color: #ff0065;
 }
