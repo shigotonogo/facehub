@@ -27,8 +27,6 @@ if 'user' in tables:
 else:
     db.create_tables([User])
 
-
-
 with open('tests/fixtures/projects.json', 'r') as f:
     projects = json.loads(f.read())
 
