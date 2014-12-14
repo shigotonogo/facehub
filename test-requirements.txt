@@ -1,2 +1,6 @@
+bottle
+pymysql
+peewee
+qiniu
 nose2
 six

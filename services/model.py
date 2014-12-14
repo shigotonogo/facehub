@@ -1,64 +1,34 @@
 import datetime
-import uuid
+import json
 
-from mongokit import Document
+from peewee import *
 
-class Project(Document):
-    __collection__ = "projects"
+db_proxy = Proxy()
 
-    structure = {
-        '_id': str,
-        'name': str,
-        'description': str,
-        'create_at': datetime.datetime,
-        'updated_at': datetime.datetime
-    }
+def initDatabase(db):
+    db_proxy.initialize(db)
 
-    required_fields = ['name']
+class BaseModel(Model):
 
-    indexes = [
-        {
-            'fields': ['name'],
-            'unique': True
-        }
-    ]
+    class Meta:
+        database = db_proxy
 
-    default_values = {
-        '_id': str(uuid.uuid4()),
-        'create_at': datetime.datetime.utcnow
-    }
+class Project(BaseModel):
+    id = PrimaryKeyField()
+    name = CharField(index=True)
+    description =  TextField(null=True)
+    created_at = DateTimeField(default=datetime.datetime.now)
+    updated_at = DateTimeField(default=datetime.datetime.now)
 
-
-    def save(self, uuid=False, validate=None, safe=True, *args, **kwargs):
-        self['updated_at'] = datetime.datetime.utcnow()
-        super(Project, self).save(uuid, validate, safe, *args, **kwargs)
-
-class User(Document):
-    __collection__ = 'users'
-
-    structure = {
-        '_id': str,
-        'name': str,
-        'avatar': str,
-        'photo' : str,
-        'title': str,
-        'project': Project,
-        'email': str,
-        'phone_number': str,
-        'skype':str,
-        'create_at': datetime.datetime,
-        'updated_at': datetime.datetime
-    }
-    use_autorefs = True
-
-    required_fields = ['name', 'title', 'project', 'email']
-
-    default_values = {
-        '_id': str(uuid.uuid4()),
-        'create_at': datetime.datetime.utcnow
-    }
-
-    def save(self, uuid=False, validate=None, safe=True, *args, **kwargs):
-        self['updated_at'] = datetime.datetime.utcnow()
-        super(User, self).save(uuid, validate, safe, *args, **kwargs)
-
+class User(BaseModel):
+    id = PrimaryKeyField()
+    project = ForeignKeyField(Project, related_name='project', null=True)
+    name = CharField(index=True)
+    title = CharField(null=False)
+    email = CharField(null=False)
+    avatar = CharField()
+    photo = CharField()
+    phone = CharField(null=True)
+    skype = CharField(null=True)
+    created_at = DateTimeField(default=datetime.datetime.now)
+    updated_at = DateTimeField(default=datetime.datetime.now)

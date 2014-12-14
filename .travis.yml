@@ -1,4 +1,5 @@
 language: python
+services: sqlite3
 python:
   - "3.4"
 install:

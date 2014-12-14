@@ -1,4 +1,4 @@
 bottle
-mongokit-py3
+pymysql
+peewee
 qiniu
-nose2

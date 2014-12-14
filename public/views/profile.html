@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang='en-GB'>
+<head>
+  <meta charset='utf-8'>
+  <title>profile page</title>
+  <link rel="stylesheet" href="/assets/css/page/profile.css">
+</head>
+
+<body>
+  <h1>my profile</h1>
+
+  <div id='info'></div>
+
+  <script id='template' type='text/ractive'>
+    <div class='profile'>
+      <div class='top'>
+        <div class='pull-left'>
+          <img class="photo" src="{{photo}}" alt="{{name}}">
+          <div class="name">
+            {{name}}
+          </div>
+        </div>
+        <div class='pull-right'>
+          <div>
+             role:{{role}}
+           </div>
+           <div>
+             team:{{project.name}}
+           </div>
+           <div>
+             email:{{email}}
+           </div>
+        </div>
+      </div>
+      <div class='bottom'>
+        <div>
+          mobile:{{mobile}}
+        </div>
+        <div>
+          skype:{{skype}}
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
+  <script src='/assets/js/lib/ractive.js'></script>
+  <script type="text/javascript" src="/assets/js/page/profile.js"></script>
+</body>
+</html>

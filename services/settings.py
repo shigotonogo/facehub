@@ -1,4 +1,3 @@
-MONGO_HOST = 'mongodb://db:27017'
 PROJECT_NAME = 'facehub'
 
 QINIU_ACCESS_KEY = "p0XvMhHCUOwTAUmdJdRvYVL58Set1kIEWQZDk5rF"
