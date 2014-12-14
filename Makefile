@@ -2,9 +2,10 @@ PYTHON3=python
 default: deps test
 
 deps:
-	pip install -r requirements.txt
+	pip install tox
+	pip install -r test-requirements.txt
 
-test:
+test: deps
 	tox
 
 run: deps
