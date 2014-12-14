@@ -3,8 +3,9 @@ from json import dumps
 
 from bottle import *
 
-from serializer import Serializer
 from model import *
+from serializer import Serializer
+
 
 app = Bottle()
 app.config.load_config('facehub.cfg')
@@ -56,20 +57,19 @@ def createUser():
             'message': "the field is not satisfied."}
 
 if __name__ == '__main__':
-    assets = "public/assets/"
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
 
     @app.route('/')
     def index():
-        return static_file("index.html", root="public/views/", mimetype="text/html")
+        return static_file("index.html", root="facehub/templates/", mimetype="text/html")
 
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
-        return static_file(filename, root="public/assets/" + type, mimetype=mimetypes[type])
+        return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
 
     @app.route('/edit')
     def editPhoto():
-        return static_file("edit-photo.html", root="public/views/", mimetype="text/html")
+        return static_file("edit-photo.html", root="facehub/templates/", mimetype="text/html")
 
     debug(True)
     run(app=app, host='0.0.0.0', port=8080, reloader=True)

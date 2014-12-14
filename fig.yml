@@ -2,8 +2,8 @@ api:
   build: .
   volumes:
    - .:/facehub
-  working_dir: /facehub/services
-  command: python3 app.py
+  working_dir: /facehub
+  command: python3 facehub/app.py
   links:
    - db
   ports:

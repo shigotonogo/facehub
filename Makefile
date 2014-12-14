@@ -8,8 +8,10 @@ deps:
 test: deps
 	tox
 
-run: deps
-	$(PYTHON3) -V
-	$(PYTHON3) services/app.py
+fixtures:
+	./fixtures
+
+run: deps fixtures
+	$(PYTHON3) facehub/app.py
 
 .PHONY: deps test

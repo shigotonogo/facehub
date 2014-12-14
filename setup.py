@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-import services
+import facehub
 
 reqs = [
       "bottle",
@@ -8,12 +8,12 @@ reqs = [
 ]
 
 setup(
-      name = services.__name__,
-      version = services.__version__,
+      name = facehub.__name__,
+      version = facehub.__version__,
       packages = find_packages(),
       requires = reqs,
       install_requires = reqs,
-      author = services.__author__,
+      author = facehub.__author__,
       author_email = "myfun.xian@gmail.com",
       description = "Facehub.",
       long_description = "Facehub.",

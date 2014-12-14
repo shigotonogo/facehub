@@ -4,8 +4,8 @@ import sys
 from peewee import *
 from playhouse.test_utils import test_database
 
-from services.model import User, Project
-from services.serializer import Serializer
+from facehub.model import User, Project
+from facehub.serializer import Serializer
 
 test_db = SqliteDatabase('facehub.db')
 

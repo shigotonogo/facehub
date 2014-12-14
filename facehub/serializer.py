@@ -5,7 +5,7 @@ from peewee import Model
 try:
     from utils import get_dictionary_from_model, get_model_from_dictionary
 except ImportError:
-    from services.utils import get_dictionary_from_model, get_model_from_dictionary
+    from facehub.utils import get_dictionary_from_model, get_model_from_dictionary
 
 class Serializer(object):
     date_format = '%Y-%m-%d'
