@@ -9,4 +9,4 @@ script: make test
 
 branches:
     only:
-        - peewee
+        - master

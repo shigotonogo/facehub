@@ -1,5 +1,12 @@
-[![Build Status](https://travis-ci.org/shigotonogo/facehub.svg?branch=master)](https://travis-ci.org/shigotonogo/facehub)  
-Facehub
+facehub [![Build Status](https://travis-ci.org/shigotonogo/facehub.svg?branch=master)](https://travis-ci.org/shigotonogo/facehub)
+
 =======
 
-face of the team
+## Quick Start
+
+``` sh
+
+make run
+
+```
+
