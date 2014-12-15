@@ -2,13 +2,22 @@
 
 import json
 
+from bottle import ConfigDict
+import pymysql
+from peewee import MySQLDatabase
+
 from facehub.model import *
 
-from bottle import ConfigDict
-from peewee import MySQLDatabase
 
 cfg = ConfigDict()
 cfg.load_config("facehub.cfg")
+
+con = pymysql.connect(host=cfg['mysql.host'], user=cfg['mysql.user'])
+
+cur = con.cursor()
+cur.execute("create database  if not exists %s" % cfg['mysql.db'])
+con.commit()
+cur.close()
 
 db = MySQLDatabase(cfg['mysql.db'], host=cfg['mysql.host'], user=cfg['mysql.user'])
 initDatabase(db)
@@ -36,4 +45,4 @@ def main(db, users, projects):
 
 
 if __name__ == '__main__':
-    main()
+    main(db, users, projects)

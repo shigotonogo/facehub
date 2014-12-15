@@ -8,10 +8,10 @@ deps:
 test: deps
 	tox
 
-fixtures:
-	./fixtures
+dbseeds:
+	./dbseeds
 
-run: deps fixtures
+run: deps dbseeds
 	$(PYTHON3) facehub/app.py
 
-.PHONY: deps test
+.PHONY: deps test dbseeds
