@@ -12,14 +12,14 @@ from facehub.model import *
 cfg = ConfigDict()
 cfg.load_config("facehub.cfg")
 
-con = pymysql.connect(host=cfg['mysql.host'], user=cfg['mysql.user'])
+con = pymysql.connect(host=cfg['mysql.host'], user=cfg['mysql.user'], password=cfg['mysql.password'])
 
 cur = con.cursor()
 cur.execute("create database  if not exists %s" % cfg['mysql.db'])
 con.commit()
 cur.close()
 
-db = MySQLDatabase(cfg['mysql.db'], host=cfg['mysql.host'], user=cfg['mysql.user'])
+db = MySQLDatabase(cfg['mysql.db'], host=cfg['mysql.host'], user=cfg['mysql.user'], password=cfg['mysql.password'])
 initDatabase(db)
 
 with open('tests/fixtures/projects.json', 'r') as f:

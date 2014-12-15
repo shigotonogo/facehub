@@ -10,7 +10,7 @@ from serializer import Serializer
 app = Bottle()
 app.config.load_config('facehub.cfg')
 
-db = MySQLDatabase(app.config['mysql.db'], host=app.config['mysql.host'], user=app.config['mysql.user'])
+db = MySQLDatabase(app.config['mysql.db'], host=app.config['mysql.host'], user=app.config['mysql.user'], password=app.config['mysql.password'])
 initDatabase(db)
 
 ser = Serializer()
