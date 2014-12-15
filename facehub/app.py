@@ -2,7 +2,7 @@ import logging
 from json import dumps
 
 from bottle import *
-
+import pdb
 from model import *
 from serializer import Serializer
 
@@ -32,7 +32,7 @@ def user(id):
 
 @app.route('/api/users', method='POST')
 def createUser():
-    projet = request.forms.get('project', None)
+    project = request.forms.get('project', None)
     name = request.forms.get('name', None)
     title = request.forms.get('title', None)
     project = project
@@ -40,15 +40,16 @@ def createUser():
     skype = request.forms.get('skype', None)
     phone_number = request.forms.get('phone', None)
     photo = request.forms.get('photo', None)
+    pdb.set_trace()
 
     try:
         p = Project(name=project)
-        u = User(name=name, title=title, project=p, email=email, skype=skype, phone=phone, photo=photo)
+        u = User(name=name, title=title, project=p, email=email, skype=skype, phone=phone_number, photo=photo)
         p.save()
         u.save()
     except Exception as e:
         logging.exception("unexpected error {}", e)
-    if not user_id:
+    if not id:
         logging.error("can't save the user in mongo")
         return {'status': 'error',
                 'message': "failed save user."}
@@ -66,7 +67,7 @@ if __name__ == '__main__':
 
     @app.route('/new', method='GET')
     def new():
-        return static_file("new.html", root="../public/views/", mimetype="text/html")
+        return static_file("new.html", root="facehub/templates/", mimetype="text/html")
 
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
