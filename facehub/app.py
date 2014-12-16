@@ -2,7 +2,6 @@ import logging
 from json import dumps
 
 from bottle import *
-import pdb
 from model import *
 from serializer import Serializer
 
@@ -40,7 +39,6 @@ def createUser():
     skype = request.forms.get('skype', None)
     phone_number = request.forms.get('phone', None)
     photo = request.forms.get('photo', None)
-    pdb.set_trace()
 
     try:
         p = Project(name=project)
