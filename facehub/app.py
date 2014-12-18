@@ -3,7 +3,6 @@ from json import dumps
 from bottle import *
 from model import *
 from serializer import Serializer
-from cloud_provider import *
 from provider import get_one
 
 
@@ -17,9 +16,9 @@ provider = get_one(app.config['cloud.accesskey'], app.config['cloud.secretkey'],
 
 @app.route("/test", method='GET')
 def test():
-    file_name = provider.put_file('./rmb.png')
-    print(file_name)
-
+    url = provider.put_file('./rmb.png')
+    print(url)
+    
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'

@@ -10,6 +10,9 @@ class Provider(object):
         name, extension = os.path.splitext(file_path)
         return self.api.upload_file(file_path, self.__md5_name(name) + extension)
 
+    def get_stat(self, key):
+        return self.api.get_stat(key)
+
     def __md5_name(self, name):
         return hashlib.md5(name.encode('utf8')).hexdigest()
 
