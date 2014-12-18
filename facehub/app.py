@@ -1,9 +1,9 @@
 import logging
 from json import dumps
+
 from bottle import *
 from model import *
 from serializer import Serializer
-from cloud_storage_provider import CloudStorageProvider
 
 
 app = Bottle()
@@ -12,13 +12,7 @@ app.config.load_config('facehub.cfg')
 db = MySQLDatabase(app.config['mysql.db'], host=app.config['mysql.host'], user=app.config['mysql.user'], password=app.config['mysql.password'])
 initDatabase(db)
 
-csp = CloudStorageProvider(bucket_name=app.config['qiniu.bucket'], access_key=app.config['qiniu.accesskey'], secret_key=app.config['qiniu.secretkey'])
-
 ser = Serializer()
-
-@app.route("/test", method='GET')
-def test():
-    csp.put_file('./tmp/test.png')
 
 @app.route("/api/users", method='GET')
 def users():
