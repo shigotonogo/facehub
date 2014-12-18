@@ -1,11 +1,12 @@
 .mfp-content {
     text-align: center;
-    background: rgba(0, 0, 0, 0.2);
 }
 .mfp-content .mfp-close {
     width: 40px;
     height: 40px;
     color: white;
+    top: -1px;
+    opacity: 1;
 }
 .profile-detail {
     width: 600px;
@@ -30,13 +31,14 @@
 }
 .profile-detail .close-bg{
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: -19px;
+    right: -19px;
     width: 40px;
     height:40px;
     background-color: rgb(255,0,102);
     border-radius: 20px;
 }
+
 .profile-detail .close-bg:hover{
     background-color: #d80056;
 }
@@ -47,6 +49,11 @@
     font-size: 16px;
     color: #333;
 }
+
+.detail-info .position {
+    margin-top: 15px;
+}
+
 .detail-info .section .head {
     font-size: 13px;
     color: #999;   
@@ -55,6 +62,7 @@
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 10px;
+    padding-bottom: 10px
 }
 .detail-info .gap {
     color: rgb(153, 153, 153);
