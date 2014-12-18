@@ -6,11 +6,13 @@ from bottle import *
 from model import *
 from serializer import Serializer
 
+from playhouse.db_url import connect
+
 
 app = Bottle()
 app.config.load_config('facehub.cfg')
 
-db = MySQLDatabase(app.config['mysql.db'], host=app.config['mysql.host'], user=app.config['mysql.user'], password=app.config['mysql.password'])
+db = connect(app.config['database.url'])
 initDatabase(db)
 
 ser = Serializer()
