@@ -1,9 +1,10 @@
 import logging
 from json import dumps
-
 from bottle import *
 from model import *
 from serializer import Serializer
+from cloud_provider import *
+from provider import get_one
 
 
 app = Bottle()
@@ -11,8 +12,13 @@ app.config.load_config('facehub.cfg')
 
 db = MySQLDatabase(app.config['mysql.db'], host=app.config['mysql.host'], user=app.config['mysql.user'], password=app.config['mysql.password'])
 initDatabase(db)
-
 ser = Serializer()
+provider = get_one(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
+
+@app.route("/test", method='GET')
+def test():
+    file_name = provider.put_file('./rmb.png')
+    print(file_name)
 
 @app.route("/api/users", method='GET')
 def users():
