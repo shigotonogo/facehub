@@ -4,6 +4,7 @@ from bottle import *
 from model import *
 from serializer import Serializer
 from provider import get_one
+from image import crop_image
 
 
 app = Bottle()
@@ -75,6 +76,18 @@ if __name__ == '__main__':
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
+
+    @app.route('/edit', method='POST')
+    def editPhoto():
+        img_src = request.forms.get("src", None)
+        x = request.forms.get("x", None)
+        y = request.forms.get("y", None)
+        width = request.forms.get("w", None)
+        height = request.forms.get("h", None)
+        image = crop_image(img_src, int(x), int(y), int(width), int(height))
+        print(image)
+        image_url = provider.put_file(image)
+        print(image_url)
 
     @app.route('/edit')
     def editPhoto():
