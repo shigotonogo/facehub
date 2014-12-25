@@ -1,4 +1,11 @@
+import hashlib
+
 from peewee import *
+
+
+def hash(name):
+    return hashlib.md5(name.encode('utf8')).hexdigest()
+
 
 def get_dictionary_from_model(model, fields=None, exclude=None):
     model_class = type(model)

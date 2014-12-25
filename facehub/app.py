@@ -3,7 +3,7 @@ from json import dumps
 from bottle import *
 from model import *
 from serializer import Serializer
-from provider import get_one
+import storage
 from image import crop_image
 
 from playhouse.db_url import connect
@@ -15,13 +15,13 @@ app.config.load_config('facehub.cfg')
 db = connect(app.config['database.url'])
 initDatabase(db)
 ser = Serializer()
-provider = get_one(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
+provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
 
 @app.route("/test", method='GET')
 def test():
-    url = provider.put_file('./rmb.png')
+    url = provider.store('./rmb.png')
     print(url)
-    
+
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
