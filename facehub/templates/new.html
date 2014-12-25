@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang='en-GB'>
+	<head>
+	  <meta charset='utf-8'>
+	  <title>添加新成员</title>
+	  <link rel="stylesheet" href="/assets/css/page/new.css">
+	</head>
+
+	<body>
+		<div class='top'>
+			<div class='title pull-left'>
+				添加新成员
+			</div>
+			<div class='home pull-right'>
+				<a class='home' href="/">返回照片墙 >></a>
+			</div>
+		</div>
+		<div class='profile'>
+		  <div class='portrait'>
+		    <div class="photo" alt="default-photo"></div>
+		    <a class="tips" href="#">点我上传靓照</a>
+		    <div class="description">建议你选择一张正面全身的生活照，并且能让别人看清楚你的脸（没有墨镜或长檐帽子）</div>
+		  </div>
+		  <form class='info' action='/api/users', method='post'>
+		  	<h3>基础信息</h3>
+				<div class='line'>
+					<label for='name'>姓名*</label> <input name='name' type='text' class='name'></input>
+				</div>
+				<div class='line'>
+					<label for='title'>职位*</label> <input name='title' id='title'></input>
+				</div>
+				<div class='line'>
+					<label for='currentProject'>当前项目*</label> <input name='project' id='currentProject'></input>
+				</div>
+				<div class='line'>
+					<label for='email'>公司邮箱*</label> <input name='email' id='email'></input>
+				</div>
+				<h3>联系方式</h3>
+				<div class='line'>
+					<label for='phone'>电话</label> <input name='phone' id='phone'></input>
+				</div>
+				<div class='line'>
+				 	<label for='skype'>Skype</label> <input name='skype' id='skype'></input>
+				</div>
+				<div class='separator'></div>
+				<div class='submit'>
+					<button class='btn' href="#" type="submit">
+						提交
+					</button>
+				</div>
+		  </form>
+		</div>
+	</body>	
+</html>
