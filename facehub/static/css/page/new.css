@@ -8,6 +8,18 @@ body {
     float: right;
 }
 
+input:required:invalid, input:focus:invalid {
+	background-image: url('/assets/images/invalid.png');
+	background-position: right top;
+	background-repeat: no-repeat;
+}
+
+input:required:valid {
+ 	background-image: url('/assets/images/valid.png');
+ 	background-position: right top;
+ 	background-repeat: no-repeat
+}
+
 .top {
 	height: 70px;
 	background-color: #777777;
