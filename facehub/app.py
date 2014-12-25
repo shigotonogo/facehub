@@ -6,11 +6,13 @@ from serializer import Serializer
 from provider import get_one
 from image import crop_image
 
+from playhouse.db_url import connect
+
 
 app = Bottle()
 app.config.load_config('facehub.cfg')
 
-db = MySQLDatabase(app.config['mysql.db'], host=app.config['mysql.host'], user=app.config['mysql.user'], password=app.config['mysql.password'])
+db = connect(app.config['database.url'])
 initDatabase(db)
 ser = Serializer()
 provider = get_one(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
