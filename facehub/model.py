@@ -20,6 +20,9 @@ class Project(BaseModel):
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
 
+    class Meta:
+        db_table = 'projects'
+
 class User(BaseModel):
     id = PrimaryKeyField()
     project = ForeignKeyField(Project, related_name='project', null=True)
@@ -32,3 +35,6 @@ class User(BaseModel):
     skype = CharField(null=True)
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        db_table = 'users'

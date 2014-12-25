@@ -1,5 +1,4 @@
 bottle
-pymysql
 peewee
 pillow
 qiniu

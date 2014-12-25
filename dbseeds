@@ -22,10 +22,10 @@ with open('tests/fixtures/users.json', 'r') as f:
 
 def main(db, users, projects):
     tables = db.get_tables()
-    if 'user' in tables:
+    if 'users' in tables:
         db.drop_tables([User])
 
-    if 'project' in tables:
+    if 'projects' in tables:
         db.drop_tables([Project])
 
     db.create_tables([Project, User])
