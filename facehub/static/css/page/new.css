@@ -116,3 +116,7 @@ input:required:valid {
 	background-color: #666666;
 	font-size: 13px;
 }
+
+.hide{
+    display: none;
+}

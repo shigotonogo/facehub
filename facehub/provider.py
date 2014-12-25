@@ -16,6 +16,9 @@ class Provider(object):
     def __md5_name(self, name):
         return hashlib.md5(name.encode('utf8')).hexdigest()
 
+    def token(self):
+        return self.api.token()
+
 def get_one(access_key, secret_key, bucket_name=None):
     api =  QiNiuProvider(access_key, secret_key, bucket_name)
     return Provider(api)

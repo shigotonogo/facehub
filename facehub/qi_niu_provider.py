@@ -8,6 +8,10 @@ class QiNiuProvider(object):
         self.secret_key = secret_key
         self.bucket_name = bucket_name
         self.credentials = Auth(self.access_key, self.secret_key)
+    
+    def token(self):
+        return self.credentials.upload_token(self.bucket_name)
+
 
     def upload_file(self, file_path, file_name): 
         upload_token = self.credentials.upload_token(self.bucket_name, file_name)  

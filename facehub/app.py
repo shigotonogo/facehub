@@ -75,9 +75,21 @@ if __name__ == '__main__':
     def new():
         return static_file("new.html", root="facehub/templates/", mimetype="text/html")
 
+    @app.route('/upload', method='GET')
+    def upload():
+        return static_file("upload.html", root="facehub/templates/", mimetype="text/html")
+
+    @app.route('/upload', method='POST')
+    def upload():
+        return static_file("upload.html", root="facehub/templates/", mimetype="text/html")
+
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
+
+    @app.route("/token")
+    def token():
+        return provider.token()
 
     @app.route('/edit', method='POST')
     def editPhoto():

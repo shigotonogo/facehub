@@ -6,3 +6,6 @@
 *.db
 Vagrantfile
 .vagrant
+
+.idea/
+*.iml
