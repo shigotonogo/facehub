@@ -75,7 +75,9 @@ if __name__ == '__main__':
 
     @app.route('/upload', method='POST')
     def upload():
-        return static_file("upload.html", root="facehub/templates/", mimetype="text/html")
+        upload = request.files.get('file')
+        image_url = provider.store(upload.file)
+        return image_url
 
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
@@ -93,9 +95,8 @@ if __name__ == '__main__':
         width = request.forms.get("w", None)
         height = request.forms.get("h", None)
         image = crop_image(img_src, int(x), int(y), int(width), int(height))
-        print(image)
-        image_url = provider.put_file(image)
-        print(image_url)
+        image_url = provider.storage(image)
+        return image_url
 
     @app.route('/edit')
     def editPhoto():

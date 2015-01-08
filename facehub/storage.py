@@ -1,7 +1,8 @@
 import os
+import uuid
 import logging
 
-from qiniu import Auth, put_file, BucketManager
+from qiniu import Auth, put_file, put_data, BucketManager
 
 from utils import hash
 
@@ -14,9 +15,12 @@ class Storage(object):
     def __init__(self, api):
         self.api = api
 
-    def store(self, file_path):
+    def store_file(self, file_path):
         name, extension = os.path.splitext(file_path)
-        return self.api.store(file_path, hash(name) + extension)
+        return self.api.store_file(file_path, hash(name) + extension)
+
+    def store(self, raw):
+        return self.api.store(raw)
 
     def token(self):
         return self.api.token()
@@ -33,8 +37,17 @@ class QiNiuProvider(object):
     def token(self):
         return self.credentials.upload_token(self.bucket_name)
 
+    def store(self, raw):
+        key = hash(str(uuid.uuid1()))
+        upload_token = self.credentials.upload_token(self.bucket_name, key)
+        ret, err = put_data(upload_token, key, raw)
+        if ret is not None:
+            return "http://facehub.qiniudn.com/%s" % ret['key']
+        else:
+            logging.error('upload error.')
 
-    def store(self, file_path, file_name):
+
+    def store_file(self, file_path, file_name):
         upload_token = self.credentials.upload_token(self.bucket_name, file_name)
         ret, err = put_file(upload_token, file_name, file_path)
         if ret is not None:
