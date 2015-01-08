@@ -18,6 +18,9 @@ class Storage(object):
         name, extension = os.path.splitext(file_path)
         return self.api.store(file_path, hash(name) + extension)
 
+    def token(self):
+        return self.api.token()
+
 
 class QiNiuProvider(object):
 
