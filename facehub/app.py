@@ -17,11 +17,6 @@ initDatabase(db)
 ser = Serializer()
 provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
 
-@app.route("/test", method='GET')
-def test():
-    url = provider.store('./rmb.png')
-    print(url)
-
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
@@ -47,21 +42,20 @@ def createUser():
     skype = request.forms.get('skype', None)
     phone_number = request.forms.get('phone', None)
     photo = request.forms.get('photo', None)
-
+    avatar = request.forms.get('avatar', None)
     try:
         p = Project(name=project)
-        u = User(name=name, title=title, project=p, email=email, skype=skype, phone=phone_number, photo=photo)
+        u = User(name=name, title=title, project=p, email=email, skype=skype, phone=phone_number, photo=photo, avatar=avatar)
         p.save()
         u.save()
     except Exception as e:
         logging.exception("unexpected error {}", e)
-    if not id:
+
+    if not u.id:
         logging.error("can't save the user in mongo")
         return {'status': 'error',
                 'message': "failed save user."}
-    else:
-        return {'status': 'error',
-            'message': "the field is not satisfied."}
+    redirect('/')
 
 if __name__ == '__main__':
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}

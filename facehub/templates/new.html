@@ -24,16 +24,20 @@
 		  <form class='info' action='/api/users', method='post'>
 		  	<h3>基础信息</h3>
 				<div class='line'>
-					<label for='name'>姓名*</label> <input name='name' type='text' class='name' required></input>
+					<label for='name'>姓名*</label> 
+					<input name='name' type='text' class='name' pattern="[^\s]{3,}" required></input>
 				</div>
 				<div class='line'>
-					<label for='title'>职位*</label> <input name='title' id='title' required></input>
+					<label for='title'>职位*</label> 
+					<input name='title' id='title' pattern="[^\s]{3,}" required></input>
 				</div>
 				<div class='line'>
-					<label for='currentProject'>当前项目*</label> <input name='project' id='currentProject' required></input>
+					<label for='currentProject'>当前项目*</label>
+					<input name='project' id='currentProject' pattern="[^\s]{3,}" required></input>
 				</div>
 				<div class='line'>
-					<label for='email'>公司邮箱*</label> <input name='email' id='email' type='email' required></input>
+					<label for='email'>公司邮箱*</label> 
+					<input name='email' id='email' pattern="[^\s]{3,}@thoughtworks.com$" type='email' required></input>
 				</div>
 				<h3>联系方式</h3>
 				<div class='line'>
