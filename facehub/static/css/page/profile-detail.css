@@ -24,6 +24,21 @@
     width: 300px;
 }
 
+.edit-entry {
+    float: right;
+    position: relative;
+    right: 55px;
+    top: -43px;
+    font-size: 13px;
+}
+
+.edit-image {
+    background: url("/assets/images/edit_16.png") no-repeat;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
 .profile-detail .detail-info {
     width: 270px;
     height: 340px;
