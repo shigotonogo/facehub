@@ -29,6 +29,7 @@ class User(BaseModel):
     name = CharField(index=True)
     title = CharField()
     email = CharField()
+    raw_image = CharField(null=True)
     avatar = CharField(null=True)
     photo = CharField(null=True)
     phone = CharField(null=True)

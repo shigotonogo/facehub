@@ -77,7 +77,8 @@ if __name__ == '__main__':
     def upload():
         upload = request.files.get('file')
         image_url = provider.store(upload.file)
-        return image_url
+        new_user = User.create(raw_image=image_url, name="", title="", email="")
+        return str(new_user.id)
 
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):

@@ -1,13 +1,7 @@
-(function(){
+(function() {
     Dropzone.autoDiscover = false;
-    $.get('/token',function(token){
-        console.log(token)
-
-        $('#upload-form').find('input[name="token"]').val(token);
-        var myDropzone = new Dropzone("#upload-form");
-        myDropzone.on("success", function(data) {
-           console.log(arguments)
-        });
-
-    })
+    var myDropzone = new Dropzone("#upload-form");
+    myDropzone.on("success", function(file,id) {
+        window.location.href = "/users/" + id + "/photo"
+    });
 })();
