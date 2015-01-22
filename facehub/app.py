@@ -10,6 +10,8 @@ from playhouse.db_url import connect
 
 
 app = Bottle()
+TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')) ) 
+print(TEMPLATE_PATH)
 app.config.load_config('facehub.cfg')
 
 db = connect(app.config['database.url'])
@@ -87,6 +89,13 @@ if __name__ == '__main__':
     @app.route("/token")
     def token():
         return provider.token()
+
+    @app.route("/users/<user_id>/photo/crop")
+    @view("edit-photo")
+    def crop_photo(user_id):
+        user  = User.get(id=user_id)
+        return { 'id': user_id, 'image': user.raw_image }
+
 
     @app.route('/edit', method='POST')
     def editPhoto():

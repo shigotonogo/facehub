@@ -7,10 +7,11 @@
     </head>
     <body>
         <div class="raw-photo">
-            <img src="http://pic1.win4000.com/wallpaper/7/539f9c9ce2764.jpg">
+           <input type='hidden' value='{{id}}'>
+            <img src="{{image}}">
         </div>
         <div class="preview blank">
-            <img src="http://pic1.win4000.com/wallpaper/7/539f9c9ce2764.jpg">
+            <img src="{{image}}">
         </div>
         <input id="submit" type="submit" value="裁剪"></input>
     </body>
