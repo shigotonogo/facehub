@@ -10,8 +10,7 @@ from playhouse.db_url import connect
 
 
 app = Bottle()
-TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')) ) 
-print(TEMPLATE_PATH)
+#TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
 app.config.load_config('facehub.cfg')
 
 db = connect(app.config['database.url'])
@@ -59,6 +58,39 @@ def createUser():
                 'message': "failed save user."}
     redirect('/')
 
+
+@app.route('/upload', method='POST')
+def upload():
+    upload = request.files.get('file')
+    image_url = provider.store(upload.file)
+    new_user = User.create(raw_image=image_url, name="", title="", email="")
+    return str(new_user.id)
+
+
+@app.route("/token")
+def token():
+    return provider.token()
+
+
+@app.route("/users/<user_id>/photo/crop")
+@view("edit-photo")
+def crop_photo(user_id):
+    user  = User.get(id=user_id)
+    return { 'id': user_id, 'image': user.raw_image }
+
+
+@app.route('/edit', method='POST')
+def editPhoto():
+    img_src = request.forms.get("src", None)
+    x = request.forms.get("x", None)
+    y = request.forms.get("y", None)
+    width = request.forms.get("w", None)
+    height = request.forms.get("h", None)
+    image = crop_image(img_src, int(x), int(y), int(width), int(height))
+    image_url = provider.storage(image)
+    return image_url
+
+
 if __name__ == '__main__':
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
 
@@ -67,50 +99,15 @@ if __name__ == '__main__':
         return static_file("index.html", root="facehub/templates/", mimetype="text/html")
 
 
-    @app.route('/new', method='GET')
-    def new():
-        return static_file("new.html", root="facehub/templates/", mimetype="text/html")
-
-    @app.route('/upload', method='GET')
-    def upload():
-        return static_file("upload.html", root="facehub/templates/", mimetype="text/html")
-
-    @app.route('/upload', method='POST')
-    def upload():
-        upload = request.files.get('file')
-        image_url = provider.store(upload.file)
-        new_user = User.create(raw_image=image_url, name="", title="", email="")
-        return str(new_user.id)
-
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
 
-    @app.route("/token")
-    def token():
-        return provider.token()
 
-    @app.route("/users/<user_id>/photo/crop")
-    @view("edit-photo")
-    def crop_photo(user_id):
-        user  = User.get(id=user_id)
-        return { 'id': user_id, 'image': user.raw_image }
+    @app.route('/<template>')
+    def template(template):
+        return static_file("%s.html" % template, root="facehub/templates/", mimetype="text/html")
 
-
-    @app.route('/edit', method='POST')
-    def editPhoto():
-        img_src = request.forms.get("src", None)
-        x = request.forms.get("x", None)
-        y = request.forms.get("y", None)
-        width = request.forms.get("w", None)
-        height = request.forms.get("h", None)
-        image = crop_image(img_src, int(x), int(y), int(width), int(height))
-        image_url = provider.storage(image)
-        return image_url
-
-    @app.route('/edit')
-    def editPhoto():
-        return static_file("edit-photo.html", root="facehub/templates/", mimetype="text/html")
 
     debug(True)
     run(app=app, host='0.0.0.0', port=8080, reloader=True)
