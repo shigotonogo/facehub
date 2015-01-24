@@ -1,0 +1,11 @@
+[app]
+model = debug
+
+[database]
+url = sqlite:///test.db
+
+[cloud]
+bucket = 
+accesskey = 
+secretkey = 
+
