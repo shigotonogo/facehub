@@ -75,6 +75,7 @@ body {
 	padding-left: 10px;
 	font-size: 13px;
 	float: left;
+	outline: 0;
 }
 
 .content .email-address .email-suffix {
