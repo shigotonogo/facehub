@@ -90,7 +90,7 @@ body {
 	text-align: center;
 }
 
-.content button {
+.content .submit {
 	background-color: #f50057;
 	font-size: 16px;
 	padding: 15px 30px;
@@ -98,6 +98,20 @@ body {
 	border: none;
 	border-radius: 5px;
 	outline: 0;
+}
+
+.after-register{
+    display: none;
+    font-size: 18px;
+    color: rgb(51,51,51);
+    font-weight: normal;
+    text-align: center;
+    padding: 10px;
+}
+.after-register .re-register{
+    margin-top: 20px;
+    color: rgb(245,0,87);
+    cursor: pointer;
 }
 
 .footer {

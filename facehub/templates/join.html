@@ -14,15 +14,24 @@
 		</div>   
 		<div class="title">认识新同事，熟悉老同事</div>
 		<div class="join-box">
-			<div class="email">请输入你的工作邮箱地址</div>
-			<div class="email-address">
-				<input type='text' placeholder='邮箱地址' />
-				<div class="email-suffix">@thoughtworks.com</div>
-			</div>
-			<div class="join-button">
-				<button>立即加入</button>
-			</div>
+            <form action="http://localhost:3000/sendtoken" method="post" id='loginForm'>
+                <div class="email">请输入你的工作邮箱地址</div>
+                <div class="email-address">
+                    <input type='text' placeholder='邮箱地址' name='user' id='user' required />
+                    <div class="email-suffix">@thoughtworks.com</div>
+                </div>
+                <div class="join-button">
+                    <input type="submit" value='立即加入' class='submit'>
+                </div>
+            </form>
+
+            <div class="after-register">
+                <h3>加入成功！</h3>
+                <h3>请查看你的收件箱 ：）</h3>
+                <span class='re-register'>重新填写邮箱  》</span>
+            </div>
 		</div>
+        
 	</div>
 
 	<div class="footer">
@@ -40,4 +49,6 @@
 		</div>
 		<div class="copyright">© Shigotonogo. 2014</div>
 	</div>
+    <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
+    <script src='/assets/js/page/login.js'></script>
 </body>
