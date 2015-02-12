@@ -1,0 +1,134 @@
+body {
+	background-color: rgba(245, 245, 245, 1);
+	margin: auto;
+	font-family: 'Hiragino Sans GB','Microsoft YaHei',arial,sans-serif,"NotoSansCJKsc-Regular"
+}
+
+.content {
+	width: 100%;
+	background: url("/assets/images/landing_bg.jpg") no-repeat;
+	background-size: cover;
+	margin: 0 auto;
+	position: relative;
+	height: 430px;
+}
+
+.content .title {
+	color: white;
+	font-size: 48px;
+	text-align: center;
+	padding-top: 50px;
+}
+
+.logo {
+	padding-top: 50px;
+	text-align: center;
+	position: relative;
+}
+
+.logo img {
+	width: 128px;
+	height: 107px;
+	padding-left: 25px;
+}
+
+.logo .version {
+	position: relative;
+	top: -104px;
+	color: white;
+	border: 1px solid white;
+	padding: 2px 5px;
+}
+
+.content .join-box {
+	width: 500px;
+	height: 200px;
+	background-color: white;
+	margin: 50px auto;
+	border-radius: 10px;
+	position: relative;
+	top: 30px;
+}
+
+.content .email {
+	font-size: 16px;
+	padding-top: 20px;
+	text-align: center;
+	color: #333333;
+}
+
+.content .email-address {
+	width: 400px;
+	text-align: center;
+	margin: 20px auto;
+	border: 1px solid #ccc;
+	height: 50px;
+	border-radius: 5px;
+}
+
+.content .email-address input {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	width: 190px;
+	height: 48px;
+	border: none;
+	padding-left: 10px;
+	font-size: 13px;
+	float: left;
+}
+
+.content .email-address .email-suffix {
+	background-color: #f2f2f2;
+	padding: 15px 49px 15px 10px;
+	border-radius: 5px;
+	color: #333333;
+	font-size: 13px;
+}
+
+.content .join-button {
+	text-align: center;
+}
+
+.content button {
+	background-color: #f50057;
+	font-size: 16px;
+	padding: 15px 30px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+}
+
+.footer {
+	width: 960px;
+	margin: 200px auto;
+}
+
+.footer .feature {
+	width: 280px;
+	display: inline-block;
+	text-align: center;
+}
+
+.footer .center {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.footer .feature .title {
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.footer .feature .description {
+	color: #666666;
+	font-size: 13px;
+	line-height: 20px;
+}
+
+.footer .copyright {
+	font-size: 12px;
+	color: #999999;
+	text-align: center;
+	font-family: 'Arial Regular', 'Arial';
+	margin-top: 50px;
+}

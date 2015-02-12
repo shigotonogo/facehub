@@ -91,7 +91,6 @@ def editPhoto():
     user = User.get()
     return image_url
 
-
 if __name__ == '__main__':
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
 
@@ -108,6 +107,10 @@ if __name__ == '__main__':
     @app.route('/<template>')
     def template(template):
         return static_file("%s.html" % template, root="facehub/templates/", mimetype="text/html")
+
+    @app.route('/join')
+    def join():
+        return static_file("join.html", root="facehub/templates/", mimetype="text/html")
 
 
     debug(True)
