@@ -97,6 +97,7 @@ body {
 	color: white;
 	border: none;
 	border-radius: 5px;
+	outline: 0;
 }
 
 .footer {
