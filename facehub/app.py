@@ -10,7 +10,7 @@ from playhouse.db_url import connect
 
 
 app = Bottle()
-#TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
+TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
 app.config.load_config('facehub.cfg')
 
 db = connect(app.config['database.url'])
@@ -87,7 +87,8 @@ def editPhoto():
     width = request.forms.get("w", None)
     height = request.forms.get("h", None)
     image = crop_image(img_src, int(x), int(y), int(width), int(height))
-    image_url = provider.storage(image)
+    image_url = provider.store_file(image)
+    print(image_url)
     return image_url
 
 

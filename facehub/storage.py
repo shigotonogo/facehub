@@ -51,6 +51,6 @@ class QiNiuProvider(object):
         upload_token = self.credentials.upload_token(self.bucket_name, file_name)
         ret, err = put_file(upload_token, file_name, file_path)
         if ret is not None:
-            return "http://7rylsb.com1.z0.glb.clouddn.com/%s" % file_name
+            return "http://facehub.qiniudn.com/%s" % ret['key']
         else:
             logging.error('upload: %s error.' % file_name)
