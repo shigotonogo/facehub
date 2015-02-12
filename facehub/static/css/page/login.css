@@ -43,7 +43,7 @@ body {
 }
 
 .content .login-box {
-	width: 500px;
+	width: 480px;
 	height: 200px;
 	background-color: white;
 	margin: 50px auto;
@@ -68,7 +68,7 @@ body {
 }
 
 .content .email-address {
-	width: 400px;
+	width: 330px;
 	text-align: center;
 	margin: 20px auto;
 	border: 1px solid #ccc;
@@ -79,7 +79,7 @@ body {
 .content .email-address input {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
-	width: 190px;
+	width: 160px;
 	height: 48px;
 	border: none;
 	padding-left: 10px;
@@ -90,7 +90,7 @@ body {
 
 .content .email-address .email-suffix {
 	background-color: #f2f2f2;
-	padding: 15px 49px 15px 10px;
+	padding: 15px 5px 15px 10px;
 	border-radius: 5px;
 	color: #333333;
 	font-size: 13px;
