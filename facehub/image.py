@@ -9,7 +9,7 @@ def crop_image(image_src, x, y, width, height):
     tmp = __tmp_file_name()
     image = Image.open(io.BytesIO(urllib.request.urlopen(image_src).read()))
     origin_width = image.size[0]
-    scale_size = origin_width / 740
+    scale_size = origin_width / 680
     croped =image.crop((int(x*scale_size), int(y*scale_size), int(scale_size*(x + width)), int(scale_size*(y + height))))
     resized = image.resize((600,800), Image.NEAREST)
     croped.save(tmp)

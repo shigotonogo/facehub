@@ -86,9 +86,9 @@ def editPhoto():
     y = request.forms.get("y", None)
     width = request.forms.get("w", None)
     height = request.forms.get("h", None)
-    image = crop_image(img_src, int(x), int(y), int(width), int(height))
+    image = crop_image(img_src, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
     image_url = provider.store_file(image)
-    print(image_url)
+    user = User.get()
     return image_url
 
 

@@ -20,17 +20,17 @@
         <div class='profile'>
           <div class='portrait'>
             <form id="upload-form" action="/upload" class="dropzone">
-                <input name="token" type="hidden"  />
                 <div class="fallback">
                     <input name="data" type="file" multiple />
                 </div>
                   
                 <div class="photo" alt="default-photo"></div>
-                <input type="submit" value='点我上传靓照'>
-                <div class="description">建议你选择一张正面全身的生活照，并且能让别人看清楚你的脸（没有墨镜或长檐帽子）</div>
             </form>
           </div>
+          <input name="token" value='点我上传靓照'>
+          <div class="description">建议你选择一张正面全身的生活照，并且能让别人看清楚你的脸（没有墨镜或长檐帽子）</div>
         </div>
+
         <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
         <script src='/assets/js/lib/dropzone.js'></script>
         <script src='/assets/js/page/upload.js'></script>
