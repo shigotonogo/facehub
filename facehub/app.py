@@ -81,7 +81,7 @@ def crop_photo(user_id):
     return { 'id': user_id, 'image': user.photo }
 
 @app.route("/users/<user_id>/profile")
-@view("new")
+@view("edit-profile")
 def crop_photo(user_id):
     user  = User.get(id=user_id)
     return { 'id': user_id, 'photo': user.photo, 'avatar': user.avatar }

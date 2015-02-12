@@ -3,7 +3,7 @@
 	<head>
 	  <meta charset='utf-8'>
 	  <title>添加新成员</title>
-	  <link rel="stylesheet" href="/assets/css/page/new.css">
+	  <link rel="stylesheet" href="/assets/css/page/edit-profile.css">
 	</head>
 
 	<body>
@@ -17,11 +17,14 @@
 		</div>
 		<div class='profile'>
 		  <div class='portrait'>
-		    <div class="photo" alt="default-photo"></div>
+		    <div class="photos" alt="default-photo">
+		    	<img class="avatar" src="{{avatar}}">
+		    	<img class="photo" src="{{photo}}">
+		    </div>
 		    <a class="tips" href="#">点我上传靓照</a>
-		    <div class="description">建议你选择一张正面全身的生活照，并且能让别人看清楚你的脸（没有墨镜或长檐帽子）</div>
-		  </div>
 		  <form class='info' action='/api/users', method='post'>
+		  	<input type="hidden" name="avatar" value="{{avatar}}">
+		  	<input type="hidden" name="photo" value="{{photo}}">
 		  	<h3>基础信息</h3>
 				<div class='line'>
 					<label for='name'>姓名*</label> 
@@ -29,11 +32,16 @@
 				</div>
 				<div class='line'>
 					<label for='title'>职位*</label> 
-					<input name='title' id='title' pattern="[^\s]{3,}" required></input>
+					<select name='title' id='title' pattern="[^\s]{3,}" required>
+						<option value="dev">软件开发工程师</option>
+						<option value="ui">前端开发</option>
+					</select>
 				</div>
 				<div class='line'>
 					<label for='currentProject'>当前项目*</label>
-					<input name='project' id='currentProject' pattern="[^\s]{3,}" required></input>
+					<select name='project' id='currentProject' pattern="[^\s]{3,}" required>
+						<option value="myfun">REA Myfun</option>
+					</select>
 				</div>
 				<div class='line'>
 					<label for='email'>公司邮箱*</label> 

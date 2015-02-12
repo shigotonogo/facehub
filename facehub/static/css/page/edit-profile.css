@@ -1,5 +1,7 @@
 body {
 	box-sizing: border-box;
+	margin: 0;
+	background-color: #F5F5F5;
 }    
 .pull-left{
     float: left;
@@ -21,44 +23,45 @@ input:required:valid {
 }
 
 .top {
-	height: 70px;
-	background-color: #777777;
-	color: white;
+    height: 70px;
+    background-color: #F50057;
+    color: white;
 }
 .top .title {
-	margin-top: 16px;
-	font-size: 28px;
-	margin-left: 250px;
-	font-family: "Arial";
+    margin-top: 16px;
+    font-size: 28px;
+    margin-left: 250px;
+    font-family: "Arial";
 }
 .top .home {
-	margin-top: 27px;
-	font-family: "Heiti SC Light","Heiti SC";
-	font-size: 16px;
-	margin-right: 150px;
-	font-family: "Heiti SC Light","Heiti SC";
-	color: white;
-	text-decoration: none;
+    margin-top: 27px;
+    font-family: "Heiti SC Light","Heiti SC";
+    font-size: 16px;
+    margin-right: 150px;
+    font-family: "Heiti SC Light","Heiti SC";
+    color: white;
+    text-decoration: none;
 }
 .profile {
-	margin-top: 50px;
 	width: 70%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 50px auto;
+	position: relative;
 }
 .profile .portrait {
 	display: inline-block;
 	width: 35%;
-	height: 100%;
 	margin-left: 30px;
 	margin-right: 50px;
 	margin-bottom: 20px;
 	padding-left: 15px;
 }
 .portrait .photo {
-	width: 210px;
-	height: 280px;
-	background: url("/assets/images/default-photo.png") no-repeat center
+	width: 350px;
+	margin-bottom: 20px;
+}
+.portrait .avatar {
+	width: 160px;
+	margin-bottom: 20px;
 }
 .portrait .tips {
 	font-size: 14px;
@@ -78,7 +81,9 @@ input:required:valid {
 .profile .info {
 	display: inline-block;
 	width: 45%;
-	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 .info .line {
 		height: 40px;
