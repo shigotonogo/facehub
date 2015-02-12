@@ -29,7 +29,7 @@ body {
 .logo img {
 	width: 128px;
 	height: 107px;
-	padding-left: 25px;
+	padding-left: 50px;
 }
 
 .logo .version {
@@ -37,7 +37,9 @@ body {
 	top: -104px;
 	color: white;
 	border: 1px solid white;
-	padding: 2px 5px;
+	padding: 5px;
+	right: 10px;
+	font-size: 13px;
 }
 
 .content .join-box {
