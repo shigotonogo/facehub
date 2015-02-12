@@ -140,6 +140,20 @@ body {
 	padding-right: 40px;
 }
 
+.footer .future {
+	position: relative;
+}
+
+.footer .future .future-tip {
+	position: relative;
+	top: 17px;
+	left: 100px;
+	font-size: 12px;
+	border: 1px solid #666666;
+	padding: 2px 5px;
+	color: #666666;
+}
+
 .footer .feature .title {
 	margin-bottom: 20px;
 	font-size: 20px;
