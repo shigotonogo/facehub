@@ -2,7 +2,7 @@
 <html>
     <head>
         <title></title>
-        <link rel="stylesheet" href="/assets/css/page/edit-photo.css">
+        <link rel="stylesheet" href="/assets/css/page/edit-avatar.css">
         <link rel="stylesheet" href="/assets/css/lib/jquery.Jcrop.min.css">
     </head>
     <body>
@@ -16,18 +16,23 @@
         </div>
         <div class="container">
             <div class="operations">
-                <h1>按你的喜好裁剪这张照片</h1>
-                <span class="tips pull-left">首先，移动下方绿色的取景框，选择一张合适的半身照</span>
-                <input type="button" value="取消" class="pull-right">
-                <input id="submit" type="submit" value="下一步" class="pull-right"></input>
+                <h1>看起来很棒</h1>
+                <span class="tips pull-left">现在，裁剪出一张合适的头像，它会出现在照片墙上</span>
+                <input id="back" type="button" value="上一步" class="pull-right">
+                <input id="submit" type="submit" value="完成" class="pull-right"></input>
             </div>
             <div class="raw-photo">
                <input id="user-id" type='hidden' value='{{id}}'>
-               <input id="image-type" type='hidden' value='photo'>
+               <input id="image-type" type='hidden' value='avatar'>
                <img src="{{image}}">
             </div>
-            <div class="preview blank pull-right">
+            <div class="preview">
                 <img src="{{image}}">
+            </div>
+            <div class="sample pull-right">
+                <img src="http://davidx.qiniudn.com/xieling_head@2x.jpg" width="160" height="160">
+                <div class="name">谢大卫</div>
+                <div class="tips">头像示例</div>
             </div>
             
         </div>
@@ -35,5 +40,5 @@
     <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
     <script src='/assets/js/lib/jquery.Jcrop.min.js'></script>
     <script src='/assets/js/lib/jquery.color.js'></script>
-    <script src='/assets/js/page/edit-photo.js'></script>
+    <script src='/assets/js/page/edit-avatar.js'></script>
 </html>

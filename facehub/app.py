@@ -74,17 +74,44 @@ def crop_photo(user_id):
     user  = User.get(id=user_id)
     return { 'id': user_id, 'image': user.raw_image }
 
-@app.route('/edit', method='POST')
+@app.route("/users/<user_id>/avatar/crop")
+@view("edit-avatar")
+def crop_photo(user_id):
+    user  = User.get(id=user_id)
+    return { 'id': user_id, 'image': user.photo }
+
+@app.route("/users/<user_id>/profile")
+@view("new")
+def crop_photo(user_id):
+    user  = User.get(id=user_id)
+    return { 'id': user_id, 'photo': user.photo, 'avatar': user.avatar }
+
+
+@app.route('/crop', method='POST')
 def editPhoto():
+    user_id = request.forms.get("user_id")
     img_src = request.forms.get("src", None)
     x = request.forms.get("x", None)
     y = request.forms.get("y", None)
     width = request.forms.get("w", None)
     height = request.forms.get("h", None)
-    image = crop_image(img_src, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
-    image_url = provider.store_file(image)
-    user = User.get()
-    return image_url
+    img_type = request.forms.get("image_type", None)
+
+    try:
+        image = crop_image(img_src, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
+        image_url = provider.store_file(image)
+
+        user = User.get(id=user_id)
+        if img_type == 'photo':
+            user.photo=image_url
+        if img_type == 'avatar':
+            user.avatar=image_url
+        user.save()
+    except Exception as e:
+        logging.exception("unexpected error {}", e)
+        abort(500, "Failed to crop image for user: "+ user_id)
+
+    return 'Success'
 
 if __name__ == '__main__':
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
