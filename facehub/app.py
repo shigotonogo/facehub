@@ -34,18 +34,17 @@ def user(id):
 
 @app.route('/api/users', method='POST')
 def createUser():
-    project = request.forms.get('project', None)
-    name = request.forms.get('name', None)
-    title = request.forms.get('title', None)
-    project = project
-    email = request.forms.get('email', None)
-    skype = request.forms.get('skype', None)
-    phone_number = request.forms.get('phone', None)
-    photo = request.forms.get('photo', None)
-    avatar = request.forms.get('avatar', None)
     try:
-        p = Project(name=project)
-        u = User(name=name, title=title, project=p, email=email, skype=skype, phone=phone_number, photo=photo, avatar=avatar)
+        u = User.get(id=request.forms.get('user_id', None))
+
+        p = Project(name=request.forms.get('project', None))
+        u.project = p
+        u.name = request.forms.get('name', None)
+        u.email = request.forms.get('email', None)
+        u.skype = request.forms.get('skype', None)
+        u.phone_number = request.forms.get('phone', None)
+        u.title = request.forms.get('title', None)
+
         p.save()
         u.save()
     except Exception as e:

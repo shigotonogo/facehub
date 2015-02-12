@@ -23,8 +23,7 @@
 		    </div>
 		    <a class="tips" href="#">点我上传靓照</a>
 		  <form class='info' action='/api/users', method='post'>
-		  	<input type="hidden" name="avatar" value="{{avatar}}">
-		  	<input type="hidden" name="photo" value="{{photo}}">
+			<input type="hidden" name="user_id" value="{{id}}">
 		  	<h3>基础信息</h3>
 				<div class='line'>
 					<label for='name'>姓名*</label> 
