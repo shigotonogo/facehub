@@ -1,59 +1,11 @@
-body {
-	box-sizing: border-box;
-	margin: 0;
-	background-color: #F5F5F5;
-}    
-.pull-left{
-    float: left;
-}
-.pull-right{
-    float: right;
-}
-
-input:required:invalid, input:focus:invalid {
-	background-image: url('/assets/images/invalid.png');
-	background-position: right top;
-	background-repeat: no-repeat;
-}
-
-input:required:valid {
- 	background-image: url('/assets/images/valid.png');
- 	background-position: right top;
- 	background-repeat: no-repeat
-}
-
-.top {
-    height: 70px;
-    background-color: #F50057;
-    color: white;
-}
-.top .title {
-    margin-top: 16px;
-    font-size: 28px;
-    margin-left: 250px;
-    font-family: "Arial";
-}
-.top .home {
-    margin-top: 27px;
-    font-family: "Heiti SC Light","Heiti SC";
-    font-size: 16px;
-    margin-right: 150px;
-    font-family: "Heiti SC Light","Heiti SC";
-    color: white;
-    text-decoration: none;
-}
 .profile {
-	width: 70%;
+	max-width: 960px;
 	margin: 50px auto;
 	position: relative;
 }
 .profile .portrait {
 	display: inline-block;
 	width: 35%;
-	margin-left: 30px;
-	margin-right: 50px;
-	margin-bottom: 20px;
-	padding-left: 15px;
 }
 .portrait .photo {
 	width: 350px;
@@ -102,26 +54,17 @@ input:required:valid {
 
 .info .separator {
 	border-top: 1px solid #C9C9C9;
-	width: 500px;
-}
-
-.submit {
-	padding-left: 107px;
-}
-
-.btn {
-	position: absolute;
-	color: red;
-	border: none;
-	padding: 12px 6px;
-	width: 100px;
-	border-radius: 6px;
-	margin-top: 20px;
-	color: white;
-	background-color: #666666;
-	font-size: 13px;
 }
 
 .hide{
     display: none;
+}
+
+select{
+	line-height: 35px;
+	height: 35px;
+	width: 207px;
+	font-size: 14px;
+	padding: 3px 2px;
+	border-radius: 1px;
 }

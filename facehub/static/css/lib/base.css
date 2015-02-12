@@ -1,0 +1,89 @@
+body {
+    font-family:  'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #F5F5F5;
+}
+
+nav{
+    background-color: #F50057;
+}
+.top {
+    height: 80px;
+    color: white;
+    max-width: 960px;
+    margin: 0 auto;
+    line-height: 80px;
+}
+.top .title {
+    font-family: "Open Sans", 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
+    font-size: 32px;
+}
+.top .home {
+    font-family: "Heiti SC Light","Heiti SC";
+    font-size: 16px;
+    font-family: "Heiti SC Light","Heiti SC";
+    color: white;
+    text-decoration: none;
+}
+
+.pull-left{
+    float: left;
+}
+.pull-right{
+    float: right;
+}
+
+.top-button {
+    text-decoration: none;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 3px;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+}
+
+
+.big-button{
+    display: block;
+    margin: 20px auto;
+    border: none;
+    border-radius: 10px;
+    background-color: #F50057;
+    padding: 20px 40px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.big-button:hover,
+.small-button:hover,
+.top-button:hover{
+    background-color: #ED3E63;
+}
+
+.small-button{
+    display: block;
+    margin: 20px auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #F50057;
+    padding: 14px 25px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+}
+.small-button.secondary{
+    background-color: #FFFFFF;
+    color: #666666;
+    border: 1px solid #666666;
+}
+.small-button.secondary:hover{
+    color: #F50057;
+    border: 1px solid #F50057;
+}
+
+h1{
+    font-size: 20px;
+}

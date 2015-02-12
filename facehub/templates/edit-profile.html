@@ -4,24 +4,27 @@
 	  <meta charset='utf-8'>
 	  <title>添加新成员</title>
 	  <link rel="stylesheet" href="/assets/css/page/edit-profile.css">
+	  <link rel="stylesheet" href="/assets/css/lib/base.css">
 	</head>
 
 	<body>
-		<div class='top'>
-			<div class='title pull-left'>
-				添加新成员
+		<nav>
+			<div class='top'>
+				<div class='title pull-left'>
+					添加新成员
+				</div>
+				<div class='home pull-right'>
+					<a class='top-button' href="/">返回照片墙 >></a>
+				</div>
 			</div>
-			<div class='home pull-right'>
-				<a class='home' href="/">返回照片墙 >></a>
-			</div>
-		</div>
+		</nav>
 		<div class='profile'>
 		  <div class='portrait'>
 		    <div class="photos" alt="default-photo">
 		    	<img class="avatar" src="{{avatar}}">
 		    	<img class="photo" src="{{photo}}">
 		    </div>
-		    <a class="tips" href="#">点我上传靓照</a>
+		    <a class="tips" href="#">我想换一张</a>
 		  <form class='info' action='/api/users', method='post'>
 			<input type="hidden" name="user_id" value="{{id}}">
 		  	<h3>基础信息</h3>
@@ -42,10 +45,6 @@
 						<option value="myfun">REA Myfun</option>
 					</select>
 				</div>
-				<div class='line'>
-					<label for='email'>公司邮箱*</label> 
-					<input name='email' id='email' pattern="[^\s]{3,}@thoughtworks.com$" type='email' required></input>
-				</div>
 				<h3>联系方式</h3>
 				<div class='line'>
 					<label for='phone'>电话</label> <input name='phone' id='phone'></input>
@@ -55,7 +54,7 @@
 				</div>
 				<div class='separator'></div>
 				<div class='submit'>
-					<button class='btn' href="#" type="submit">
+					<button class='small-button' href="#" type="submit">
 						提交
 					</button>
 				</div>

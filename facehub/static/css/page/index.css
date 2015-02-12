@@ -1,25 +1,6 @@
-body {
-    background-color: #f2f2f2;
-    font-family:  'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
-    box-sizing: border-box;
-}
-
-.pull-left{
-    float: left;
-}
-.pull-right{
-    float: right;
-}
-
-.title{
-    font-family: "Open Sans", 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, arial, sans-serif;
-    text-align: center;
-    font-size: 32px;
-    color: #333;
-}
 #members{
     width : 1000px;
-    margin: 10px auto;
+    margin: 50px auto;
 }
 
 .copyright {
@@ -54,21 +35,3 @@ body {
     font-style: 13px;
 }
 
-.add-member {
-    float: right;
-    color: #ff0065;
-    margin-top: -52px;
-    margin-right: 200px;
-}
-
-.add-member-image{
-    background: url("/assets/images/add-member.png") no-repeat;
-    display: inline-block;
-    height: 16px;
-    width: 16px;
-}
-
-.add-member-text {
-    text-decoration: none;
-    color: #ff0065;
-}

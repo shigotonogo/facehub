@@ -1,38 +1,6 @@
-body {
-    box-sizing: border-box;
-    margin: 0;
-    background-color: #F5F5F5;
-}    
-.pull-left{
-    float: left;
-}
-.pull-right{
-    float: right;
-}
-
-.top {
-    height: 70px;
-    background-color: #F50057;
-    color: white;
-}
-.top .title {
-    margin-top: 16px;
-    font-size: 28px;
-    margin-left: 250px;
-    font-family: "Arial";
-}
-.top .home {
-    margin-top: 27px;
-    font-family: "Heiti SC Light","Heiti SC";
-    font-size: 16px;
-    margin-right: 150px;
-    font-family: "Heiti SC Light","Heiti SC";
-    color: white;
-    text-decoration: none;
-}
 .container{
-    max-width: 1024px;
-    margin: 0 auto;
+    max-width: 960px;
+    margin: 20px auto;
 }
 .container .tips{
     display: block;
@@ -42,6 +10,7 @@ body {
 }
 .raw-photo{
     float: left;
+    margin-top: 20px;
 }
 .raw-photo img{
     width: 680px;
@@ -55,23 +24,6 @@ body {
     width: 300px;
     height: 400px;
 }
-
-input{
-    display: block;
-    margin: 20px;
-    border: 1px solid #D5D5D5;
-    border-radius: 10px;
-    background-color: #FFFFFF;
-    padding: 20px 40px;
-    text-align: center;
+#submit{
+    margin-right: 15px;
 }
-input:hover{
-    background-color: #F50057;
-    cursor: pointer;
-    color: #FFFFFF;
-}
-
-// .preview img{
-//     width: 300px;
-//     height: 400px;
-// }
