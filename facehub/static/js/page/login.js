@@ -3,6 +3,11 @@
     var locked = false;
     oForm.show().submit(function(e){
         e.preventDefault();
+        if($('#user').val() === "") {
+            $(".email").hide();
+            $(".empty-email").show();
+            return;
+        }
         if(!locked){
             locked = true;
             $('.submit').val('loading...');
