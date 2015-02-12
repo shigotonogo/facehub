@@ -8,7 +8,6 @@ from image import crop_image
 
 from playhouse.db_url import connect
 
-
 app = Bottle()
 TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
 app.config.load_config('facehub.cfg')
@@ -58,7 +57,6 @@ def createUser():
                 'message': "failed save user."}
     redirect('/')
 
-
 @app.route('/upload', method='POST')
 def upload():
     upload = request.files.get('file')
@@ -66,18 +64,15 @@ def upload():
     new_user = User.create(raw_image=image_url, name="", title="", email="")
     return str(new_user.id)
 
-
 @app.route("/token")
 def token():
     return provider.token()
-
 
 @app.route("/users/<user_id>/photo/crop")
 @view("edit-photo")
 def crop_photo(user_id):
     user  = User.get(id=user_id)
     return { 'id': user_id, 'image': user.raw_image }
-
 
 @app.route('/edit', method='POST')
 def editPhoto():
@@ -98,20 +93,17 @@ if __name__ == '__main__':
     def index():
         return static_file("index.html", root="facehub/templates/", mimetype="text/html")
 
-
     @app.route("/assets/<type>/<filename:path>")
     def assets(type, filename):
         return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
-
 
     @app.route('/<template>')
     def template(template):
         return static_file("%s.html" % template, root="facehub/templates/", mimetype="text/html")
 
-    @app.route('/join')
-    def join():
-        return static_file("join.html", root="facehub/templates/", mimetype="text/html")
-
+    @app.route('/login')
+    def login():
+        return static_file("login.html", root="facehub/templates/", mimetype="text/html")
 
     debug(True)
     run(app=app, host='0.0.0.0', port=8080, reloader=True)

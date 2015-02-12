@@ -42,7 +42,7 @@ body {
 	font-size: 13px;
 }
 
-.content .join-box {
+.content .login-box {
 	width: 500px;
 	height: 200px;
 	background-color: white;
@@ -88,7 +88,7 @@ body {
 	font-size: 13px;
 }
 
-.content .join-button {
+.content .login-button {
 	text-align: center;
 }
 
