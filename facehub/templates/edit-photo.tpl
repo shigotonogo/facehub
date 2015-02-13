@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <meta charset='utf-8'>
+        <title>裁剪半身照</title>
         <link rel="stylesheet" href="/assets/css/page/edit-photo.css">
         <link rel="stylesheet" href="/assets/css/lib/jquery.Jcrop.min.css">
         <link rel="stylesheet" href="/assets/css/lib/base.css">

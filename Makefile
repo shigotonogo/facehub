@@ -9,8 +9,8 @@ deps:
 test: deps
 	tox
 
-# dbseeds:
-# 	./dbseeds
+dbseeds:
+	./dbseeds
 
 run: deps dbseeds
 	$(PYTHON3) facehub/app.py
