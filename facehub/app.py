@@ -20,7 +20,9 @@ provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.sec
 
 @app.hook('before_request')
 def before_request():
-    if request.path  != '/login' and urllib.parse.unquote(request.get_cookie("uid")) == "":
+    if request.path == '/login' or request.path.startswith("/assets/"):
+        return
+    if request.get_cookie("uid") == None:
         redirect('/login')
 
 @app.route("/api/users", method='GET')
