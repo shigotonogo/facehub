@@ -33,10 +33,13 @@
                <input id="image-type" type='hidden' value='photo'>
                <img src="{{image}}">
             </div>
-            <div class="preview blank pull-right">
+            <div class="preview">
                 <img src="{{image}}">
             </div>
-            
+            <div class="sample pull-right">
+                <img src="http://davidx.qiniudn.com/xieling_half@2x.jpg" width="160">
+                <div class="tips">半身照示例</div>
+            </div>
         </div>
     </body>
     <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
