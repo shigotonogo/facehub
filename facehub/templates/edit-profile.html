@@ -37,8 +37,8 @@
 				<div class='line'>
 					<label for='title'>职位*</label> 
 					<select name='title' id='title' pattern="[^\s]{3,}" required>
-						<option value="项目经理 PM">项目经理 PM</option>
 						<option value="软件开发工程师 Dev">软件开发工程师 Dev</option>
+						<option value="项目经理 PM">项目经理 PM</option>
 						<option value="开发运维工程师 DevOps">开发运维工程师 DevOps</option>
 						<option value="前端开发 UIDev">前端开发 UIDev</option>
 						<option value="业务分析师 BA">业务分析师 BA</option>
@@ -56,8 +56,7 @@
 				</div>
 				<div class='line'>
 					<label for='currentProject'>当前项目*</label>
-					<select name='project' id='currentProject' pattern="[^\s]{3,}" required>
-						<option value="暂无">暂无</option>
+					<select name='project' id='currentProject' pattern="[^\s]{3,}" required value="{{project}}">
 						<option value="REA Myfun">REA Myfun</option>
 						<option value="REA 1Form">REA 1Form</option>
 						<option value="REA Media & Developer">REA Media & Developer</option>
@@ -78,6 +77,7 @@
 						<option value="Telstra 兵马俑">Telstra 兵马俑</option>
 						<option value="Telstra Orpheus">Telstra Orpheus</option>
 						<option value="Telstra le tigre">Telstra le tigre</option>
+						<option value="暂无">暂无</option>
 					</select>
 				</div>
 				<h3>联系方式</h3>

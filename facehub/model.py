@@ -13,19 +13,9 @@ class BaseModel(Model):
     class Meta:
         database = db_proxy
 
-class Project(BaseModel):
-    id = PrimaryKeyField()
-    name = CharField(index=True)
-    description =  TextField(null=True)
-    created_at = DateTimeField(default=datetime.datetime.now)
-    updated_at = DateTimeField(default=datetime.datetime.now)
-
-    class Meta:
-        db_table = 'projects'
-
 class User(BaseModel):
     id = PrimaryKeyField()
-    project = ForeignKeyField(Project, related_name='project', null=True)
+    project = CharField(null=True)
     name = CharField(index=True)
     title = CharField()
     email = CharField()

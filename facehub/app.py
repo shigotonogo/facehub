@@ -31,7 +31,7 @@ def current_user_email():
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
-    resp = {"users": [ser.serialize_object(u, fields={Project: ['name']}) for u in User.select()]}
+    resp = {"users": [ser.serialize_object(u) for u in User.select()]}
     return dumps(resp)
 
 @app.route('/api/users/<id:int>', method='GET')
@@ -39,7 +39,7 @@ def user(id):
     response.content_type = 'application/json'
     user = User.get(User.id == id)
     if user is not None:
-        return dumps(ser.serialize_object(user, fields={Project: ['name']}))
+        return dumps(ser.serialize_object(user))
     else:
         abort(404, "No such user.")
 
@@ -48,14 +48,12 @@ def createUser():
     try:
         u = User.get(email=current_user_email())
 
-        p = Project(name=request.forms.get('project', None))
-        u.project = p
-        u.name = request.forms.get('name', None)
-        u.skype = request.forms.get('skype', None)
-        u.phone = request.forms.get('phone', None)
-        u.title = request.forms.get('title', None)
+        u.project = request.forms.getunicode('project', None)
+        u.name = request.forms.getunicode('name', None)
+        u.skype = request.forms.getunicode('skype', None)
+        u.phone = request.forms.getunicode('phone', None)
+        u.title = request.forms.getunicode('title', None)
 
-        p.save()
         u.save()
     except Exception as e:
         logging.error("can't save the user in mongo:" + e)
@@ -94,7 +92,7 @@ def crop_photo():
 @view("edit-profile")
 def crop_photo():
     user  = User.get(email=current_user_email())
-    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name or "", "phone": user.phone or "", "skype": user.skype or ""}
+    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name or "", "phone": user.phone or "", "skype": user.skype or "", "project": user.project or "" }
 
 
 @app.route('/crop', method='POST')
