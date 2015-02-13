@@ -21,15 +21,37 @@
         });
     });
 
-    $.ajax({
-        url: '/api/users',
-        dataType: 'json',
-        success: function(data) {
+    var showUsers =  function (data){
             var ractive = new Ractive({
                 el: 'members',
                 template: '#template',
                 data: data
             });
+    }
+
+    var toggleActionLink = function(users){
+        var currentUserEmail = decodeURIComponent($.cookie("uid"));
+        console.log(currentUserEmail);
+
+        var existing = _.find(users, function(user){
+            return user.email == currentUserEmail
+        });
+
+        console.log("existing: "+existing);
+
+        if (existing) {
+            $(".edit-profile").removeClass("hidden");
+        }else{
+            $(".new-profile").removeClass("hidden");
+        }
+    }
+
+    $.ajax({
+        url: '/api/users',
+        dataType: 'json',
+        success: function(data) {
+            showUsers(data);
+            toggleActionLink(data.users);
         }
     });
 })();

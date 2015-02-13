@@ -63,6 +63,11 @@ nav{
     cursor: pointer;
     outline: 0
 }
+
+.hidden {
+    display:none;
+}
+
 .big-button:hover,
 .small-button:hover,
 .top-button:hover{
