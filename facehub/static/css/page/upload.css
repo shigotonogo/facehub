@@ -83,3 +83,6 @@
     color: #FFFFFF;
     text-align: center;
 }
+.dropzone .dz-default.dz-message{
+    height: 100%;
+}
