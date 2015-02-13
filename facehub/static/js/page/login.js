@@ -10,7 +10,7 @@
         }
         if(!locked){
             locked = true;
-            $('.submit').val('loading...');
+            $('.submit').val('请稍候...');
             $.post($(this).attr('action'), {
                 user : $('#user').val() + $('.email-suffix').text()
             }, function(){

@@ -98,9 +98,31 @@ h1{
     top: 0;
     bottom: 0;
 }
+
 #loading-image{
     position: absolute;
     left: 45%;
     top: 45%;
     border-radius: 32px;
+}
+
+.feedback {
+    position: absolute;
+    top: 300px;
+    right: 0px;
+    font-size: 14px;
+    color: #333333;
+    width: 30px;
+    text-decoration: none;
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    cursor: pointer;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background-color: white;
+}
+
+.feedback:hover {
+    color: white;
+    background-color: #FF0066;
 }
