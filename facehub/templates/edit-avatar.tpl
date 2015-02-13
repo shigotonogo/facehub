@@ -41,6 +41,7 @@
             </div>
             
         </div>
+        <footer class="copyright">© Shigotongo.2014</footer>
     </body>
     <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
     <script src='/assets/js/lib/jquery.Jcrop.min.js'></script>

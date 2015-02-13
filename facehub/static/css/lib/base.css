@@ -126,3 +126,10 @@ h1{
     color: white;
     background-color: #FF0066;
 }
+
+.copyright {
+    text-align: center;
+    font-size: 12px;
+    color:#999;
+    margin:30px auto;
+}
