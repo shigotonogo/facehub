@@ -52,7 +52,7 @@ def createUser():
         u.project = p
         u.name = request.forms.get('name', None)
         u.skype = request.forms.get('skype', None)
-        u.phone_number = request.forms.get('phone', None)
+        u.phone = request.forms.get('phone', None)
         u.title = request.forms.get('title', None)
 
         p.save()
@@ -94,7 +94,7 @@ def crop_photo():
 @view("edit-profile")
 def crop_photo():
     user  = User.get(email=current_user_email())
-    return { 'photo': user.photo, 'avatar': user.avatar }
+    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name, "phone": user.phone, "skype": user.skype }
 
 
 @app.route('/crop', method='POST')
