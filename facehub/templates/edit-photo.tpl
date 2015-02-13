@@ -32,7 +32,6 @@
                 </div>
             </div>
             <div class="raw-photo">
-               <input id="user-id" type='hidden' value='{{id}}'>
                <input id="image-type" type='hidden' value='photo'>
                <img src="{{image}}">
             </div>

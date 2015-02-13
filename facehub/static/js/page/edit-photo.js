@@ -8,7 +8,6 @@
     var cropSelected = function() {
         var coordinate = $('.preview img').data('coordinate');
         coordinate.src = $('.preview img').attr('src');
-        coordinate.user_id = $('#user-id').val();
         coordinate.image_type = $("#image-type").val();
 
         $('.mask').show();
@@ -25,8 +24,7 @@
     };
  
     var nextStep = function() {
-        var id = $('#user-id').val();
-        window.location="/users/" + id + "/avatar/crop"
+        window.location="/avatar"
     }
     
     $('.raw-photo img').Jcrop({

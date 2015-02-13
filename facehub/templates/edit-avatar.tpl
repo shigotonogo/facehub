@@ -28,7 +28,6 @@
                 <input id="submit" type="submit" value="完成" class="small-button pull-right"></input>
             </div>
             <div class="raw-photo">
-               <input id="user-id" type='hidden' value='{{id}}'>
                <input id="image-type" type='hidden' value='avatar'>
                <img src="{{image}}">
             </div>

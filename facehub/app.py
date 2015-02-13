@@ -25,6 +25,9 @@ def before_request():
     if request.get_cookie("uid") == None:
         redirect('/login')
 
+def current_user_email():
+    return urllib.parse.unquote(request.get_cookie("uid"))
+
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
@@ -54,14 +57,11 @@ def createUser():
 
         p.save()
         u.save()
+        redirect('/')
     except Exception as e:
-        logging.exception("unexpected error {}", e)
-
-    if not u.id:
-        logging.error("can't save the user in mongo")
+        logging.error("can't save the user in mongo:" + e)
         return {'status': 'error',
                 'message': "failed save user."}
-    redirect('/')
 
 @app.route('/upload', method='POST')
 def upload():
@@ -75,40 +75,41 @@ def upload():
 def token():
     return provider.token()
 
-@app.route("/users/<user_id>/photo/crop")
+@app.route("/photo")
 @view("edit-photo")
-def crop_photo(user_id):
-    user  = User.get(id=user_id)
-    return { 'id': user_id, 'image': user.raw_image }
+def crop_photo():
+    email = current_user_email()
+    user  = User.get(email=email)
+    return { 'image': user.raw_image }
 
-@app.route("/users/<user_id>/avatar/crop")
+@app.route("/avatar")
 @view("edit-avatar")
-def crop_photo(user_id):
-    user  = User.get(id=user_id)
-    return { 'id': user_id, 'image': user.photo }
+def crop_photo():
+    email = current_user_email()
+    user  = User.get(email=email)
+    return { 'image': user.photo }
 
-@app.route("/users/<user_id>/profile")
+@app.route("/profile")
 @view("edit-profile")
-def crop_photo(user_id):
-    user  = User.get(id=user_id)
-    return { 'id': user_id, 'photo': user.photo, 'avatar': user.avatar }
+def crop_photo():
+    user  = User.get(email=current_user_email())
+    return { 'photo': user.photo, 'avatar': user.avatar }
 
 
 @app.route('/crop', method='POST')
 def editPhoto():
-    user_id = request.forms.get("user_id")
     img_src = request.forms.get("src", None)
     x = request.forms.get("x", None)
     y = request.forms.get("y", None)
     width = request.forms.get("w", None)
     height = request.forms.get("h", None)
     img_type = request.forms.get("image_type", None)
-
+    email = current_user_email()
     try:
         image = crop_image(img_src, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
         image_url = provider.store_file(image)
 
-        user = User.get(id=user_id)
+        user = User.get(email=email)
         if img_type == 'photo':
             user.photo=image_url
         if img_type == 'avatar':
@@ -116,7 +117,7 @@ def editPhoto():
         user.save()
     except Exception as e:
         logging.exception("unexpected error {}", e)
-        abort(500, "Failed to crop image for user: "+ user_id)
+        abort(500, "Failed to crop image for user: "+ email)
 
     return 'Success'
 
