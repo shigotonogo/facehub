@@ -17,15 +17,17 @@
             url: '/crop',
             data: coordinate,
             success: nextStep,
-            complete: function(){
-                    $('.mask').hide();
-                  }
+            complete: hideMask
         });
     };
- 
+
+    var hideMask = function(){
+        $('.mask').hide();
+    };
+
     var nextStep = function() {
         window.location="/avatar"
-    }
+    };
     
     $('.raw-photo img').Jcrop({
         aspectRatio: 3 / 4,

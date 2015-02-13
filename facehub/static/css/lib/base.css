@@ -34,6 +34,12 @@ nav{
     float: right;
 }
 
+.container{
+    max-width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
 .top-button {
     text-decoration: none;
     color: #FFFFFF;
