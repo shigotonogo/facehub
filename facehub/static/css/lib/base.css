@@ -55,6 +55,7 @@ nav{
     text-align: center;
     font-size: 16px;
     cursor: pointer;
+    outline: 0
 }
 .big-button:hover,
 .small-button:hover,
