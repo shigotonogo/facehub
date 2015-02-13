@@ -87,3 +87,19 @@ nav{
 h1{
     font-size: 20px;
 }
+
+.mask{
+    display: none;
+    position: absolute;
+    background-color: rgba(255,255,255,.8);
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+#loading-image{
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    border-radius: 32px;
+}

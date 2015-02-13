@@ -11,11 +11,16 @@
         coordinate.user_id = $('#user-id').val();
         coordinate.image_type = $("#image-type").val();
 
+        $('.mask').show();
+
         $.ajax({
             type: "POST",
             url: '/crop',
             data: coordinate,
             success: nextStep,
+            complete: function(){
+                    $('.mask').hide();
+                  }
         });
     };
  
