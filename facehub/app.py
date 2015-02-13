@@ -1,4 +1,5 @@
 import logging
+import urllib
 from json import dumps
 from bottle import *
 from model import *
@@ -16,6 +17,11 @@ db = connect(app.config['database.url'])
 initDatabase(db)
 ser = Serializer()
 provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
+
+@app.hook('before_request')
+def before_request():
+    if request.path  != '/login' and urllib.parse.unquote(request.get_cookie("uid")) == "":
+        redirect('/login')
 
 @app.route("/api/users", method='GET')
 def users():
@@ -40,7 +46,6 @@ def createUser():
         p = Project(name=request.forms.get('project', None))
         u.project = p
         u.name = request.forms.get('name', None)
-        u.email = request.forms.get('email', None)
         u.skype = request.forms.get('skype', None)
         u.phone_number = request.forms.get('phone', None)
         u.title = request.forms.get('title', None)
@@ -60,7 +65,8 @@ def createUser():
 def upload():
     upload = request.files.get('file')
     image_url = provider.store(upload.file)
-    new_user = User.create(raw_image=image_url, name="", title="", email="")
+    email = urllib.parse.unquote(request.get_cookie("uid"))
+    new_user = User.create(raw_image=image_url, name="", title="", email=email)
     return str(new_user.id)
 
 @app.route("/token")
@@ -111,6 +117,7 @@ def editPhoto():
         abort(500, "Failed to crop image for user: "+ user_id)
 
     return 'Success'
+
 
 if __name__ == '__main__':
     mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
