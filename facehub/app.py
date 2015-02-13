@@ -94,7 +94,7 @@ def crop_photo():
 @view("edit-profile")
 def crop_photo():
     user  = User.get(email=current_user_email())
-    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name, "phone": user.phone, "skype": user.skype }
+    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name or "", "phone": user.phone or "", "skype": user.skype or ""}
 
 
 @app.route('/crop', method='POST')
