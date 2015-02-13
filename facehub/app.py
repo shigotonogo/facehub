@@ -46,7 +46,7 @@ def user(id):
 @app.route('/api/users', method='POST')
 def createUser():
     try:
-        u = User.get(id=request.forms.get('user_id', None))
+        u = User.get(email=current_user_email())
 
         p = Project(name=request.forms.get('project', None))
         u.project = p
@@ -57,11 +57,12 @@ def createUser():
 
         p.save()
         u.save()
-        redirect('/')
     except Exception as e:
         logging.error("can't save the user in mongo:" + e)
         return {'status': 'error',
                 'message': "failed save user."}
+
+    redirect('/')
 
 @app.route('/upload', method='POST')
 def upload():
