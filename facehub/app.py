@@ -31,7 +31,8 @@ def current_user_email():
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
-    resp = {"users": [ser.serialize_object(u) for u in User.select()]}
+    users = [ser.serialize_object(u) for u in User.select()]
+    resp = {"users": users, "current_user": request.get_cookie("uid")}
     return dumps(resp)
 
 @app.route('/api/users/<id:int>', method='GET')

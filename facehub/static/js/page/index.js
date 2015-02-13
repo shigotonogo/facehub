@@ -22,23 +22,21 @@
     });
 
     var showUsers =  function (data){
-            var ractive = new Ractive({
-                el: 'members',
-                template: '#template',
-                data: data
-            });
+        var ractive = new Ractive({
+            el: 'members',
+            template: '#template',
+            data: data
+        });
     }
 
-    var toggleActionLink = function(users){
-        var currentUserEmail = decodeURIComponent($.cookie("uid"));
-        console.log(currentUserEmail);
+    var toggleActionLink = function(data){
+        var users = data.users;
+        var currentUserEmail = decodeURIComponent(data.current_user);
 
         var existing = _.find(users, function(user){
             return user.email == currentUserEmail
         });
-
-        console.log("existing: "+existing);
-
+        
         if (existing) {
             $(".edit-profile").removeClass("hidden");
         }else{
@@ -51,7 +49,7 @@
         dataType: 'json',
         success: function(data) {
             showUsers(data);
-            toggleActionLink(data.users);
+            toggleActionLink(data);
         }
     });
 })();
