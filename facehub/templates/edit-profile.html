@@ -30,7 +30,7 @@
 		  	<h3>基础信息</h3>
 				<div class='line'>
 					<label for='name'>姓名*</label> 
-					<input name='name' type='text' class='name' pattern="[^\s]{3,}" required></input>
+					<input name='name' type='text' class='name' pattern="[^\s]{2,}" required oninvalid="setCustomValidity('请输入合法的姓名')"></input>
 				</div>
 				<div class='line'>
 					<label for='title'>职位*</label> 
