@@ -35,3 +35,8 @@
     margin-top: 20px;
     text-align: center;
 }
+
+.operations .buttons .cancel {
+    text-decoration: none;
+    padding: 11px 30px;
+}

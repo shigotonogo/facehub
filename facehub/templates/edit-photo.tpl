@@ -27,7 +27,7 @@
                     <span class="tips">首先，移动下方的取景框，选择一张合适的半身照</span>
                 </div>
                 <div class="buttons">
-                    <input type="button" value="取消" class="pull-right small-button secondary">
+                    <a href="/" class="pull-right small-button secondary cancel">取消</a>
                     <input id="submit" type="submit" value="下一步" class="pull-right small-button"></input>
                 </div>
             </div>
