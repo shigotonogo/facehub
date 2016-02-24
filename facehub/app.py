@@ -87,7 +87,7 @@ def token():
 def crop_photo():
     email = current_user_email()
     user  = User.get(email=email)
-    return { 'image': user.raw_image }
+    return { 'image': user.raw_image + '?imageView/2/w/1200/h/1600' }
 
 @app.route("/avatar")
 @view("edit-avatar")
