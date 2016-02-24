@@ -33,11 +33,11 @@
         var users = data.users;
         var currentUserEmail = decodeURIComponent(data.current_user);
 
-        var existing = _.find(users, function(user){
-            return user.email == currentUserEmail
+        var exsiting = _.find(users, function(user){
+            return user.email == currentUserEmail && user.photo && user.avatar
         });
         
-        if (existing) {
+        if (exsiting) {
             $(".edit-profile").removeClass("hidden");
         }else{
             $(".new-profile").removeClass("hidden");

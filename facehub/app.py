@@ -56,6 +56,7 @@ def createUser():
         u.phone = request.forms.getunicode('phone', None)
         u.title = request.forms.getunicode('title', None)
 
+        u.completion = True
         u.save()
     except Exception as e:
         logging.error("can't save the user in mongo:" + e)

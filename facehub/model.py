@@ -26,6 +26,7 @@ class User(BaseModel):
     skype = CharField(null=True)
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
+    completion = BooleanField(default=False)
 
     class Meta:
         db_table = 'users'

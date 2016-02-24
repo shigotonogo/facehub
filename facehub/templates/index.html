@@ -27,12 +27,14 @@
 
   <script id='template' type='text/ractive'>
     {{#users}}
-      <div class='profile' data-user-id="{{id}}">
-        <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
-        <div class="name">
-          {{name}}
+      {{#if this.completion}}
+        <div class='profile' data-user-id="{{id}}">
+          <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
+          <div class="name">
+            {{name}}
+          </div>
         </div>
-      </div>
+      {{/if}}
     {{/users}}
   </script>
 
