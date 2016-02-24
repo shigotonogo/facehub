@@ -8,10 +8,6 @@
     float: left;
     margin-top: 20px;
 }
-.raw-photo img{
-    width: 680px;
-}
-
 .preview {
     display: none;
 }

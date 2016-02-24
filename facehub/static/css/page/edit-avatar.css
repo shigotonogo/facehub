@@ -7,10 +7,6 @@
 .raw-photo{
     float: left;
 }
-.raw-photo img{
-    width: 680px;
-}
-
 .preview{
     display: none;
 }

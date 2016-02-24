@@ -35,7 +35,9 @@
     
     $('.raw-photo img').Jcrop({
         aspectRatio: 1,
-        onChange: updatePreview
+        onChange: updatePreview,
+        boxWidth: 740,
+        boxHeight: 740
     });
     $('#submit').click(cropSelected);
     $('#back').click(back);

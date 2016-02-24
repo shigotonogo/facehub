@@ -31,7 +31,9 @@
     
     $('.raw-photo img').Jcrop({
         aspectRatio: 3 / 4,
-        onChange: updatePreview
+        onChange: updatePreview,
+        boxWidth: 740,
+        boxHeight: 740
     });
     $('#submit').click(cropSelected);
 })();
