@@ -6,8 +6,8 @@ from qiniu import Auth, put_file, put_data, BucketManager
 
 from utils import hash
 
-def provider(access_key, secret_key, bucket_name=None):
-    api =  QiNiuProvider(access_key, secret_key, bucket_name)
+def provider(access_key, secret_key, bucket_name, image_server_url):
+    api =  QiNiuProvider(access_key, secret_key, bucket_name, image_server_url)
     return Storage(api)
 
 
@@ -28,10 +28,11 @@ class Storage(object):
 
 class QiNiuProvider(object):
 
-    def __init__(self, access_key, secret_key, bucket_name):
+    def __init__(self, access_key, secret_key, bucket_name, imageServerUrl):
         self.access_key = access_key
         self.secret_key = secret_key
         self.bucket_name = bucket_name
+        self.imageServerUrl = imageServerUrl
         self.credentials = Auth(self.access_key, self.secret_key)
 
     def token(self):
@@ -42,7 +43,7 @@ class QiNiuProvider(object):
         upload_token = self.credentials.upload_token(self.bucket_name, key)
         ret, err = put_data(upload_token, key, raw)
         if ret is not None:
-            return "http://facehub.qiniudn.com/%s" % ret['key']
+            return "%s/%s" % (self.imageServerUrl, ret['key'])
         else:
             logging.error('upload error.')
 
@@ -51,6 +52,6 @@ class QiNiuProvider(object):
         upload_token = self.credentials.upload_token(self.bucket_name, file_name)
         ret, err = put_file(upload_token, file_name, file_path)
         if ret is not None:
-            return "http://facehub.qiniudn.com/%s" % ret['key']
+            return "%s/%s" % (self.imageServerUrl, ret['key'])
         else:
             logging.error('upload: %s error.' % file_name)

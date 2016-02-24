@@ -16,7 +16,8 @@ app.config.load_config('facehub.cfg')
 db = connect(app.config['database.url'])
 initDatabase(db)
 ser = Serializer()
-provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'])
+
+provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.secretkey'],app.config['cloud.bucket'], app.config['cloud.imageserverurl'])
 
 @app.hook('before_request')
 def before_request():
