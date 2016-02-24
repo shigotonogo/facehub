@@ -1,4 +1,4 @@
-bottle
-peewee
-pillow
-qiniu
+bottle==0.12.8
+peewee==2.6.0
+pillow==2.8.1
+qiniu==7.0.3
