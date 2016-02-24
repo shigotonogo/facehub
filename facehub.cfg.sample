@@ -8,4 +8,5 @@ url = sqlite:///test.db
 bucket = 
 accesskey = 
 secretkey = 
+imageserverurl =
 
