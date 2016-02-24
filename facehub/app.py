@@ -69,8 +69,13 @@ def upload():
     upload = request.files.get('file')
     image_url = provider.store(upload.file)
     email = urllib.parse.unquote(request.get_cookie("uid"))
-    new_user = User.create(raw_image=image_url, name="", title="", email=email)
-    return str(new_user.id)
+    current_user = User.get(email=email)
+    if current_user:
+        current_user.raw_image = image_url
+        current_user.save()
+    else:
+        current_user = User.create(raw_image=image_url, name="", title="", email=email)
+    return str(current_user.id)
 
 @app.route("/token")
 def token():
