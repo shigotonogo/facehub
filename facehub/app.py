@@ -22,7 +22,7 @@ provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.sec
 
 @app.hook('before_request')
 def before_request():
-    if request.path == '/login' or request.path.startswith("/assets/"):
+    if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith("/assets/"):
         return
     if request.get_cookie("uid") == None:
         redirect('/login')
@@ -49,6 +49,19 @@ def user(id):
         return dumps(ser.serialize_object(user))
     else:
         abort(404, "No such user.")
+
+@app.route('/send-invitation', method="POST")
+def send_invitation():
+    user_email = request.forms.getunicode('user', None)
+    if user_email == None:
+        abort(404,'Missing required parameter "user".')
+
+    data = urllib.parse.urlencode({ 'user': user_email })
+    response = urllib.request.urlopen(app.config['app.authentication'], bytearray(data,'utf-8'))
+    if response.code == 200:
+        return dumps({"result":'OK'})
+    else:
+        abort(500, 'Failed to send invitation.')
 
 @app.route('/api/users', method='POST')
 def createUser():

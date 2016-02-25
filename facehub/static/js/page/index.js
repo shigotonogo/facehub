@@ -31,12 +31,12 @@
     }
 
     var showAnniversaryUsers = function (data) {
-        var ractive = new Ractive({
-            el: '#anniversary',
-            template: '#anniversary-template',
-            data: data
-        })
-    }
+       var reactive = new Ractive({
+           el: '#anniversary',
+           template: '#anniversary-template',
+           data: data
+       });
+   }
 
     var showUsers =  function (data, template){
         data.users = _.sortBy(data.users, "created_at").reverse();
