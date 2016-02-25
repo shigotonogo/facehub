@@ -62,3 +62,33 @@
     text-align: center;
     line-height: 48px;
 }
+
+.table-list {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #666;
+    font-size: 14px;
+}
+.table-list img {
+    display: block;
+    margin: 5px;
+}
+.table-list tr {
+    background-color: #FFF;
+}
+.table-list tr:hover {
+    background-color: #FEFEE5;
+    cursor: pointer;
+}
+.table-list td {
+    border:5px solid #F5F5F5;
+    border-width: 5px 0;
+}
+.table-list a {
+    color: #F8005A;
+    text-decoration: none;
+}
+.table-list a:hover {
+    text-decoration: underline;
+}

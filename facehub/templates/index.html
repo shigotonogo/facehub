@@ -17,6 +17,10 @@
             ThoughtWorkers in Xi'an
           </div>
           <div class='home pull-right'>
+            <span class="btn-group">
+              <a class='top-button card active' href="javascript:void(0)">卡片</a>
+              <a class='top-button list' href="javascript:void(0)">列表</a>
+            </span>
             <a class='top-button new-profile hidden' href="/upload">+ 我要上墙</a>
             <a class='top-button edit-profile hidden' href="/profile">编辑我的卡片</a>
           </div>
@@ -24,6 +28,7 @@
     </nav>
   <div id="birthday"></div>
   <div id='members'></div>
+  <table id="table"></table>
   <div id='current-profile'></div>
 
   <script id='birthday-template' type="text/ractive">
@@ -40,10 +45,10 @@
     </div>
   </script>
 
-  <script id='users-template' type='text/ractive'>
+  <script id='card-template' type='text/ractive'>
     {{#users}}
       {{#if this.completion}}
-        <div class='profile' data-user-id="{{id}}">
+        <div class='profile profile-link' data-user-id="{{id}}">
           <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
           <div class="name">
             {{name}}
@@ -53,7 +58,26 @@
     {{/users}}
   </script>
 
-<script id="current-template" type='text/reactive'>
+  <script id="list-template" type="text/ractive">
+    <table class="table-list">
+    {{#users}}
+      {{#if this.completion}}
+          <tr data-user-id="{{id}}">
+            <td><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></td>
+            <td><a href="javascript:void(0)" class="profile-link">{{name}}</a></td>
+            <td>{{email}}</td>
+            <td>{{office}}</td>
+            <td>{{title}}</td>
+            <td>{{project}}</td>
+            <td><a href="javascript:void(0)" class="profile-link">More</a></td>
+          </tr>
+        
+      {{/if}}
+    {{/users}}
+    </table>
+  </script>
+
+<script id="current-template" type='text/ractive'>
   <div class='profile-detail'>
     <div class='pull-left detail-img'>
       <img class="photo" src="{{photo}}" alt="{{name}}">

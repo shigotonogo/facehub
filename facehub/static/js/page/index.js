@@ -13,9 +13,10 @@
         });
     };
 
-    $('#members').delegate('.profile', 'click', function(src) {
+    $('#members').delegate('.profile-link', 'click', function(src) {
+        var dataId = $(src.currentTarget).data('user-id') || $(src.currentTarget).closest('tr').data('user-id'); 
         $.ajax({
-            url: '/api/users/' + $(src.currentTarget).data('user-id'),
+            url: '/api/users/' + dataId,
             dataType: 'json',
             success: popupCurrent
         });
@@ -29,11 +30,12 @@
         })
     }
 
-    var showUsers =  function (data){
+    var showUsers =  function (data, template){
         data.users = _.sortBy(data.users, "created_at").reverse();
+        
         var ractive = new Ractive({
-            el: 'members',
-            template: '#users-template',
+            el: '#members',
+            template: template,
             data: data
         });
     }
@@ -53,12 +55,14 @@
         }
     }
 
+    var userData;
     $.ajax({
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
-            showUsers(data);
+            showUsers(data, '#card-template');
             toggleActionLink(data);
+            userData = data;
         }
     });
 
@@ -72,4 +76,12 @@
             showBirthdayUsers(data);
         }
     })
+    $('.btn-group .list').click(function(){
+        $(this).addClass('active').siblings('.top-button').removeClass('active');
+        showUsers(userData, '#list-template');
+    });
+    $('.btn-group .card').click(function(){
+        $(this).addClass('active').siblings('.top-button').removeClass('active');
+        showUsers(userData, '#card-template');
+    });
 })();

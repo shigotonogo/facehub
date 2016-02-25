@@ -74,6 +74,28 @@ nav{
     background-color: #ED3E63;
 }
 
+.btn-group {
+    font-size: 0;
+    margin-right: 20px;
+}
+.btn-group .top-button {
+    font-size: 16px;
+}
+.btn-group .top-button:first-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: -1px;
+}
+.btn-group .top-button:last-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.btn-group .active {
+    background-color: #FFF;
+    color: #f50057;
+}
+
+
 .small-button{
     display: block;
     margin: 20px auto;
