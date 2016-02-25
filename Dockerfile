@@ -1,9 +1,11 @@
 FROM python:3.4.2
 
-ADD requirements.txt /requirements.txt
+COPY . /facehub
 
-RUN pip3 install -r requirements.txt
+ADD requirements.txt /facehub/requirements.txt
+
+RUN pip3 install -r /facehub/requirements.txt
 
 EXPOSE 8080
 
-CMD python3 app.py
+CMD cd facehub && python3 facehub/app.py
