@@ -25,7 +25,7 @@
     };
 
     var back = function() {
-        window.location="/photo"
+        window.location.href="/photo"
     };
  
     var nextStep = function() {
