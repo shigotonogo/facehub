@@ -34,11 +34,15 @@ def current_user_email():
 def users():
     response.content_type = 'application/json'
     current_month = datetime.now().month
+    current_year = datetime.now().year
     users = User.select()
     all_users = [ser.serialize_object(u) for u in users]
     birthday_users = [ser.serialize_object(user) for user in users if user.birthday.month == current_month]
-    anniversary_users = [ser.serialize_object(user) for user in users if user.onboard.month == current_month]
-    resp = {"users": all_users, "current_user": request.get_cookie("uid"), "birthday_users": birthday_users, "anniversary_users": anniversary_users}
+    anniversary_users = [ser.serialize_object(user) for user in users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
+    resp = {"users": all_users, 
+    "current_user": request.get_cookie("uid"), 
+    "birthday_users": birthday_users, 
+    "anniversary_users": anniversary_users}
     return dumps(resp)
 
 @app.route('/api/users/<id:int>', method='GET')

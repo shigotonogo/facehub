@@ -62,6 +62,28 @@
         }
     }
 
+    var showCrown = function(data){
+        var users = data.birthday_users;
+        _.find(users, function(user){
+            $('#members .profile[data-user-id='+ user.id +']').addClass("crown");
+        });
+    }
+
+    var showBadge = function(data){
+        var users = data.anniversary_users;
+        _.find(users, function(user){
+            anni = (new Date).getFullYear() - user.onboard.split("-")[0]
+           $('#members .profile[data-user-id='+ user.id +']').addClass("anni").attr('data-anni', anni);
+        });
+    }
+
+    var limit = function(data){
+        if (data.length > 4) {
+            data = data.slice(0, 4);
+        }
+        return data;
+    }
+
     var userData;
     $.ajax({
         url: '/api/users',
@@ -69,14 +91,11 @@
         success: function(data) {
             userData = data;
             showUsers(data, '#card-template');
+            showCrown(data);
+            showBadge(data);
 
-            if (data.birthday_users.length > 4) {
-                data.birthday_users = data.birthday_users.slice(0, 4)
-            }
-
-            if (data.anniversary_users.length > 4) {
-                data.anniversary_users = data.birthday_users.slice(0, 4)
-            }
+            data.birthday_users = limit(data.birthday_users);
+            data.anniversary_users = limit(data.anniversary_users);
 
             toggleActionLink(data);
             showAnniversaryUsers(data);

@@ -9,6 +9,30 @@
     display: inline-block;
     background-color: white;
     cursor: pointer;
+    position: relative;
+}
+
+.profile.crown::after{
+    content: '';
+    background-image: url('../../images/crown.png');
+    position: absolute;
+    top: -36px;
+    right: -36px;
+    width: 80px;
+    height: 80px;
+}
+
+.profile.anni::before{
+    content: attr(data-anni);
+    background-image: url('../../images/badge.png');
+    position: absolute;
+    right: -36px;
+    bottom: 0;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    line-height: 66px;
+    color: white;
 }
 
 .profile .photo {

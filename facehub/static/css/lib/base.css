@@ -166,3 +166,7 @@ a{
     text-decoration: none;
     color: black;
 }
+
+.hide{
+    display: none;
+}
