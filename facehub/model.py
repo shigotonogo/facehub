@@ -17,6 +17,7 @@ class User(BaseModel):
     id = PrimaryKeyField()
     project = CharField(null=True)
     name = CharField(index=True)
+    office = CharField(null=True)
     title = CharField()
     email = CharField()
     raw_image = CharField(null=True)

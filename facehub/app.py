@@ -72,6 +72,7 @@ def createUser():
         u = User.get(email=current_user_email())
 
         u.project = request.forms.getunicode('project', None)
+        u.office = request.forms.getunicode('office', None)
         u.name = request.forms.getunicode('name', None)
         u.skype = request.forms.getunicode('skype', None)
         u.phone = request.forms.getunicode('phone', None)

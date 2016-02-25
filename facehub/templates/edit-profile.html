@@ -33,24 +33,36 @@
                         <label for='name'>姓名*</label>
                         <input name='name' type='text' class='name' pattern="[^\s]{2,}" value="{{name}}" required oninvalid="setCustomValidity('请输入合法的姓名')"></input>
                     </div>
+                    <div class="line">
+                        <label for="office">所属办公室</label>
+                        <select name="office" id="office">
+                            <option value="北京">北京</option>
+                            <option value="西安" selected>西安</option>
+                            <option value="上海">上海</option>
+                            <option value="成都">成都</option>
+                            <option value="武汉">武汉</option>
+                            <option value="深圳">深圳</option>
+                        </select>
+                    </div>
                     <div class='line'>
                         <label for='title'>职位*</label>
                         <select name='title' id='title' pattern="[^\s]{3,}" required>
-                            <option value="软件开发工程师 Dev">软件开发工程师 Dev</option>
-                            <option value="项目经理 PM">项目经理 PM</option>
-                            <option value="开发运维工程师 DevOps">开发运维工程师 DevOps</option>
-                            <option value="前端开发 UIDev">前端开发 UIDev</option>
-                            <option value="业务分析师 BA">业务分析师 BA</option>
-                            <option value="质量保证工程师 QA">质量保证工程师 QA</option>
-                            <option value="用户体验设计师 UX(XD)">用户体验设计师 UX(XD)</option>
-                            <option value="行政专员 Admin">行政专员 Admin</option>
-                            <option value="财务专员 Finance">财务专员 Finance</option>
-                            <option value="网络管理专员 IS">网络管理专员 IS</option>
-                            <option value="招聘专员 Recruiter">招聘专员 Recruiter</option>
-                            <option value="市场专员 Marketer">市场专员 Marketer</option>
-                            <option value="人事专员 People Support">人事专员 People Support</option>
-                            <option value="销售工程师 BD">销售工程师 BD</option>
+                            <option value="Dev" selected>Dev</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="UIDev">UIDev</option>
+                            <option value="BA">BA</option>
+                            <option value="QA">QA</option>
+                            <option value="UX">UX</option>
+                            <option value="PM">PM</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Finance">Finance</option>
+                            <option value="IS">IS</option>
+                            <option value="Recruiter">Recruiter</option>
+                            <option value="Marketer">Marketer</option>
+                            <option value="People">People</option> <option value="Support">Support</option>
+                            <option value="BD">BD</option>
                             <option value="MD">MD</option>
+
                         </select>
                     </div>
                     <div class='line'>
