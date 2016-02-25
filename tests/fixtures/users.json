@@ -9,7 +9,8 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2013-10-21"
+    "birthday": "2013-10-21",
+    "onboard": "2014-07-01"
   },
   {
     "name": "Rui Bian",
@@ -21,7 +22,8 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2013-11-21"
+    "birthday": "2013-11-21",
+    "onboard": "2013-09-01"
   },
   {
     "name": "Liang Liu",
@@ -33,7 +35,8 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2013-12-21"
+    "birthday": "2013-12-21",
+    "onboard": "2014-02-01"
   },
   {
     "name": "David Xie",
@@ -45,7 +48,8 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2012-10-21"
+    "birthday": "2012-10-21",
+    "onboard": "2014-05-01"
   },
   {
     "name": "Yang Cheng",
@@ -57,7 +61,8 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2012-9-21"
+    "birthday": "2012-9-21",
+    "onboard": "2014-02-01"
   },
   {
     "name": "Xia Wang",
@@ -69,7 +74,8 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2013-10-22"
+    "birthday": "2013-10-22",
+    "onboard": "2011-03-01"
   },
   {
     "name": "Yuwei Dong",
@@ -81,6 +87,7 @@
     "project": "myfun",
     "skype": "david.xie",
     "completion": true,
-    "birthday": "2013-9-21"
+    "birthday": "2013-9-21",
+    "onboard": "2013-01-01"
   }
 ]

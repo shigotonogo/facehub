@@ -21,6 +21,7 @@ class User(BaseModel):
     email = CharField()
     raw_image = CharField(null=True)
     birthday = DateField(index=True)
+    onboard = DateField(index=True)
     avatar = CharField(null=True)
     photo = CharField(null=True)
     phone = CharField(null=True)

@@ -20,9 +20,13 @@ class UserTest(unittest.TestCase):
                         avatar = "http://davidx.qiniudn.com/liuliang_head@2x.jpg",
                         photo = "http://davidx.qiniudn.com/liuliang_half@2x.jpg",
                         birthday = "2011-1-03",
+                        onboard = "2015-6-1",
                         phone = "13060245883")
 
             u = User.get(User.name == "Jeff Dean")
 
             self.assertEqual(u.email, "jeff@google.com")
             self.assertEqual(u.project, "Google Research")
+            self.assertEqual(u.completion, False)
+            self.assertEqual(u.birthday.day, 3)
+            self.assertEqual(u.birthday.year, 2011)
