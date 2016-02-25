@@ -65,6 +65,9 @@
         url: '/api/birthday-users',
         dataType: 'json',
         success: function(data) {
+            if (data.users.length > 4) {
+                data.users = data.users.slice(0, 4)
+            }
             showBirthdayUsers(data);
         }
     })
