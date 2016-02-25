@@ -29,11 +29,18 @@
         window.location="/avatar"
     };
     
-    $('.raw-photo img').Jcrop({
-        aspectRatio: 3 / 4,
-        onChange: updatePreview,
-        boxWidth: 740,
-        boxHeight: 740
-    });
+    $('.raw-photo img').load(function(){
+        var weight = $('.raw-photo img').width();
+        var height = $('.raw-photo img').height();
+
+        $('.raw-photo img').Jcrop({
+            aspectRatio: 3 / 4,
+            setSelect:   [ weight / 4, height / 2 - weight / 3, weight *3 / 4, height / 2 + weight / 3],
+            onChange: updatePreview,
+            boxWidth: 740,
+            boxHeight: 740
+        });
+    })
+    
     $('#submit').click(cropSelected);
 })();

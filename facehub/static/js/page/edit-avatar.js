@@ -32,13 +32,20 @@
         var id = $('#user-id').val();
         window.location="/profile"
     };
-    
-    $('.raw-photo img').Jcrop({
-        aspectRatio: 1,
-        onChange: updatePreview,
-        boxWidth: 740,
-        boxHeight: 740
-    });
+
+    $('.raw-photo img').load(function(){
+        var weight = $('.raw-photo img').width();
+        var height = $('.raw-photo img').height();
+
+        $('.raw-photo img').Jcrop({
+            aspectRatio: 1,
+            setSelect:   [ weight / 4, height / 2 - weight / 4, weight * 3 / 4, height / 2 + weight / 4],
+            onChange: updatePreview,
+            boxWidth: 740,
+            boxHeight: 740
+        });
+    })
+
     $('#submit').click(cropSelected);
     $('#back').click(back);
 })();

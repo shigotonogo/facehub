@@ -1,0 +1,36 @@
+
+.raw-photo .jcrop-holder > div:first-child {
+    border: 4px solid #21D027; 
+}
+
+.raw-photo .jcrop-holder .ord-w, .raw-photo .jcrop-holder .ord-e {
+    width: 0
+}
+
+.raw-photo .jcrop-holder .ord-n, .raw-photo .jcrop-holder .ord-s {
+    height: 0
+}
+
+.raw-photo .jcrop-hline, .raw-photo .jcrop-vline {
+    background: none;
+}
+
+.raw-photo .jcrop-handle {
+    background: none;
+    border: none;
+}
+
+.raw-photo .ord-se {
+    opacity: 1!important;
+}
+.raw-photo .ord-se:before {
+    content: "";
+    display: block;
+    position: absolute;
+    right: -10px;
+    bottom:-10px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #21D027 url("/assets/images/resize.png") center center no-repeat
+}

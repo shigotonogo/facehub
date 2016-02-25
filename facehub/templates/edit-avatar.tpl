@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/assets/css/page/edit-avatar.css">
         <link rel="stylesheet" href="/assets/css/lib/jquery.Jcrop.min.css">
         <link rel="stylesheet" href="/assets/css/lib/base.css">
+        <link rel="stylesheet" href="/assets/css/page/crop-photo.css">
     </head>
     <body>
         <nav>
