@@ -32,7 +32,7 @@
 }
 .profile .info {
 	display: inline-block;
-	width: 45%;
+	width: 50%;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -58,6 +58,11 @@
 
 .hide{
     display: none;
+}
+
+.profile .tip{
+    color: #cccccc;
+    font-size: 11px;
 }
 
 select{
