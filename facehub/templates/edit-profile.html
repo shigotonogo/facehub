@@ -3,6 +3,7 @@
     <head>
         <meta charset='utf-8'>
         <title>添加新成员</title>
+        <link rel="stylesheet" href="/assets/css/lib/jquery-ui.css">
         <link rel="stylesheet" href="/assets/css/page/edit-profile.css">
         <link rel="stylesheet" href="/assets/css/lib/base.css">
     </head>
@@ -78,6 +79,10 @@
                             <option value="暂无">暂无</option>
                         </select>
                     </div>
+                    <div class="line">
+                        <label for="birthday">生日*</label>
+                        <input name="birthday" type="text" id="birthday" value="{{birthday}}"></p>
+                    </div>
                     <h3>联系方式</h3>
                     <div class='line'>
                         <label for='phone'>电话</label>
@@ -97,5 +102,9 @@
             </div>
         </div>
     <footer class="copyright">© Shigotongo.2014</footer>
+
+    <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
+    <script type="text/javascript" src="/assets/js/lib/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="/assets/js/page/profile.js"></script>
 </body>
 </html>

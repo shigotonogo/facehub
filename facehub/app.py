@@ -55,6 +55,8 @@ def createUser():
         u.skype = request.forms.getunicode('skype', None)
         u.phone = request.forms.getunicode('phone', None)
         u.title = request.forms.getunicode('title', None)
+        birthday = request.forms.getunicode('birthday', None).split("/")
+        u.birthday = datetime.date(int(birthday[2]), int(birthday[0]), int(birthday[1]))
 
         u.completion = True
         u.save()
@@ -75,7 +77,7 @@ def upload():
         current_user.raw_image = image_url
         current_user.save()
     except User.DoesNotExist:
-        current_user = User.create(raw_image=image_url, name="", title="", email=email)
+        current_user = User.create(raw_image=image_url, name="", title="", birthday="", email=email)
     return str(current_user.id)
 
 @app.route("/token")
@@ -100,7 +102,7 @@ def crop_photo():
 @view("edit-profile")
 def crop_photo():
     user  = User.get(email=current_user_email())
-    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name or "", "phone": user.phone or "", "skype": user.skype or "", "project": user.project or "" }
+    return { 'photo': user.photo, 'avatar': user.avatar, "name": user.name or "", "phone": user.phone or "", "skype": user.skype or "", "project": user.project or "", "birthday": user.birthday or "" }
 
 
 @app.route('/crop', method='POST')

@@ -8,7 +8,8 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2013-10-21"
   },
   {
     "name": "Rui Bian",
@@ -19,7 +20,8 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2013-11-21"
   },
   {
     "name": "Liang Liu",
@@ -30,7 +32,8 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2013-12-21"
   },
   {
     "name": "David Xie",
@@ -41,7 +44,8 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2012-10-21"
   },
   {
     "name": "Yang Cheng",
@@ -52,7 +56,8 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2012-9-21"
   },
   {
     "name": "Xia Wang",
@@ -63,7 +68,8 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2013-10-22"
   },
   {
     "name": "Yuwei Dong",
@@ -74,6 +80,7 @@
     "phone": "13060245883",
     "project": "myfun",
     "skype": "david.xie",
-    "completion": true
+    "completion": true,
+    "birthday": "2013-9-21"
   }
 ]

@@ -19,6 +19,7 @@ class UserTest(unittest.TestCase):
                         project = "Google Research",
                         avatar = "http://davidx.qiniudn.com/liuliang_head@2x.jpg",
                         photo = "http://davidx.qiniudn.com/liuliang_half@2x.jpg",
+                        birthday = "2011-1-03",
                         phone = "13060245883")
 
             u = User.get(User.name == "Jeff Dean")
