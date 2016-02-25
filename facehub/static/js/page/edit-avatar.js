@@ -34,8 +34,8 @@
     };
 
     $('.raw-photo img').load(function(){
-        var weight = $('.raw-photo img').width();
-        var height = $('.raw-photo img').height();
+        var weight = $('.raw-photo img:visible').width();
+        var height = $('.raw-photo img:visible').height();
 
         $('.raw-photo img').Jcrop({
             aspectRatio: 1,
