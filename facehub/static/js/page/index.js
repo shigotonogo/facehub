@@ -21,10 +21,18 @@
         });
     });
 
+    var showBirthdayUsers = function (data) {
+        var ractive = new Ractive({
+            el: '#birthday',
+            template: '#birthday-template',
+            data: data
+        })
+    }
+
     var showUsers =  function (data){
         var ractive = new Ractive({
             el: 'members',
-            template: '#template',
+            template: '#users-template',
             data: data
         });
     }
@@ -52,4 +60,12 @@
             toggleActionLink(data);
         }
     });
+
+    $.ajax({
+        url: '/api/birthday-users',
+        dataType: 'json',
+        success: function(data) {
+            showBirthdayUsers(data);
+        }
+    })
 })();

@@ -28,3 +28,37 @@
     font-style: 13px;
 }
 
+.shou-xing-canvas{
+    margin: 50px auto;
+    width: 440px;
+    height: 90px;
+    padding: 15px;
+    background-image: url('../../images/birthday_bg_ad.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.shou-xing-canvas .title{
+    font-size: 20px;
+}
+
+.shou-xing-canvas .user-box{
+    padding-top: 10px;
+}
+
+.shou-xing-canvas .user-box img{
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.shou-xing-canvas .user-box .more{
+    border: 1px solid #f50057;
+    color: #f50057;
+    font-size: 13px;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    text-align: center;
+    line-height: 48px;
+}

@@ -139,3 +139,8 @@ h1{
     color:#999;
     margin:30px auto;
 }
+
+a{
+    text-decoration: none;
+    color: black;
+}

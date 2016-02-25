@@ -6,6 +6,7 @@ from model import *
 from serializer import Serializer
 import storage
 from image import crop_image
+from datetime import datetime
 
 from playhouse.db_url import connect
 
@@ -44,6 +45,14 @@ def user(id):
         return dumps(ser.serialize_object(user))
     else:
         abort(404, "No such user.")
+
+@app.route('/api/birthday-users', method='GET')
+def birthday_users():
+	response.content_type = 'application/json'
+	current_month = datetime.now().month
+	users = [ser.serialize_object(u) for u in User.select() if u.birthday.month == current_month]
+	resp = {"users": users}
+	return dumps(resp)
 
 @app.route('/api/users', method='POST')
 def createUser():

@@ -22,10 +22,25 @@
           </div>
       </div> 
     </nav>
+  <div id="birthday"></div>
   <div id='members'></div>
   <div id='current-profile'></div>
 
-  <script id='template' type='text/ractive'>
+  <script id='birthday-template' type="text/ractive">
+    <div class="shou-xing-canvas">
+        <a href="/birthday-users">
+            <span class="title">本月寿星</span>
+            <div class="user-box">
+                {{#users}}
+                    <img src="{{avatar}}" width="50" height="50">
+                {{/users}}
+                <div class="more">更多</div>
+            </div>
+        </a>
+    </div>
+  </script>
+
+  <script id='users-template' type='text/ractive'>
     {{#users}}
       {{#if this.completion}}
         <div class='profile' data-user-id="{{id}}">
