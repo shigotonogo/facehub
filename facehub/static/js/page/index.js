@@ -67,6 +67,7 @@
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
+            userData = data;
             showUsers(data, '#card-template');
 
             if (data.birthday_users.length > 4) {
