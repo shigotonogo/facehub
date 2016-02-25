@@ -19,9 +19,7 @@
                 </div>
             </div>
         </nav>
-        <div class="mask">
-            <img src="/assets/images/loading1.gif" id="loading-image">
-        </div>
+        <div class="mask"></div>
         <div class="container">
             <div class="operations">
                 <div class="pull-left">

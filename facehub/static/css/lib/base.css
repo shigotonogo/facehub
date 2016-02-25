@@ -102,19 +102,14 @@ h1{
 
 .mask{
     display: none;
-    position: absolute;
-    background-color: rgba(255,255,255,.8);
+    position: fixed;
+    background: rgba(255,255,255,.8) url(/assets/images/loading1.gif) no-repeat center center;
     z-index: 1000;
     width: 100%;
     top: 0;
     bottom: 0;
-}
-
-#loading-image{
-    position: absolute;
-    left: 45%;
-    top: 45%;
-    border-radius: 32px;
+    right: 0;
+    left: 0;
 }
 
 .feedback {
