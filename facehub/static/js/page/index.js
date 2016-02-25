@@ -30,9 +30,16 @@
         })
     }
 
+    var showAnniversaryUsers = function (data) {
+        var ractive = new Ractive({
+            el: '#anniversary',
+            template: '#anniversary-template',
+            data: data
+        })
+    }
+
     var showUsers =  function (data, template){
         data.users = _.sortBy(data.users, "created_at").reverse();
-        
         var ractive = new Ractive({
             el: '#members',
             template: template,
@@ -61,18 +68,17 @@
         dataType: 'json',
         success: function(data) {
             showUsers(data, '#card-template');
-            toggleActionLink(data);
-            userData = data;
-        }
-    });
 
-    $.ajax({
-        url: '/api/birthday-users',
-        dataType: 'json',
-        success: function(data) {
-            if (data.users.length > 4) {
-                data.users = data.users.slice(0, 4)
+            if (data.birthday_users.length > 4) {
+                data.birthday_users = data.birthday_users.slice(0, 4)
             }
+
+            if (data.anniversary_users.length > 4) {
+                data.anniversary_users = data.birthday_users.slice(0, 4)
+            }
+
+            toggleActionLink(data);
+            showAnniversaryUsers(data);
             showBirthdayUsers(data);
         }
     })

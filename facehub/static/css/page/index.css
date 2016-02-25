@@ -28,31 +28,50 @@
     font-style: 13px;
 }
 
-.shou-xing-canvas{
+.notification {
+    width: 960px;
+    height: 120px;
     margin: 50px auto;
+}
+
+.notification-canvas {
     width: 440px;
     height: 90px;
     padding: 15px;
-    background-image: url('../../images/birthday_bg_ad.png');
     background-position: top right;
     background-repeat: no-repeat;
     background-color: white;
 }
 
-.shou-xing-canvas .title{
+.shou-xing-canvas {
+    background-image: url('../../images/birthday_bg_ad.png');
+    float: left;
+}
+
+.anniversary-canvas {
+    background-image: url('../../images/anniversary_bg_ad.png');
+    float: right;
+    background-color: #4b4b4b;
+}
+
+.anniversary-canvas .title {
+    color: white;
+}
+
+.notification-canvas .title{
     font-size: 20px;
 }
 
-.shou-xing-canvas .user-box{
+.notification-canvas .user-box{
     padding-top: 10px;
 }
 
-.shou-xing-canvas .user-box img{
+.notification-canvas .user-box img{
     margin-right: 5px;
     vertical-align: middle;
 }
 
-.shou-xing-canvas .user-box .more{
+.notification-canvas .user-box .more{
     border: 1px solid #f50057;
     color: #f50057;
     font-size: 13px;

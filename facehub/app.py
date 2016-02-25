@@ -33,8 +33,12 @@ def current_user_email():
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
-    users = [ser.serialize_object(u) for u in User.select()]
-    resp = {"users": users, "current_user": request.get_cookie("uid")}
+    current_month = datetime.now().month
+    users = User.select()
+    all_users = [ser.serialize_object(u) for u in users]
+    birthday_users = [ser.serialize_object(user) for user in users if user.birthday.month == current_month]
+    anniversary_users = [ser.serialize_object(user) for user in users if user.onboard.month == current_month]
+    resp = {"users": all_users, "current_user": request.get_cookie("uid"), "birthday_users": birthday_users, "anniversary_users": anniversary_users}
     return dumps(resp)
 
 @app.route('/api/users/<id:int>', method='GET')
@@ -45,14 +49,6 @@ def user(id):
         return dumps(ser.serialize_object(user))
     else:
         abort(404, "No such user.")
-
-@app.route('/api/birthday-users', method='GET')
-def birthday_users():
-	response.content_type = 'application/json'
-	current_month = datetime.now().month
-	users = [ser.serialize_object(u) for u in User.select() if u.birthday.month == current_month]
-	resp = {"users": users}
-	return dumps(resp)
 
 @app.route('/api/users', method='POST')
 def createUser():

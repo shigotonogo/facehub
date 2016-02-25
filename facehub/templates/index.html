@@ -27,23 +27,38 @@
           </div>
       </div> 
     </nav>
-  <div id="birthday"></div>
+
+  <div class="notification">
+    <div id="birthday" class="notification-canvas shou-xing-canvas"></div>
+    <div id="anniversary" class="notification-canvas anniversary-canvas"></div>
+  </div>
+
   <div id='members'></div>
   <table id="table"></table>
   <div id='current-profile'></div>
 
   <script id='birthday-template' type="text/ractive">
-    <div class="shou-xing-canvas">
         <a href="/birthday-users">
             <span class="title">本月寿星</span>
             <div class="user-box">
-                {{#users}}
+                {{#birthday_users}}
                     <img src="{{avatar}}" width="50" height="50">
-                {{/users}}
+                {{/birthday_users}}
                 <div class="more">更多</div>
             </div>
         </a>
-    </div>
+  </script>
+
+  <script id='anniversary-template' type="text/ractive">
+        <a href="/anniversary-users">
+            <span class="title">周年纪念</span>
+            <div class="user-box">
+                {{#anniversary_users}}
+                    <img src="{{avatar}}" width="50" height="50">
+                {{/anniversary_users}}
+                <div class="more">更多</div>
+            </div>
+        </a>
   </script>
 
   <script id='card-template' type='text/ractive'>
