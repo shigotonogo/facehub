@@ -1,4 +1,10 @@
 (function() {
-    $("#birthday").datepicker();
-    $("#onboard").datepicker();
+    $("#birthday").datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
+    $("#onboard").datepicker({
+        changeMonth: true,
+        changeYear: true
+    });
 })();
