@@ -35,8 +35,8 @@
                 <img src="{{image}}">
             </div>
             <div class="sample pull-right">
-                <img src="http://davidx.qiniudn.com/xieling_head@2x.jpg" width="160" height="160">
-                <div class="name">谢大卫</div>
+                <img src="http://7xr6pw.com1.z0.glb.clouddn.com/sample_head%402x.jpg" width="160" height="160">
+                <div class="name">谢耳朵</div>
                 <div class="tips">头像示例</div>
             </div>
             

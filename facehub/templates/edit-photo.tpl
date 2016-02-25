@@ -39,7 +39,7 @@
                 <img src="{{image}}">
             </div>
             <div class="sample pull-right">
-                <img src="http://davidx.qiniudn.com/xieling_half@2x.jpg" width="160">
+                <img src="http://7xr6pw.com1.z0.glb.clouddn.com/sample_half%402x.jpg" width="160">
                 <div class="tips">半身照示例</div>
             </div>
         </div>
