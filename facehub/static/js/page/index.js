@@ -30,6 +30,7 @@
     }
 
     var showUsers =  function (data){
+        data.users = _.sortBy(data.users, "created_at").reverse();
         var ractive = new Ractive({
             el: 'members',
             template: '#users-template',
