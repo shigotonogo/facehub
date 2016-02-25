@@ -125,9 +125,10 @@ def editPhoto():
     width = request.forms.get("w", None)
     height = request.forms.get("h", None)
     img_type = request.forms.get("image_type", None)
+    img_width = request.forms.get("image_width", None)
     email = current_user_email()
     try:
-        image = crop_image(img_src, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
+        image = crop_image(img_src, img_width, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
         image_url = provider.store_file(image)
 
         user = User.get(email=email)

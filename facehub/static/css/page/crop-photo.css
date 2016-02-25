@@ -1,6 +1,6 @@
 
-.raw-photo .jcrop-holder > div:first-child {
-    border: 4px solid #21D027; 
+.raw-photo .jcrop-vline + .jcrop-tracker {
+    box-shadow: 0 0 0 2px #21D027 inset; 
 }
 
 .raw-photo .jcrop-holder .ord-w, .raw-photo .jcrop-holder .ord-e {
@@ -27,10 +27,11 @@
     content: "";
     display: block;
     position: absolute;
-    right: -10px;
-    bottom:-10px;
+    left: -12px;
+    top:-12px;
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: #21D027 url("/assets/images/resize.png") center center no-repeat
+    background: #21D027 url("/assets/images/resize.png") center center no-repeat;
+    background-size: 70%;
 }

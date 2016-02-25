@@ -1,13 +1,13 @@
 (function() {
     var updatePreview = function(coordinate) {
-        $('.preview img').data('coordinate', coordinate);
+        $('.raw-photo img').data('coordinate', coordinate);
         $('.preview img').hide();
-
     };
 
     var cropSelected = function() {
-        var coordinate = $('.preview img').data('coordinate');
-        coordinate.src = $('.preview img').attr('src');
+        var coordinate = $('.raw-photo img').data('coordinate');
+        coordinate.src = $('.raw-photo img').attr('src');
+        coordinate.image_width = $('.raw-photo img').width();
         coordinate.image_type = $("#image-type").val();
 
         $('.mask').show();
@@ -30,12 +30,12 @@
     };
     
     $('.raw-photo img').load(function(){
-        var weight = $('.raw-photo img:visible').width();
+        var width = $('.raw-photo img:visible').width();
         var height = $('.raw-photo img:visible').height();
 
         $('.raw-photo img').Jcrop({
             aspectRatio: 3 / 4,
-            setSelect:   [ weight / 4, height / 2 - weight / 3, weight *3 / 4, height / 2 + weight / 3],
+            setSelect:   [ width / 4, height / 2 - width / 3, width *3 / 4, height / 2 + width / 3],
             onChange: updatePreview,
             boxWidth: 740,
             boxHeight: 740
