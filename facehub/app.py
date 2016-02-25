@@ -6,7 +6,7 @@ from model import *
 from serializer import Serializer
 import storage
 from image import crop_image
-from datetime import datetime
+from datetime import date, datetime
 
 from playhouse.db_url import connect
 
@@ -69,8 +69,8 @@ def send_invitation():
 
 @app.route('/api/users', method='POST')
 def createUser():
-    def get_date_from(date):
-        return datetime.date(int(date[2]), int(date[0]), int(date[1]))
+    def parse(date_str):
+        return datetime.strptime(date_str, "%m/%d/%Y")
 
     try:
         u = User.get(email=current_user_email())
@@ -81,11 +81,8 @@ def createUser():
         u.skype = request.forms.getunicode('skype', None)
         u.phone = request.forms.getunicode('phone', None)
         u.title = request.forms.getunicode('title', None)
-        birthday = request.forms.getunicode('birthday', None).split("/")
-        onboard = request.forms.getunicode('onboard', None).split("/")
-        u.birthday = get_date_from(birthday)
-        u.onboard = get_date_from(onboard)
-
+        u.birthday = parse(request.forms.getunicode('birthday', None))
+        u.onboard = parse(request.forms.getunicode('onboard', None))
         u.completion = True
         u.save()
     except Exception as e:
@@ -130,14 +127,17 @@ def crop_photo():
 @view("edit-profile")
 def crop_photo():
     user  = User.get(email=current_user_email())
+    birthday = datetime.strftime(user.birthday , "%m/%d/%Y") if user.birthday else ""
+    onboard = datetime.strftime(user.onboard , "%m/%d/%Y") if user.onboard else ""
+
     return { "photo": user.photo, 
             "avatar": user.avatar,
             "name": user.name or "",
             "phone": user.phone or "",
             "skype": user.skype or "",
             "project": user.project or "",
-            "birthday": user.birthday or "",
-            "onboard": user.onboard or "" }
+            "birthday": birthday,
+            "onboard": onboard }
 
 
 @app.route('/crop', method='POST')
