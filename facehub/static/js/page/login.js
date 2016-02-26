@@ -27,4 +27,18 @@
         }
         
     });
+
+    var count = function(){
+        $.ajax({
+            url: '/api/users',
+            dataType: 'json',
+            success: function(data) {
+                $('#count').text(data.users.length);
+            }
+        });
+    };
+    count();
+
+    setInterval(count, 60000);
+
 })();

@@ -20,6 +20,17 @@ body {
 	padding-top: 50px;
 }
 
+.content .title span {
+	display: block;
+	text-align: center;
+	font-size: 14px;
+}
+.content .title span em {
+	margin: 0 10px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
 .logo {
 	padding-top: 50px;
 	text-align: center;
