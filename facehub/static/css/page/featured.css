@@ -1,0 +1,29 @@
+.canvas{
+    background-color: white;
+}
+.banner{
+    background-image: url('../../images/birthday_bg.png');
+    width: 960px;
+    height: 150px;
+    margin: 0 auto 50px auto;
+    background-repeat: no-repeat;
+    background-position: top right;
+    font-size: 13px;
+}
+
+.banner a{
+    color: #f50057;
+}
+
+.banner .first-line{
+    padding-top: 20px;
+}
+
+.banner .title{
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.banner .tip, .banner .arrow{
+    color: #999;
+}

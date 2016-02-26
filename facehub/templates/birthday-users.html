@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/assets/css/lib/magnific-popup.css">
   <link rel="stylesheet" href="/assets/css/lib/base.css">
   <link rel="stylesheet" href="/assets/css/partial/card.css">
-  <link rel="stylesheet" href="/assets/css/page/index.css">
+  <link rel="stylesheet" href="/assets/css/page/featured.css">
   <link rel="stylesheet" href="/assets/css/page/profile-detail.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
@@ -29,68 +29,49 @@
       </div> 
     </nav>
 
-  <div class="notification">
-    <div id="birthday" class="notification-canvas shou-xing-canvas"></div>
-    <div id="anniversary" class="notification-canvas anniversary-canvas"></div>
-  </div>
+    <div class="canvas">
+        <div class="banner">
+            <div class="first-line">
+                <a href="/">所有人</a>
+                <span class="arrow">></span>
+            </div>
+            <div class="title">本月寿星</div>
+            <div class="tip">看看本月有哪些同事要过生日了</div>
+        </div>
+    </div>
 
   <div id='members'></div>
   <table id="table"></table>
   <div id='current-profile'></div>
 
-  <script id='birthday-template' type="text/ractive">
-        <a href="/birthday-users">
-            <span class="title">本月寿星</span>
-            <div class="user-box">
-                {{#birthday_users}}
-                    <img src="{{avatar}}" width="50" height="50">
-                {{/birthday_users}}
-                <div class="more">更多</div>
-            </div>
-        </a>
-  </script>
-
-  <script id='anniversary-template' type="text/ractive">
-        <a href="/anniversary-users">
-            <span class="title">周年纪念</span>
-            <div class="user-box">
-                {{#anniversary_users}}
-                    <img src="{{avatar}}" width="50" height="50">
-                {{/anniversary_users}}
-                <div class="more">更多</div>
-            </div>
-        </a>
-  </script>
-
   <script id='card-template' type='text/ractive'>
-    {{#users}}
-      {{#if this.completion}}
+    {{#birthday_users}}
+        {{#if this.completion}}
         <div class='profile profile-link' data-user-id="{{id}}">
           <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
           <div class="name">
             {{name}}
           </div>
         </div>
-      {{/if}}
-    {{/users}}
+        {{/if}}
+    {{/birthday_users}}
   </script>
 
   <script id="list-template" type="text/ractive">
     <table class="table-list">
-    {{#users}}
-      {{#if this.completion}}
-          <tr>
-            <td width="80"><div class="profile" data-user-id="{{id}}"><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></div></td>
+    {{#birthday_users}}
+        {{#if this.completion}}
+          <tr data-user-id="{{id}}">
+            <td><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></td>
             <td><a href="javascript:void(0)" class="profile-link">{{name}}</a></td>
             <td>{{email}}</td>
             <td>{{office}}</td>
             <td>{{title}}</td>
             <td>{{project}}</td>
-            <td><a href="javascript:void(0)" class="profile-link more">More</a></td>
+            <td><a href="javascript:void(0)" class="profile-link">More</a></td>
           </tr>
-        
-      {{/if}}
-    {{/users}}
+        {{/if}}
+    {{/birthday_users}}
     </table>
   </script>
 
@@ -108,54 +89,26 @@
         <span>编辑</span>
       </a>
       <hr class='gap'>
-      {{#office}}
       <div class='position section'>
-          <div class="head"> 所属办公室 </div>
-          {{office}}
-       </div>
-       {{/office}}
-     {{#title}}
-      <div class='position section'>
-          <div class="head"> 职位 </div>
+          <div class="head"> Title </div>
           {{title}}
        </div>
-       {{/title}}
-       {{#project}}
        <div class='project section'>
-          <div class="head"> 当前项目 </div>
+          <div class="head"> Team </div>
          {{project}}
        </div>
-       {{/project}}
-       {{#birthday}}
-       <div class='position section'>
-          <div class="head"> 生日 </div>
-          <span class="birthday">{{birthday}}</span>
-       </div>
-       {{/birthday}}
-       {{#onboard}}
-       <div class='position section'>
-          <div class="head"> 入职日期 </div>
-          {{onboard}}
-       </div>
-       {{/onboard}}
-       {{#email}}
        <div class='email section'>
-          <div class="head"> 邮箱 </div>
+          <div class="head"> Email </div>
          {{email}}
        </div>
-       {{/email}}
-       {{#phone}}
        <div class='phone-number section'>
-          <div class="head"> 电话 </div>
+          <div class="head"> Mobile </div>
          {{phone}}
        </div>
-       {{/phone}}
-       {{#skype}}
        <div class='skype section'>
           <div class="head"> Skype </div>
          {{skype}}
        </div>
-       {{/skype}}
     </div>
   </div>
 </script>
@@ -167,7 +120,7 @@
 <script src='/assets/js/lib/underscore-min.js'></script>
 <script src='/assets/js/lib/ractive.js'></script>
 <script src='/assets/js/lib/jquery.magnific-popup.js'></script>
-<script type="text/javascript" src="/assets/js/page/index.js"></script>
+<script type="text/javascript" src="/assets/js/page/birthday.js"></script>
 
 </body>
 </html>
