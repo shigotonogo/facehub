@@ -14,18 +14,10 @@ cfg.load_config("facehub.cfg")
 db = connect(cfg['database.url'])
 initDatabase(db)
 
-with open('tests/fixtures/users.json', 'r') as f:
-    users = json.loads(f.read())
-
-def main(db, users):
+def main(db):
     tables = db.get_tables()
-    if 'users' in tables:
-        db.drop_tables([User])
-
-    db.create_tables([User])
-
-    User.insert_many(users).execute()
-
+    if 'users' not in tables:
+        db.create_tables([User])
 
 if __name__ == '__main__':
-    main(db, users)
+    main(db)
