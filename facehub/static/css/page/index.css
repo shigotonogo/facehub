@@ -117,21 +117,26 @@
     display: block;
     margin: 5px;
 }
+.table-list img:hover {
+    cursor: pointer;
+}
 .table-list tr {
     background-color: #FFF;
 }
 .table-list tr:hover {
     background-color: #FEFEE5;
-    cursor: pointer;
 }
 .table-list td {
     border:5px solid #F5F5F5;
     border-width: 5px 0;
 }
 .table-list a {
-    color: #F8005A;
     text-decoration: none;
 }
+.table-list .more {
+    color: #F8005A;
+}
 .table-list a:hover {
+    color: #F8005A;
     text-decoration: underline;
 }

@@ -31,19 +31,21 @@
     }
 
     var showAnniversaryUsers = function (data) {
-       var reactive = new Ractive({
-           el: '#anniversary',
-           template: '#anniversary-template',
-           data: data
-       });
-   }
+        var ractive = new Ractive({
+            el: '#anniversary',
+            template: '#anniversary-template',
+            data: data
+        })
+    }
 
-    var showUsers =  function (data, template){
-        data.users = _.sortBy(data.users, "created_at").reverse();
+    var showUsers =  function (data, sortField, order, template){
+        var userSort = {};
+        userSort.users = order === 'asc' ? _.sortBy(data.users, sortField) : _.sortBy(data.users, sortField).reverse();
+
         var ractive = new Ractive({
             el: '#members',
             template: template,
-            data: data
+            data: userSort
         });
     }
 
@@ -84,15 +86,18 @@
         return data;
     }
 
-    var userData;
+    var userData = {};
     $.ajax({
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
-            userData = data;
-            showUsers(data, '#card-template');
+            showUsers(data, 'created_at', 'desc', '#card-template');
             showCrown(data);
             showBadge(data);
+
+            userData.users = data.users;
+            userData.birthday_users = data.birthday_users;
+            userData.anniversary_users = data.anniversary_users;
 
             data.birthday_users = limit(data.birthday_users);
             data.anniversary_users = limit(data.anniversary_users);
@@ -100,14 +105,18 @@
             toggleActionLink(data);
             showAnniversaryUsers(data);
             showBirthdayUsers(data);
+
+            
         }
     })
     $('.btn-group .list').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
-        showUsers(userData, '#list-template');
+        showUsers(userData, 'name', 'asc', '#list-template');
     });
     $('.btn-group .card').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
-        showUsers(userData, '#card-template');
+        showUsers(userData, 'created_at', 'desc', '#card-template');
+        showCrown(userData);
+        showBadge(userData);
     });
 })();

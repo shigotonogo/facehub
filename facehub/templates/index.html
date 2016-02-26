@@ -79,13 +79,13 @@
     {{#users}}
       {{#if this.completion}}
           <tr data-user-id="{{id}}">
-            <td><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></td>
+            <td width="80"><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></td>
             <td><a href="javascript:void(0)" class="profile-link">{{name}}</a></td>
             <td>{{email}}</td>
             <td>{{office}}</td>
             <td>{{title}}</td>
             <td>{{project}}</td>
-            <td><a href="javascript:void(0)" class="profile-link">More</a></td>
+            <td><a href="javascript:void(0)" class="profile-link more">More</a></td>
           </tr>
         
       {{/if}}
