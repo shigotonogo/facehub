@@ -32,10 +32,18 @@ def current_user_email():
 
 @app.route("/api/users", method='GET')
 def users():
+    def hide_birth_year(users):
+        new_users = []
+        for user in users:
+            user.birthday = user.birthday.replace(2016)
+            new_users.append(user)
+        return new_users
+
     response.content_type = 'application/json'
     current_month = datetime.now().month
     current_year = datetime.now().year
     users = [user for user in User.select() if user.completion == True]
+    users = hide_birth_year(users)
     all_users = [ser.serialize_object(u) for u in users]
     birthday_users = [ser.serialize_object(user) for user in users if user.birthday.month == current_month]
     anniversary_users = [ser.serialize_object(user) for user in users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
