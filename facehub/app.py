@@ -89,12 +89,12 @@ def createUser():
         u.skype = request.forms.getunicode('skype', None)
         u.phone = request.forms.getunicode('phone', None)
         u.title = request.forms.getunicode('title', None)
-        u.birthday = parse(request.forms.getappunicode('birthday', None))
+        u.birthday = parse(request.forms.getunicode('birthday', None))
         u.onboard = parse(request.forms.getunicode('onboard', None))
         u.completion = True
         u.save()
     except Exception as e:
-        logging.error("can't save the user in mongo:" + e)
+        logging.error("can't save the user in mongo:" + str(e))
         return {'status': 'error',
                 'message': "failed save user."}
 
