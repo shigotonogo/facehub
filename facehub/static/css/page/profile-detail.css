@@ -9,7 +9,7 @@
     opacity: 1;
 }
 .profile-detail {
-    width: 600px;
+    width: 680px;
     height: 400px;
     margin: 100px auto;
     position: relative;
@@ -41,10 +41,10 @@
 }
 
 .profile-detail .detail-info {
-    width: 270px;
+    width: 320px;
     height: 340px;
-    padding: 30px 0px 30px 30px;
-    overflow: auto;
+    padding: 30px;
+    overflow: scroll;
 }
 .profile-detail .close-bg{
     position: absolute;
@@ -65,6 +65,7 @@
     text-align: left;
     font-size: 16px;
     color: #333;
+    word-break: break-all;
 }
 
 .detail-info .position {
@@ -83,5 +84,15 @@
 }
 .detail-info .gap {
     color: rgb(153, 153, 153);
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 

@@ -107,26 +107,54 @@
         <span>编辑</span>
       </a>
       <hr class='gap'>
+      {{#office}}
       <div class='position section'>
-          <div class="head"> Title </div>
+          <div class="head"> 所属办公室 </div>
+          {{office}}
+       </div>
+       {{/office}}
+     {{#title}}
+      <div class='position section'>
+          <div class="head"> 职位 </div>
           {{title}}
        </div>
+       {{/title}}
+       {{#project}}
        <div class='project section'>
-          <div class="head"> Team </div>
+          <div class="head"> 当前项目 </div>
          {{project}}
        </div>
+       {{/project}}
+       {{#birthday}}
+       <div class='position section'>
+          <div class="head"> 生日 </div>
+          <span class="birthday">{{birthday}}</span>
+       </div>
+       {{/birthday}}
+       {{#onboard}}
+       <div class='position section'>
+          <div class="head"> 入职日期 </div>
+          {{onboard}}
+       </div>
+       {{/onboard}}
+       {{#email}}
        <div class='email section'>
-          <div class="head"> Email </div>
+          <div class="head"> 邮箱 </div>
          {{email}}
        </div>
+       {{/email}}
+       {{#phone}}
        <div class='phone-number section'>
-          <div class="head"> Mobile </div>
+          <div class="head"> 电话 </div>
          {{phone}}
        </div>
+       {{/phone}}
+       {{#skype}}
        <div class='skype section'>
           <div class="head"> Skype </div>
          {{skype}}
        </div>
+       {{/skype}}
     </div>
   </div>
 </script>

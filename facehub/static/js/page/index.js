@@ -11,6 +11,10 @@
             }],
             closeMarkup: '<div class="close-bg"><button title="%title%" type="button" class="mfp-close">&times;</button></div>'
         });
+
+        $('.profile-detail .birthday').each(function(){
+            $(this).text($(this).text().replace(/^\d{4}/, '****'));
+        });
     };
 
     $('#members').delegate('.profile-link', 'click', function(src) {
