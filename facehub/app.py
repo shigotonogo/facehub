@@ -186,8 +186,8 @@ if __name__ == '__main__':
     def login():
         return static_file("login.html", root="facehub/templates/", mimetype="text/html")
 
-    debug(True)
-    run(app=app, host='0.0.0.0', port=8080, reloader=True)
+    debug(False)
+    run(app=app, host='0.0.0.0', port=8080, reloader=True, server='paste')
 else:
     application = default_app()
 
