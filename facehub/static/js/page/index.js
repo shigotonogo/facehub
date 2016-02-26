@@ -62,7 +62,7 @@
         });
         
         if (exsiting) {
-            $(".edit-profile").removeClass("hidden");
+            $(".edit-profile").removeClass("hidden").prepend("<img src='" + exsiting.avatar + "' alt='" + exsiting.name + "' width='36'>");
         }else{
             $(".new-profile").removeClass("hidden");
         }
