@@ -11,14 +11,14 @@
             }],
             closeMarkup: '<div class="close-bg"><button title="%title%" type="button" class="mfp-close">&times;</button></div>'
         });
-        
+
         $('.profile-detail .birthday').each(function(){
             $(this).text($(this).text().replace(/^\d{4}/, '****'));
         });
     };
 
     $('#members').delegate('.profile-link', 'click', function(src) {
-        var dataId = $(src.currentTarget).data('user-id') || $(src.currentTarget).closest('tr').data('user-id'); 
+        var dataId = $(src.currentTarget).data('user-id') || $(src.currentTarget).closest('tr').find('.profile').data('user-id'); 
         $.ajax({
             url: '/api/users/' + dataId,
             dataType: 'json',
