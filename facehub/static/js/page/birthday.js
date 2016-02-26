@@ -71,6 +71,7 @@
     $('.btn-group .list').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
         showUsers(userData, 'name', 'asc', '#list-template');
+        showCrown(userData);
     });
     $('.btn-group .card').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');

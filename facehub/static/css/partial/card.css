@@ -57,11 +57,12 @@
 }
 
 .table-list {
-    width: 100%;
+    width: 960px;
     border-collapse: collapse;
     border-spacing: 0;
     color: #666;
     font-size: 14px;
+    margin: 0 auto;
 }
 .table-list img {
     display: block;
