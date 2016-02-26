@@ -24,10 +24,6 @@
     var hideMask = function(){
         $('.mask').hide();
     };
-
-    var back = function() {
-        window.location.href="/photo"
-    };
  
     var nextStep = function() {
         var id = $('#user-id').val();
@@ -48,5 +44,4 @@
     })
 
     $('#submit').click(cropSelected);
-    $('#back').click(back);
 })();

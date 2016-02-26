@@ -3,6 +3,7 @@
 }
 .container .operations{
     overflow: hidden;
+    margin-top: 10px;
 }
 .raw-photo{
     float: left;
@@ -11,9 +12,7 @@
 .preview {
     display: none;
 }
-#submit{
-    margin-right: 15px;
-}
+
 .sample img{
     display: block;
 }

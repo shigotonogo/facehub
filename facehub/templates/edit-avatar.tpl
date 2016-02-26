@@ -22,10 +22,13 @@
         <div class="mask"></div>
         <div class="container">
             <div class="operations">
-                <h1>看起来很棒</h1>
-                <span class="tips pull-left">现在，裁剪出一张合适的头像，它会出现在照片墙上</span>
-                <input id="back" type="button" value="上一步" class="small-button pull-right secondary">
-                <input id="submit" type="submit" value="完成" class="small-button pull-right"></input>
+                <div class="pull-left">
+                    <h1>看起来很棒</h1>
+                        <span class="tips pull-left">现在，裁剪出一张合适的头像，它会出现在照片墙上</span>
+                </div>
+                <div class="buttons">
+                    <input id="submit" type="submit" value="完成" class="small-button pull-right"></input>
+                </div>
             </div>
             <div class="raw-photo">
                <input id="image-type" type='hidden' value='avatar'>

@@ -3,9 +3,11 @@
 }
 .container .operations{
     overflow: hidden;
+    margin-top: 10px;
 }
 .raw-photo{
     float: left;
+    margin-top: 20px
 }
 .preview{
     display: none;
