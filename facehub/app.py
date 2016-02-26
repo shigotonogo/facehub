@@ -35,7 +35,7 @@ def users():
     response.content_type = 'application/json'
     current_month = datetime.now().month
     current_year = datetime.now().year
-    users = User.select()
+    users = [user for user in User.select() if user.completion == True]
     all_users = [ser.serialize_object(u) for u in users]
     birthday_users = [ser.serialize_object(user) for user in users if user.birthday.month == current_month]
     anniversary_users = [ser.serialize_object(user) for user in users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
@@ -81,7 +81,7 @@ def createUser():
         u.skype = request.forms.getunicode('skype', None)
         u.phone = request.forms.getunicode('phone', None)
         u.title = request.forms.getunicode('title', None)
-        u.birthday = parse(request.forms.getunicode('birthday', None))
+        u.birthday = parse(request.forms.getappunicode('birthday', None))
         u.onboard = parse(request.forms.getunicode('onboard', None))
         u.completion = True
         u.save()
