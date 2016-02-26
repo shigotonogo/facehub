@@ -23,6 +23,7 @@
     });
 
     var showUsers =  function (data, sortField, order, template){
+        console.log(data);
         var userSort = {};
         userSort.birthday_users = order === 'asc' ? _.sortBy(data.birthday_users, sortField) : _.sortBy(data.birthday_users, sortField).reverse();
 

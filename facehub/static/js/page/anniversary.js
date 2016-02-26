@@ -24,7 +24,7 @@
 
     var showUsers =  function (data, sortField, order, template){
         var userSort = {};
-        userSort.birthday_users = order === 'asc' ? _.sortBy(data.birthday_users, sortField) : _.sortBy(data.birthday_users, sortField).reverse();
+        userSort.anniversary_users = order === 'asc' ? _.sortBy(data.anniversary_users, sortField) : _.sortBy(data.anniversary_users, sortField).reverse();
 
         var ractive = new Ractive({
             el: '#members',
@@ -48,10 +48,11 @@
         }
     }
 
-    var showCrown = function(data){
-        var users = data.birthday_users;
+    var showBadge = function(data){
+        var users = data.anniversary_users;
         _.find(users, function(user){
-            $('#members .profile[data-user-id='+ user.id +']').addClass("crown");
+            anni = (new Date).getFullYear() - user.onboard.split("-")[0]
+           $('#members .profile[data-user-id='+ user.id +']').addClass("anni").attr('data-anni', anni);
         });
     }
 
@@ -61,9 +62,9 @@
         dataType: 'json',
         success: function(data) {
             showUsers(data, 'created_at', 'desc', '#card-template');
-            showCrown(data);
+            showBadge(data);
 
-            userData.birthday_users = data.birthday_users;
+            userData.anniversary_users = data.anniversary_users;
 
             toggleActionLink(data);
         }
@@ -75,6 +76,6 @@
     $('.btn-group .card').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
         showUsers(userData, 'created_at', 'desc', '#card-template');
-        showCrown(userData);
+        showBadge(userData);
     });
 })();

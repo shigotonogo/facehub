@@ -29,14 +29,14 @@
       </div> 
     </nav>
 
-    <div class="canvas birthday">
+    <div class="canvas anni">
         <div class="banner">
             <div class="first-line">
                 <a href="/">所有人</a>
                 <span class="arrow">></span>
             </div>
-            <div class="title">本月寿星</div>
-            <div class="tip">看看本月有哪些同事要过生日了</div>
+            <div class="title">周年纪念</div>
+            <div class="tip">本月这些同事即将迎来加入公司的周年纪念日</div>
         </div>
     </div>
 
@@ -45,7 +45,7 @@
   <div id='current-profile'></div>
 
   <script id='card-template' type='text/ractive'>
-    {{#birthday_users}}
+    {{#anniversary_users}}
         {{#if this.completion}}
         <div class='profile profile-link' data-user-id="{{id}}">
           <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
@@ -54,12 +54,12 @@
           </div>
         </div>
         {{/if}}
-    {{/birthday_users}}
+    {{/anniversary_users}}
   </script>
 
   <script id="list-template" type="text/ractive">
     <table class="table-list">
-    {{#birthday_users}}
+    {{#anniversary_users}}
         {{#if this.completion}}
           <tr data-user-id="{{id}}">
             <td><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></td>
@@ -71,7 +71,7 @@
             <td><a href="javascript:void(0)" class="profile-link">More</a></td>
           </tr>
         {{/if}}
-    {{/birthday_users}}
+    {{/anniversary_users}}
     </table>
   </script>
 
@@ -120,7 +120,7 @@
 <script src='/assets/js/lib/underscore-min.js'></script>
 <script src='/assets/js/lib/ractive.js'></script>
 <script src='/assets/js/lib/jquery.magnific-popup.js'></script>
-<script type="text/javascript" src="/assets/js/page/birthday.js"></script>
+<script type="text/javascript" src="/assets/js/page/anniversary.js"></script>
 
 </body>
 </html>

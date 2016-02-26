@@ -182,10 +182,6 @@ if __name__ == '__main__':
     def template(template):
         return static_file("%s.html" % template, root="facehub/templates/", mimetype="text/html")
 
-    @app.route('/birthday-users')
-    def birthday():
-    	return static_file("birthday-users.html", root="facehub/templates/", mimetype="text/html")
-
     @app.route('/login')
     def login():
         return static_file("login.html", root="facehub/templates/", mimetype="text/html")

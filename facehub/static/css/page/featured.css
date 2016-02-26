@@ -1,14 +1,26 @@
-.canvas{
+.canvas.birthday{
     background-color: white;
 }
+
+.canvas.anni{
+    background-color: #4b4b4b;
+}
+
 .banner{
-    background-image: url('../../images/birthday_bg.png');
     width: 960px;
     height: 150px;
     margin: 0 auto 50px auto;
     background-repeat: no-repeat;
     background-position: top right;
     font-size: 13px;
+}
+
+.birthday .banner{
+    background-image: url('../../images/birthday_bg.png');
+}
+
+.anni .banner{
+    background-image: url('../../images/anniversary_bg.png');
 }
 
 .banner a{
@@ -22,6 +34,10 @@
 .banner .title{
     font-size: 36px;
     font-weight: bold;
+}
+
+.anni .title{
+    color: white;
 }
 
 .banner .tip, .banner .arrow{
