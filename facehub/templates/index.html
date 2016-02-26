@@ -78,8 +78,8 @@
     <table class="table-list">
     {{#users}}
       {{#if this.completion}}
-          <tr data-user-id="{{id}}">
-            <td width="80"><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></td>
+          <tr>
+            <td width="80"><div class="profile" data-user-id="{{id}}"><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></div></td>
             <td><a href="javascript:void(0)" class="profile-link">{{name}}</a></td>
             <td>{{email}}</td>
             <td>{{office}}</td>

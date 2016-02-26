@@ -14,17 +14,18 @@
 
 .profile.crown::after{
     content: '';
-    background-image: url('../../images/crown.png');
     position: absolute;
     top: -36px;
     right: -36px;
     width: 80px;
     height: 80px;
+    background-image: url('../../images/crown.png');
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .profile.anni::before{
     content: attr(data-anni);
-    background-image: url('../../images/badge.png');
     position: absolute;
     right: -36px;
     bottom: 0;
@@ -32,6 +33,9 @@
     height: 80px;
     text-align: center;
     line-height: 66px;
+    background-image: url('../../images/badge.png');
+    background-repeat: no-repeat;
+    background-position: center center;
     color: white;
 }
 
@@ -139,4 +143,28 @@
 .table-list a:hover {
     color: #F8005A;
     text-decoration: underline;
+}
+
+.table-list .profile {
+    width: auto;
+    margin: 0;
+    background-color: transparent;
+}
+
+.table-list .profile.crown::after {
+    width: 32px;
+    height: 32px;
+    top: -10px;
+    right: -10px;
+    background-size: cover;
+}
+
+.table-list .profile.anni::before {
+    width: 32px;
+    height: 42px;
+    bottom: -15px;
+    right: -5px;
+    line-height: 34px;
+    font-size: 12px;
+    background-size: cover;
 }
