@@ -78,3 +78,16 @@ select{
 	padding: 3px 2px;
 	border-radius: 1px;
 }
+
+.icon-wrap {
+	position: relative;
+}
+.line.icon-wrap input {
+	padding-right: 40px;
+}
+.icon-wrap .icon {
+	position: absolute;
+	top: 8px;
+	left: 290px;
+	color: #666;
+}

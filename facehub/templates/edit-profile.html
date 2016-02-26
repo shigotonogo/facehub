@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/assets/css/lib/jquery-ui.css">
         <link rel="stylesheet" href="/assets/css/page/edit-profile.css">
         <link rel="stylesheet" href="/assets/css/lib/base.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>
         <nav>
@@ -67,38 +68,16 @@
                     </div>
                     <div class='line'>
                         <label for='currentProject'>当前项目*</label>
-                        <select name='project' id='currentProject' pattern="[^\s]{3,}" required value="{{project}}">
-                            <option value="REA Myfun">REA Myfun</option>
-                            <option value="REA 1Form">REA 1Form</option>
-                            <option value="REA Media & Developer">REA Media & Developer</option>
-                            <option value="REA CASA">REA CASA</option>
-                            <option value="REA RCA">REA RCA</option>
-                            <option value="REA Android">REA Android</option>
-                            <option value="REA Resi">REA Resi</option>
-                            <option value="REA CDC">REA CDC</option>
-                            <option value="REA Group Platform">REA Group Platform</option>
-                            <option value="Livetext GC">Livetext GC</option>
-                            <option value="Livetext FEM">Livetext FEM</option>
-                            <option value="Livetext C1">Livetext C1</option>
-                            <option value="Telstra MSP iPhone">Telstra MSP iPhone</option>
-                            <option value="Telstra MSP Android">Telstra MSP Android</option>
-                            <option value="Telstra 箭鱼">Telstra 箭鱼</option>
-                            <option value="Telstra 海马">Telstra 海马</option>
-                            <option value="Telstra 海豚">Telstra 海豚</option>
-                            <option value="Telstra 兵马俑">Telstra 兵马俑</option>
-                            <option value="Telstra Orpheus">Telstra Orpheus</option>
-                            <option value="Telstra le tigre">Telstra le tigre</option>
-                            <option value="暂无">暂无</option>
-                        </select>
+                        <input type="text" name='project' id='currentProject' pattern="[^\s]{3,}" required value="{{project}}">
                     </div>
-                    <div class="line">
+                    <div class="line icon-wrap">
                         <label for="birthday">生日*</label>
-                        <input name="birthday" type="text" id="birthday" value="{{birthday}}" required></input>
+                        <span class="icon"><i class="fa fa-calendar"></i></span><input name="birthday" type="text" id="birthday" value="{{birthday}}" required></input>
                         <span class="tip">放心我们不会显示你的年龄 : )</span>
                     </div>
-                    <div class="line">
+                    <div class="line icon-wrap">
                         <label for="birthday">入职日期*</label>
-                        <input name="onboard" type="text" id="onboard" value="{{onboard}}" required></input>
+                        <span class="icon"><i class="fa fa-calendar"></i></span><input name="onboard" type="text" id="onboard" value="{{onboard}}" required></input>
                     </div>
                     <h3>联系方式</h3>
                     <div class='line'>
