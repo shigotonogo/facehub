@@ -44,7 +44,7 @@
         </div>
         <footer class="copyright">© Shigotongo.2014</footer>
     </body>
-    <script src='/assets/js/lib/jquery.min.1.9.1.js'></script>
+    <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <script src='/assets/js/lib/jquery.Jcrop.min.js'></script>
     <script src='/assets/js/lib/jquery.color.js'></script>
     <script src='/assets/js/page/edit-photo.js'></script>
