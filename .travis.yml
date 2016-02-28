@@ -1,7 +1,7 @@
 language: python
 services: sqlite3
 python:
-  - "3.4"
+  - "2.7"
 install:
   - make deps
 # command to run tests

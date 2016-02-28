@@ -1,13 +1,13 @@
 from PIL import Image
 import io
 import uuid
-import urllib.request
+import urllib
 import string
 import random
 
 def crop_image(image_src, image_width, x, y, width, height):
     tmp = __tmp_file_name()
-    image = Image.open(io.BytesIO(urllib.request.urlopen(image_src).read()))
+    image = Image.open(io.BytesIO(urllib.urlopen(image_src).read()))
     origin_width = image.size[0]
     scale_size = origin_width / int(image_width)
     croped =image.crop((int(x*scale_size), int(y*scale_size), int(scale_size*(x + width)), int(scale_size*(y + height))))

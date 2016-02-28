@@ -28,7 +28,7 @@ def before_request():
         redirect('/login')
 
 def current_user_email():
-    return urllib.parse.unquote(request.get_cookie("uid"))
+    return urllib.unquote(request.get_cookie("uid"))
 
 @app.route("/api/users", method='GET')
 def users():
@@ -68,8 +68,8 @@ def send_invitation():
     if user_email == None:
         abort(404,'Missing required parameter "user".')
 
-    data = urllib.parse.urlencode({ 'user': user_email })
-    response = urllib.request.urlopen(app.config['app.authentication'], bytearray(data,'utf-8'))
+    data = urllib.urlencode({ 'user': user_email })
+    response = urllib.urlopen(app.config['app.authentication'], bytearray(data,'utf-8'))
     if response.code == 200:
         return dumps({"result":'OK'})
     else:
@@ -104,7 +104,7 @@ def createUser():
 def upload():
     upload = request.files.get('file')
     image_url = provider.store(upload.file)
-    email = urllib.parse.unquote(request.get_cookie("uid"))
+    email = urllib.unquote(request.get_cookie("uid"))
     try:
         current_user = User.get(email=email)
         current_user.raw_image = image_url
