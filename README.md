@@ -5,8 +5,6 @@ facehub [![Build Status](https://travis-ci.org/shigotonogo/facehub.svg?branch=ma
 ## Quick Start
 
 ``` sh
-
+python setup.py develop
 make run
-
 ```
-

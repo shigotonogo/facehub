@@ -2,10 +2,10 @@ import logging
 import urllib
 from json import dumps
 from bottle import *
-from model import *
-from serializer import Serializer
-import storage
-from image import crop_image
+from facehub.model import *
+from facehub.serializer import Serializer
+from facehub import storage
+from facehub.image import crop_image
 from datetime import date, datetime
 
 from playhouse.db_url import connect
@@ -174,28 +174,27 @@ def editPhoto():
 
     return 'Success'
 
+mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
+
+@app.route('/')
+def index():
+    return static_file("index.html", root="facehub/templates/", mimetype="text/html")
+
+@app.route("/assets/<type>/<filename:path>")
+def assets(type, filename):
+    return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
+
+@app.route('/<template>')
+def template(template):
+    return static_file("%s.html" % template, root="facehub/templates/", mimetype="text/html")
+
+@app.route('/login')
+def login():
+    return static_file("login.html", root="facehub/templates/", mimetype="text/html")
 
 if __name__ == '__main__':
-    mimetypes = {"js": 'application/javascript', "css" : "text/css", "images": "image/png"}
-
-    @app.route('/')
-    def index():
-        return static_file("index.html", root="facehub/templates/", mimetype="text/html")
-
-    @app.route("/assets/<type>/<filename:path>")
-    def assets(type, filename):
-        return static_file(filename, root="facehub/static/" + type, mimetype=mimetypes[type])
-
-    @app.route('/<template>')
-    def template(template):
-        return static_file("%s.html" % template, root="facehub/templates/", mimetype="text/html")
-
-    @app.route('/login')
-    def login():
-        return static_file("login.html", root="facehub/templates/", mimetype="text/html")
-
     debug(False)
     run(app=app, host='0.0.0.0', port=8080, reloader=True, server='paste')
 else:
-    application = default_app()
+    application = app
 
