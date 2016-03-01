@@ -94,7 +94,7 @@ def createUser():
         u.completion = True
         u.save()
     except Exception as e:
-        logging.error("can't save the user in mongo:" + str(e))
+        logging.error("can't save the user in mongo: %s" % str(e))
         return {'status': 'error',
                 'message': "failed save user."}
 
@@ -169,8 +169,8 @@ def editPhoto():
             user.avatar=image_url
         user.save()
     except Exception as e:
-        logging.exception("unexpected error {}", e)
-        abort(500, "Failed to crop image for user: "+ email)
+        logging.exception("unexpected error %s" % str(e))
+        abort(500, "Failed to crop image for user: %s " % email)
 
     return 'Success'
 
