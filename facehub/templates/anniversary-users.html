@@ -48,32 +48,27 @@
 
   <script id='card-template' type='text/ractive'>
     {{#anniversary_users}}
-        {{#if this.completion}}
-        <div class='profile profile-link' data-user-id="{{id}}">
-          <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
-          <div class="name">
-            {{name}}
-          </div>
+      <div class='profile profile-link' data-user-id="{{id}}">
+        <img class="photo" src="{{avatar}}" alt="{{name}}" width='160' height='160'>
+        <div class="name">
+          {{name}}
         </div>
-        {{/if}}
+      </div>
     {{/anniversary_users}}
   </script>
 
   <script id="list-template" type="text/ractive">
     <table class="table-list">
     {{#anniversary_users}}
-      {{#if this.completion}}
-          <tr>
-            <td width="80"><div class="profile" data-user-id="{{id}}"><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></div></td>
-            <td><a href="javascript:void(0)" class="profile-link">{{name}}</a></td>
-            <td>{{email}}</td>
-            <td>{{office}}</td>
-            <td>{{title}}</td>
-            <td>{{project}}</td>
-            <td><a href="javascript:void(0)" class="profile-link more">More</a></td>
-          </tr>
-        
-      {{/if}}
+      <tr>
+        <td width="80"><div class="profile" data-user-id="{{id}}"><img class="photo profile-link" src="{{avatar}}" alt="{{name}}" width='60' height='60'></div></td>
+        <td><a href="javascript:void(0)" class="profile-link">{{name}}</a></td>
+        <td>{{email}}</td>
+        <td>{{office}}</td>
+        <td>{{title}}</td>
+        <td>{{project}}</td>
+        <td><a href="javascript:void(0)" class="profile-link more">More</a></td>
+      </tr>
     {{/anniversary_users}}
     </table>
   </script>

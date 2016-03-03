@@ -32,21 +32,13 @@ def current_user_email():
 
 @app.route("/api/users", method='GET')
 def users():
-    def hide_birth_year(users):
-        new_users = []
-        for user in users:
-            user.birthday = user.birthday.strftime("%-m-%-d")
-            new_users.append(user)
-        return new_users
-
     response.content_type = 'application/json'
     current_month = datetime.now().month
     current_year = datetime.now().year
-    users = [user for user in User.select() if user.completion == True]
-    users = hide_birth_year(users)
-    all_users = [ser.serialize_object(u) for u in users]
-    birthday_users = [ser.serialize_object(user) for user in users if int(user.birthday.split('-')[0]) == current_month]
-    anniversary_users = [ser.serialize_object(user) for user in users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
+    query_users = [user for user in User.select() if user.completion == True]
+    all_users = [ser.serialize_object(u, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard']}) for u in query_users]
+    birthday_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard']}) for user in query_users if user.birthday.month == current_month]
+    anniversary_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard']}) for user in query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
     resp = {"users": all_users, 
     "current_user": request.get_cookie("uid"), 
     "birthday_users": birthday_users, 
@@ -57,9 +49,9 @@ def users():
 def user(id):
     response.content_type = 'application/json'
     user = User.get(User.id == id)
-    if user is not None:
+    if user is not None and user.completion is True:
         user.birthday = user.birthday.strftime("%-m-%-d")
-        return dumps(ser.serialize_object(user))
+        return dumps(ser.serialize_object(user, exclude={User:['updated_at', 'created_at', 'id', 'avatar', 'raw_image', 'completion']}))
     else:
         abort(404, "No such user.")
 
