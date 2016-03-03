@@ -4,10 +4,15 @@
     margin: 50px auto;
 }
 
-.notification-canvas {
-    width: 440px;
-    height: 90px;
+.notification a{
     padding: 15px;
+    width: 430px;
+    height: 90px;
+    display: block;
+}
+.notification-canvas {
+    width: 460px;
+    height: 120px;
     background-position: top right;
     background-repeat: no-repeat;
     background-color: white;
