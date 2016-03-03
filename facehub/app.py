@@ -35,7 +35,7 @@ def users():
     def hide_birth_year(users):
         new_users = []
         for user in users:
-            user.birthday = user.birthday.replace(2016)
+            user.birthday = user.birthday.strftime("%-m-%-d")
             new_users.append(user)
         return new_users
 
@@ -45,7 +45,7 @@ def users():
     users = [user for user in User.select() if user.completion == True]
     users = hide_birth_year(users)
     all_users = [ser.serialize_object(u) for u in users]
-    birthday_users = [ser.serialize_object(user) for user in users if user.birthday.month == current_month]
+    birthday_users = [ser.serialize_object(user) for user in users if int(user.birthday.split('-')[0]) == current_month]
     anniversary_users = [ser.serialize_object(user) for user in users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
     resp = {"users": all_users, 
     "current_user": request.get_cookie("uid"), 
@@ -58,6 +58,7 @@ def user(id):
     response.content_type = 'application/json'
     user = User.get(User.id == id)
     if user is not None:
+        user.birthday = user.birthday.strftime("%-m-%-d")
         return dumps(ser.serialize_object(user))
     else:
         abort(404, "No such user.")
