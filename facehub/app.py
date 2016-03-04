@@ -188,7 +188,7 @@ def login():
 @app.route('/api/users_count')
 def user_count():
     response.content_type = 'application/json'
-    return {'count': User.select().count()}
+    return {'count': User.select().where(User.completion == True).count()}
 
 if __name__ == '__main__':
     debug(False)
