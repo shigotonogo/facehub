@@ -36,9 +36,9 @@ def users():
     current_month = datetime.now().month
     current_year = datetime.now().year
     query_users = [user for user in User.select() if user.completion == True]
-    all_users = [ser.serialize_object(u, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'photo']}) for u in query_users]
-    birthday_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard']}) for user in query_users if user.birthday.month == current_month]
-    anniversary_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard']}) for user in query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
+    all_users = [ser.serialize_object(u, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'photo', 'title', 'office', 'project']}) for u in query_users]
+    birthday_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if user.birthday.month == current_month]
+    anniversary_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
     resp = {"users": all_users, 
     "current_user": request.get_cookie("uid"), 
     "birthday_users": birthday_users, 
