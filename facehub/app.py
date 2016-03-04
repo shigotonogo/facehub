@@ -22,7 +22,7 @@ provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.sec
 
 @app.hook('before_request')
 def before_request():
-    if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith("/assets/"):
+    if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith("/assets/") or request.path == '/api/users_count':
         return
     if request.get_cookie("uid") == None:
         redirect('/login')
@@ -184,6 +184,11 @@ def template(template):
 @app.route('/login')
 def login():
     return static_file("login.html", root="facehub/templates/", mimetype="text/html")
+
+@app.route('/api/users_count')
+def user_count():
+    response.content_type = 'application/json'
+    return {'count': User.select().count()}
 
 if __name__ == '__main__':
     debug(False)

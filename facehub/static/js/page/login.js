@@ -30,10 +30,10 @@
 
     var count = function(){
         $.ajax({
-            url: '/api/users',
+            url: '/api/users_count',
             dataType: 'json',
             success: function(data) {
-                $('#count').text(data.users.length);
+                $('#count').text(data['count']);
             }
         });
     };
