@@ -49,12 +49,16 @@
                     <div class='line'>
                         <label for='title'>职位*</label>
                         <select name='title' id='title' required value={{title}}>
-                            % for role in roles:
-                            %   if title == role:
-                                    <option value="{{role}}" selected >{{role}}</option>
-                            %   else:
-                                    <option value="{{role}}">{{role}}</option>
-                            %   end
+                            % for key, value in roles.items():
+                                <optgroup label="{{key}}">
+                                    % for role in value:
+                                        %   if title == role:
+                                                <option value="{{role}}" selected >{{role}}</option>
+                                        %   else:
+                                                <option value="{{role}}">{{role}}</option>
+                                        %   end
+                                    % end
+                                </optgroup>
                             % end
                         </select>
                     </div>

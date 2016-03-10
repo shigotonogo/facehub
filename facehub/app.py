@@ -15,7 +15,10 @@ app = Bottle()
 TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
 app.config.load_config('facehub.cfg')
 
-ROLES = ["Dev", "DevOps", "UIDev", "BA", "QA", "UX", "PM", "Admin", "Finance", "IS", "Recruiter", "Marketer", "People", "Support", "BD", "MD"]
+ROLES = {
+	"Professional Service": ["Dev", "DevOps", "UIDev", "BA", "QA", "UX", "Ops", "PM"],
+	"Operation": ["Admin", "Finance", "IS", "HR", "Marketing", "BD", "MD", "OP", "RM", "Technical Assitant", "COO", "Immigration & Mobility"]
+}
 OFFICES = [u"北京",u"上海",u"西安",u"成都",u"深圳",u"武汉"]
 
 db = connect(app.config['database.url'])
