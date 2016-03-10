@@ -16,7 +16,7 @@ TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 
 app.config.load_config('facehub.cfg')
 
 ROLES = ["Dev", "DevOps", "UIDev", "BA", "QA", "UX", "PM", "Admin", "Finance", "IS", "Recruiter", "Marketer", "People", "Support", "BD", "MD"]
-OFFICES = ["北京","上海","西安","成都","深圳","武汉"]
+OFFICES = [u"北京",u"上海",u"西安",u"成都",u"深圳",u"武汉"]
 
 db = connect(app.config['database.url'])
 initDatabase(db)
