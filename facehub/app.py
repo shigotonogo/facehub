@@ -31,6 +31,15 @@ def before_request():
     if request.get_cookie("uid") == None:
         redirect('/login')
 
+@app.hook('before_request')
+def _connect_db():
+    db.connect()
+
+@app.hook('after_request')
+def _close_db():
+    if not db.is_closed():
+        db.close()
+
 def current_user_email():
     return urllib.unquote(request.get_cookie("uid"))
 
