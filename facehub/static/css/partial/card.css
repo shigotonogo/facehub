@@ -52,8 +52,12 @@
     text-align: center;
     border-bottom: 1px solid #ccc;
     height: 45px;
+    padding:0 10px;
     line-height: 45px;
     font-style: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .table-list {
