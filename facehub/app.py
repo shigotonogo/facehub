@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import logging
 import urllib
 from json import dumps
@@ -13,6 +14,9 @@ from playhouse.db_url import connect
 app = Bottle()
 TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
 app.config.load_config('facehub.cfg')
+
+ROLES = ["Dev", "DevOps", "UIDev", "BA", "QA", "UX", "PM", "Admin", "Finance", "IS", "Recruiter", "Marketer", "People", "Support", "BD", "MD"]
+OFFICES = ["北京","上海","西安","成都","深圳","武汉"]
 
 db = connect(app.config['database.url'])
 initDatabase(db)
@@ -131,13 +135,17 @@ def crop_photo():
     birthday = datetime.strftime(user.birthday , "%m/%d/%Y") if user.birthday else ""
     onboard = datetime.strftime(user.onboard , "%m/%d/%Y") if user.onboard else ""
 
-    return { "photo": user.photo, 
+    return { "photo": user.photo,
             "avatar": user.avatar,
+            "title": user.title or "",
+            "office": user.office or "",
             "name": user.name or "",
             "phone": user.phone or "",
             "skype": user.skype or "",
             "project": user.project or "",
             "birthday": birthday,
+            "roles": ROLES,
+            "offices":OFFICES,
             "onboard": onboard }
 
 
@@ -195,4 +203,3 @@ if __name__ == '__main__':
     run(app=app, host='0.0.0.0', port=8080, reloader=True, server='paste')
 else:
     application = app
-

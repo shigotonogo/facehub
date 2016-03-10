@@ -37,33 +37,25 @@
                     <div class="line">
                         <label for="office">所属办公室</label>
                         <select name="office" id="office">
-                            <option value="北京">北京</option>
-                            <option value="西安" selected>西安</option>
-                            <option value="上海">上海</option>
-                            <option value="成都">成都</option>
-                            <option value="武汉">武汉</option>
-                            <option value="深圳">深圳</option>
+                            % for item in offices:
+                            %   if office == item:
+                                <option value="{{item}}" selected>{{item}}</option>
+                            %   else:
+                                <option value="{{item}}">{{item}}</option>
+                            %   end
+                            % end
                         </select>
                     </div>
                     <div class='line'>
                         <label for='title'>职位*</label>
-                        <select name='title' id='title' pattern="[^\s]{3,}" required>
-                            <option value="Dev" selected>Dev</option>
-                            <option value="DevOps">DevOps</option>
-                            <option value="UIDev">UIDev</option>
-                            <option value="BA">BA</option>
-                            <option value="QA">QA</option>
-                            <option value="UX">UX</option>
-                            <option value="PM">PM</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Finance">Finance</option>
-                            <option value="IS">IS</option>
-                            <option value="Recruiter">Recruiter</option>
-                            <option value="Marketer">Marketer</option>
-                            <option value="People">People</option> <option value="Support">Support</option>
-                            <option value="BD">BD</option>
-                            <option value="MD">MD</option>
-
+                        <select name='title' id='title' pattern="[^\s]{3,}" required value={{title}}>
+                            % for role in roles:
+                            %   if title == role:
+                                    <option value="{{role}}" selected >{{role}}</option>
+                            %   else:
+                                    <option value="{{role}}">{{role}}</option>
+                            %   end
+                            % end
                         </select>
                     </div>
                     <div class='line'>
