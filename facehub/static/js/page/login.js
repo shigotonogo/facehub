@@ -20,6 +20,7 @@
                 oForm.hide();
 
                 $('.re-register').off('click').on('click', function(){
+                    $('.email-address input').val("");
                     oForm.show();
                     $('.after-register').hide();
                 });

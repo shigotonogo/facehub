@@ -61,7 +61,8 @@ body {
 	border-radius: 10px;
 	position: relative;
 	top: 30px;
-	padding: 20px 0 0;
+	padding: 20px;
+	box-sizing: border-box;
 }
 
 .content .email, .content .empty-email {
@@ -121,14 +122,25 @@ body {
 	font-weight: normal;
 	font-size: 20px;
 	line-height: 28px;
-	margin: 0px 0px;
+	margin: 0px 0px 20px;
+}
+
+.after-register a {
+	font-size: 14px;
+	color: rgb(245,0,87);
+	cursor: pointer;
+}
+
+.after-register p {
+	font-size: 12px;
+	color: #999999;
 }
 
 .after-register .re-register{
     margin-top: 40px;
-    font-size: 16px;
     color: rgb(245,0,87);
     cursor: pointer;
+	padding-left: 5px;
 }
 
 .footer {
