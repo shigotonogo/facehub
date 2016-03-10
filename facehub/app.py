@@ -80,11 +80,11 @@ def createUser():
     try:
         u = User.get(email=current_user_email())
 
-        u.project = request.forms.getunicode('project', None)
+        u.project = request.forms.getunicode('project', None).strip()
         u.office = request.forms.getunicode('office', None)
-        u.name = request.forms.getunicode('name', None)
-        u.skype = request.forms.getunicode('skype', None)
-        u.phone = request.forms.getunicode('phone', None)
+        u.name = request.forms.getunicode('name', None).strip()
+        u.skype = request.forms.getunicode('skype', None).strip()
+        u.phone = request.forms.getunicode('phone', None).strip()
         u.title = request.forms.getunicode('title', None)
         u.birthday = parse(request.forms.getunicode('birthday', None))
         u.onboard = parse(request.forms.getunicode('onboard', None))

@@ -32,7 +32,7 @@
                     <h3>基础信息</h3>
                     <div class='line'>
                         <label for='name'>姓名*</label>
-                        <input name='name' type='text' class='name' pattern="[^\s]{2,}" value="{{name}}" required oninvalid="setCustomValidity('请输入合法的姓名')"></input>
+                        <input name='name' type='text' class='name' value="{{name}}" required></input>
                     </div>
                     <div class="line">
                         <label for="office">所属办公室</label>
@@ -48,7 +48,7 @@
                     </div>
                     <div class='line'>
                         <label for='title'>职位*</label>
-                        <select name='title' id='title' pattern="[^\s]{3,}" required value={{title}}>
+                        <select name='title' id='title' required value={{title}}>
                             % for role in roles:
                             %   if title == role:
                                     <option value="{{role}}" selected >{{role}}</option>
@@ -74,7 +74,7 @@
                     <h3>联系方式</h3>
                     <div class='line'>
                         <label for='phone'>电话</label>
-                        <input name='phone' id='phone' value="{{phone}}"></input>
+                        <input name='phone' id='phone' pattern="\d+" value="{{phone}}"></input>
                     </div>
                     <div class='line'>
                         <label for='skype'>Skype</label>
