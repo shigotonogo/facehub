@@ -199,7 +199,7 @@ def user_count():
     return {'count': User.select().where(User.completion == True).count()}
 
 if __name__ == '__main__':
-    debug(False)
+    debug(True)
     run(app=app, host='0.0.0.0', port=8080, reloader=True, server='paste')
 else:
     application = app
