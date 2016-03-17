@@ -8,7 +8,7 @@ from facehub.serializer import Serializer
 from facehub import storage
 from facehub.image import crop_image
 from datetime import date, datetime
-
+import datetime as date_time
 from playhouse.db_url import connect
 
 app = Bottle()
@@ -55,10 +55,13 @@ def users():
     all_users = [ser.serialize_object(u, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'photo', 'title', 'office', 'project']}) for u in query_users]
     birthday_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if user.birthday.month == current_month]
     anniversary_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
+    new_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard < (datetime.today() - date_time.timedelta(days=30)).date())]
     resp = {"users": all_users, 
     "current_user": request.get_cookie("uid"), 
     "birthday_users": birthday_users, 
-    "anniversary_users": anniversary_users}
+    "anniversary_users": anniversary_users,
+    "new_users": new_users
+    }
     return dumps(resp)
 
 @app.route('/api/users/<id:int>', method='GET')
