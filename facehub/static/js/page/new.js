@@ -51,21 +51,12 @@
         }
     }
 
-    var showBadge = function(data){
-        var users = data.new_users;
-        _.find(users, function(user){
-            anni = (new Date).getFullYear() - user.onboard.split("-")[0]
-           $('#members .profile[data-user-id='+ user.id +']').addClass("anni").attr('data-anni', anni);
-        });
-    }
-
     var userData = {};
     $.ajax({
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
             showUsers(data, 'created_at', 'desc', '#card-template');
-            showBadge(data);
 
             userData.new_users = data.new_users;
 
@@ -75,11 +66,9 @@
     $('.btn-group .list').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
         showUsers(userData, 'name', 'asc', '#list-template');
-        showBadge(userData);
     });
     $('.btn-group .card').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
         showUsers(userData, 'created_at', 'desc', '#card-template');
-        showBadge(userData);
     });
 })();

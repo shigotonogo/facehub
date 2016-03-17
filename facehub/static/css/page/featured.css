@@ -23,6 +23,10 @@
     background-image: url('../../images/anniversary_bg.png');
 }
 
+.new .banner{
+    background-image: url('../../images/detail_newhire.png');
+}
+
 .banner a{
     color: #f50057;
 }
