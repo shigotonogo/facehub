@@ -1,59 +1,102 @@
-.notification {
-    width: 960px;
-    height: 120px;
-    margin: 50px auto;
-}
-
-.notification a{
-    padding: 15px;
-    width: 430px;
-    height: 90px;
-    display: block;
-}
 .notification-canvas {
-    width: 460px;
-    height: 120px;
-    background-position: top right;
-    background-repeat: no-repeat;
-    background-color: white;
+    padding: 20px 30px;
+    color: #fff;
 }
 
-.shou-xing-canvas {
-    background-image: url('../../images/birthday_bg_ad.png');
-    float: left;
+.notification-canvas a {
+    color: #fff;
 }
 
-.anniversary-canvas {
-    background-image: url('../../images/anniversary_bg_ad.png');
-    float: right;
-    background-color: #4b4b4b;
-}
-
-.anniversary-canvas .title {
-    color: white;
-}
-
-.notification-canvas .title{
+.notification-canvas .title {
+    display: block;
+    margin-bottom: 10px;
     font-size: 20px;
 }
 
-.notification-canvas .user-box{
-    padding-top: 10px;
-}
-
-.notification-canvas .user-box img{
+.notification-canvas .user-box img {
     margin-right: 5px;
     vertical-align: middle;
 }
 
 .notification-canvas .user-box .more{
-    border: 1px solid #f50057;
-    color: #f50057;
+    border: 1px solid #fff;
+    color: #fff;
     font-size: 13px;
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
+    padding: 18px;
     display: inline-block;
     text-align: center;
-    line-height: 48px;
+    vertical-align: top;
 }
 
+.notification-canvas .img-list {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+.notification-canvas .img-list li {
+    display: inline-block;
+    width: 75px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.notification-canvas .img-list li:last-child {
+    margin-right: 0;
+}
+
+.notification-canvas .user-box li img {
+    margin-bottom: 10px;
+}
+
+.banner {
+    width: 960px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.swiper-container {
+    width: 760px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.swiper-slide {
+    
+    height: 195px;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+.swiper-pagination {
+    position: static;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+    margin:0 5px;
+    border: 2px solid #ff5700;
+    background-color: transparent;
+    opacity: 1;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+    background-color: #ff5700;
+}
+
+.anniversary {
+    background-color: #121517;
+    background-image: url(../../images/slide_anniversary.jpg);
+}
+.birthday {
+    background-color: #01B2E6;
+    background-image: url(../../images/slide_birthday.jpg);
+}
+.newhire {
+    background-color: #a4a195;
+    background-image: url(../../images/slide_newhire.jpg);
+}

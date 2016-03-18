@@ -35,7 +35,20 @@
             el: '#anniversary',
             template: '#anniversary-template',
             data: data
-        })
+        });
+
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            loop: true,
+            //autoplay: 5000,
+            autoplayDisableOnInteraction: false,
+            mousewheelControl: true
+        });
     }
 
     var showUsers =  function (data, sortField, order, template){
@@ -121,4 +134,6 @@
         showCrown(userData);
         showBadge(userData);
     });
+    
+
 })();
