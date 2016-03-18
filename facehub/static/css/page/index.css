@@ -22,8 +22,8 @@
     border: 1px solid #fff;
     color: #fff;
     font-size: 13px;
-    width: 36px;
-    height: 36px;
+    width: 37px;
+    height: 37px;
     padding: 18px;
     display: inline-block;
     text-align: center;
@@ -86,6 +86,28 @@
 }
 .swiper-pagination .swiper-pagination-bullet-active {
     background-color: #ff5700;
+}
+.banner .swiper-button-prev, .banner .swiper-button-next {
+    width: 50px;
+    height: 60px;
+    margin-top: -50px;
+    background: url(../../images/slide_arrow.png) -50px 0 no-repeat;
+}
+
+.banner .swiper-button-prev {
+    background-position: -50px 0;
+}
+
+.banner .swiper-button-prev:hover {
+    background-position: -50px -60px;
+}
+
+.banner .swiper-button-next {
+    background-position: 0 0;
+}
+
+.banner .swiper-button-next:hover {
+    background-position: 0 -60px;
 }
 
 .anniversary {

@@ -8,6 +8,12 @@ body {
 nav{
     background-color: #F50057;
 }
+
+img {
+    background: #fff url(../../images/loading1.gif) center center no-repeat;
+    background-size: 30%;
+}
+
 .top {
     height: 80px;
     color: white;
