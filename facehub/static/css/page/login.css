@@ -4,6 +4,11 @@ body {
 	font-family: 'Hiragino Sans GB','Microsoft YaHei',arial,sans-serif,"NotoSansCJKsc-Regular"
 }
 
+.logo img {
+	background-color: transparent;
+	background-image: none;
+}
+
 .content {
 	width: 100%;
 	background: url("/assets/images/landing_bg.jpg") no-repeat;

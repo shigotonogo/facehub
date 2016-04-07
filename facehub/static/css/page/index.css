@@ -110,15 +110,15 @@
     background-position: 0 -60px;
 }
 
-.anniversary {
+.banner .anniversary {
     background-color: #121517;
     background-image: url(../../images/slide_anniversary.jpg);
 }
-.birthday {
+.banner .birthday {
     background-color: #01B2E6;
     background-image: url(../../images/slide_birthday.jpg);
 }
-.newhire {
+.banner .newhire {
     background-color: #a4a195;
     background-image: url(../../images/slide_newhire.jpg);
 }
