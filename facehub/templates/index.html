@@ -49,6 +49,7 @@
               <div id="birthday" class="notification-canvas shou-xing-canvas"></div>
             </div>
             <div class="swiper-slide newhire">
+              <div id="new" class="notification-canvas new-users-canvas"></div>
             </div>
         </div>
     </div>
@@ -84,6 +85,20 @@
                 {{#anniversary_users}}
                     <li><img src="{{avatar}}" width="75" height="75">{{name}}</li>
                 {{/anniversary_users}}
+                </ul>
+                <div class="more">查看更多</div>
+            </div>
+        </a>
+  </script>
+
+  <script id='new-template' type="text/ractive">
+        <a href="/new-users.html">
+            <span class="title">本月新人</span>
+            <div class="user-box">
+                <ul class="img-list">
+                {{#new_users}}
+                    <li><img src="{{avatar}}" width="75" height="75">{{name}}</li>
+                {{/new_users}}
                 </ul>
                 <div class="more">查看更多</div>
             </div>

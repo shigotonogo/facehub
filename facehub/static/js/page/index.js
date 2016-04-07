@@ -24,7 +24,7 @@
 
     var showBirthdayUsers = function (data) {
         var ractive = new Ractive({
-            el: '#birthday',
+            el: '.shou-xing-canvas',
             template: '#birthday-template',
             data: data
         })
@@ -32,24 +32,20 @@
 
     var showAnniversaryUsers = function (data) {
         var ractive = new Ractive({
-            el: '#anniversary',
+            el: '.anniversary-canvas',
             template: '#anniversary-template',
             data: data
         });
-
-        var swiper = new Swiper('.swiper-container', {
-            pagination: '.swiper-pagination',
-            nextButton: '.swiper-button-next',
-            prevButton: '.swiper-button-prev',
-            slidesPerView: 1,
-            paginationClickable: true,
-            spaceBetween: 30,
-            loop: true,
-            //autoplay: 5000,
-            autoplayDisableOnInteraction: false,
-            mousewheelControl: true
-        });
     }
+
+    var showNewUsers = function (data) {
+        var ractive = new Ractive({
+            el: '.new-users-canvas',
+            template: '#new-template',
+            data: data
+        })
+    }
+
 
     var showUsers =  function (data, sortField, order, template){
         var userSort = {};
@@ -111,13 +107,16 @@
             userData.users = data.users;
             userData.birthday_users = data.birthday_users;
             userData.anniversary_users = data.anniversary_users;
+            userData.new_users = data.new_users;
 
             data.birthday_users = limit(data.birthday_users);
             data.anniversary_users = limit(data.anniversary_users);
+            data.new_users = limit(data.new_users);
 
             toggleActionLink(data);
             showAnniversaryUsers(data);
             showBirthdayUsers(data);
+            showNewUsers(data);
 
             
         }
@@ -134,6 +133,19 @@
         showCrown(userData);
         showBadge(userData);
     });
+
+    var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+            slidesPerView: 1,
+            paginationClickable: true,
+            spaceBetween: 30,
+            loop: false,
+            //autoplay: 5000,
+            autoplayDisableOnInteraction: false,
+            mousewheelControl: true
+        });
     
 
 })();
