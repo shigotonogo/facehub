@@ -55,7 +55,7 @@ def users():
     all_users = [ser.serialize_object(u, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'photo', 'title', 'office', 'project']}) for u in query_users]
     birthday_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if user.birthday.month == current_month]
     anniversary_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
-    new_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard > (datetime.today() - date_time.timedelta(days=30)).date())]
+    new_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard > (datetime.today() - date_time.timedelta(days=60)).date())]
     resp = {"users": all_users, 
     "current_user": request.get_cookie("uid"), 
     "birthday_users": birthday_users, 
