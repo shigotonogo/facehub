@@ -1,9 +1,5 @@
-.canvas.birthday{
+.canvas.birthday, .canvas.anni, .canvas.new {
     background-color: white;
-}
-
-.canvas.anni{
-    background-color: #4b4b4b;
 }
 
 .banner{
@@ -38,10 +34,6 @@
 .banner .title{
     font-size: 36px;
     font-weight: bold;
-}
-
-.anni .title{
-    color: white;
 }
 
 .banner .tip, .banner .arrow{

@@ -142,7 +142,7 @@
             paginationClickable: true,
             spaceBetween: 30,
             loop: false,
-            //autoplay: 5000,
+            autoplay: 5000,
             autoplayDisableOnInteraction: false,
             mousewheelControl: true
         });

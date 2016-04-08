@@ -46,7 +46,7 @@
 }
 
 .notification-canvas .img-list li:last-child {
-    margin-right: 0;
+    margin-right: 5px;
 }
 
 .notification-canvas .user-box li img {
