@@ -60,11 +60,16 @@
     }
 
     var userData = {};
+    var list_view_cookie = $.cookie('_list_view_') || 'card';
     $.ajax({
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
-            showUsers(data, 'created_at', 'desc', '#card-template');
+            if($.cookie('_list_view_') === 'card'){
+                showUsers(data, 'created_at', 'desc', '#card-template');
+            }else{
+                showUsers(data, 'name', 'asc', '#list-template');
+            }
             showBadge(data);
 
             userData.anniversary_users = data.anniversary_users;
@@ -76,10 +81,17 @@
         $(this).addClass('active').siblings('.top-button').removeClass('active');
         showUsers(userData, 'name', 'asc', '#list-template');
         showBadge(userData);
+
+        $.cookie('_list_view_', 'list');
     });
     $('.btn-group .card').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
         showUsers(userData, 'created_at', 'desc', '#card-template');
         showBadge(userData);
+
+        $.cookie('_list_view_', 'card');
     });
+
+    $('.btn-group .top-button').removeClass('active').siblings('.' + list_view_cookie).addClass('active');
+
 })();
