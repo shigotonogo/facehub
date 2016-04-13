@@ -125,9 +125,6 @@ def upload():
         current_user = User.create(raw_image=image_url, name="", title="", birthday="", onboard="", email=email)
     return str(current_user.id)
 
-@app.route("/token")
-def token():
-    return provider.token()
 
 @app.route("/photo")
 @view("edit-photo")
