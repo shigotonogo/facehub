@@ -46,7 +46,6 @@
         })
     }
 
-
     var showUsers =  function (data, sortField, order, template){
         var userSort = {};
         userSort.users = order === 'asc' ? _.sortBy(data.users, sortField) : _.sortBy(data.users, sortField).reverse();
@@ -95,16 +94,25 @@
         return data;
     }
 
+    var addPinYinName = function(users){
+        for(index in users) {
+            users[index].pinyYinName = pinyin.getFullChars(users[index].name);
+        }
+        return users
+    }
+
     var userData = {};
     var list_view_cookie = $.cookie('_list_view_') || 'card';
     $.ajax({
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
+            data.users = addPinYinName(data.users);
+
             if($.cookie('_list_view_') === 'card'){
                 showUsers(data, 'created_at', 'desc', '#card-template');
             }else{
-                showUsers(data, 'name', 'asc', '#list-template');
+                showUsers(data, 'pinyYinName', 'asc', '#list-template');
             }
 
             showCrown(data);
@@ -122,13 +130,12 @@
             toggleActionLink(data);
             showAnniversaryUsers(data);
             showBirthdayUsers(data);
-            showNewUsers(data);
-            
+            showNewUsers(data);            
         }
     })
     $('.btn-group .list').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
-        showUsers(userData, 'name', 'asc', '#list-template');
+        showUsers(userData, 'pinyYinName', 'asc', '#list-template');
         showCrown(userData);
         showBadge(userData);
 
