@@ -118,7 +118,7 @@ def send_invitation():
         abort(404,'Missing required parameter "user".')
 
     data = urllib.urlencode({ 'user': user_email })
-    response = urllib.urlopen("%s%s" % (app.config['app.authentication'], 'sendtoken'), bytearray(data,'utf-8'))
+    response = urllib.urlopen(app.config['app.authentication'], bytearray(data,'utf-8'))
     if response.code == 200:
         return dumps({"result":'OK'})
     else:
