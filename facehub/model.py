@@ -30,6 +30,7 @@ class User(BaseModel):
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
     completion = BooleanField(default=False)
+    token = CharField()
 
     class Meta:
         db_table = 'users'

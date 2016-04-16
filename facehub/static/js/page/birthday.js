@@ -39,7 +39,7 @@
 
     var toggleActionLink = function(data){
         var users = data.users;
-        var currentUserEmail = decodeURIComponent(data.current_user);
+        var currentUserEmail = decodeURIComponent(data.current_user_email);
 
         var exsiting = _.find(users, function(user){
             return user.email == currentUserEmail && user.photo && user.avatar

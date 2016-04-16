@@ -29,9 +29,16 @@ provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.sec
 
 @app.hook('before_request')
 def before_request():
-    if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith("/assets/") or request.path == '/api/users_count':
+    if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith("/assets/") or request.path == '/api/users_count' or request.path == '/verify':
         return
-    if request.get_cookie("uid") == None:
+    token = request.get_cookie("token")
+    if not token:
+        redirect('/login')
+
+    try:
+        user = User.get(token=token)
+        return
+    except User.DoesNotExist:
         redirect('/login')
 
 @app.hook('before_request')
@@ -43,8 +50,38 @@ def _close_db():
     if not db.is_closed():
         db.close()
 
-def current_user_email():
-    return urllib.unquote(request.get_cookie("uid"))
+@app.route('/verify')
+def verify():
+    def verify_token(token, email):
+        response = urllib.urlopen("%s?token=%s&uid=%s" % (app.config['app.authentication'], token, email))
+        try:
+            status = json.loads(response.read()).get('status')
+        except ValueError:
+            status = 'ERROR'
+        return status
+
+    token = request.params.get('token')
+    email = request.params.get('uid')
+    if not token or not email:
+        redirect('/login')
+
+    token_verified_status = verify_token(token, email)
+    if token_verified_status != 'OK':
+        redirect('/login')
+
+    try:
+        user = User.get(email=email)
+        user.token = token
+        user.save()
+    except User.DoesNotExist:
+        user = User.create(name="", title="", birthday="", onboard="", email=email, token=token)
+
+    response.set_cookie("token", token, max_age=60*60*24*30)
+    redirect('/')
+
+
+def current_user():
+    return User.get(token=request.get_cookie("token"))
 
 @app.route("/api/users", method='GET')
 def users():
@@ -57,7 +94,7 @@ def users():
     anniversary_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
     new_users = [ser.serialize_object(user, fields={User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in query_users if (user.onboard > (datetime.today() - date_time.timedelta(days=60)).date())]
     resp = {"users": all_users, 
-    "current_user": request.get_cookie("uid"), 
+    "current_user_email": current_user().email,
     "birthday_users": birthday_users, 
     "anniversary_users": anniversary_users,
     "new_users": new_users
@@ -81,7 +118,7 @@ def send_invitation():
         abort(404,'Missing required parameter "user".')
 
     data = urllib.urlencode({ 'user': user_email })
-    response = urllib.urlopen(app.config['app.authentication'], bytearray(data,'utf-8'))
+    response = urllib.urlopen("%s%s" % (app.config['app.authentication'], 'sendtoken'), bytearray(data,'utf-8'))
     if response.code == 200:
         return dumps({"result":'OK'})
     else:
@@ -93,7 +130,7 @@ def createUser():
         return datetime.strptime(date_str, "%m/%d/%Y")
 
     try:
-        u = User.get(email=current_user_email())
+        u = current_user()
 
         u.project = request.forms.getunicode('project', None).strip()
         u.office = request.forms.getunicode('office', None)
@@ -116,34 +153,31 @@ def createUser():
 def upload():
     upload = request.files.get('file')
     image_url = provider.store(upload.file)
-    email = urllib.unquote(request.get_cookie("uid"))
     try:
-        current_user = User.get(email=email)
-        current_user.raw_image = image_url
-        current_user.save()
+        user = current_user()
+        user.raw_image = image_url
+        user.save()
     except User.DoesNotExist:
-        current_user = User.create(raw_image=image_url, name="", title="", birthday="", onboard="", email=email)
-    return str(current_user.id)
+        user = User.create(raw_image=image_url, name="", title="", birthday="", onboard="", email=email)
+    return str(user.id)
 
 
 @app.route("/photo")
 @view("edit-photo")
 def crop_photo():
-    email = current_user_email()
-    user  = User.get(email=email)
+    user  = current_user()
     return { 'image': user.raw_image + '?imageView/2/w/1200/h/1600' }
 
 @app.route("/avatar")
 @view("edit-avatar")
 def crop_photo():
-    email = current_user_email()
-    user  = User.get(email=email)
+    user  = current_user()
     return { 'image': user.photo }
 
 @app.route("/profile")
 @view("edit-profile")
 def crop_photo():
-    user  = User.get(email=current_user_email())
+    user  = current_user()
     birthday = datetime.strftime(user.birthday , "%m/%d/%Y") if user.birthday else ""
     onboard = datetime.strftime(user.onboard , "%m/%d/%Y") if user.onboard else ""
 
@@ -170,12 +204,11 @@ def editPhoto():
     height = request.forms.get("h", None)
     img_type = request.forms.get("image_type", None)
     img_width = request.forms.get("image_width", None)
-    email = current_user_email()
     try:
         image = crop_image(img_src, img_width, int(round(float(x))), int(round(float(y))), int(round(float(width))), int(round(float(height))))
         image_url = provider.store_file(image)
 
-        user = User.get(email=email)
+        user = current_user()
         if img_type == 'photo':
             user.photo=image_url
         if img_type == 'avatar':
