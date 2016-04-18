@@ -72,7 +72,7 @@
         url: '/api/users',
         dataType: 'json',
         success: function(data) {
-            data.users = addPinYinName(data.new_users);
+            data.new_users = addPinYinName(data.new_users);
             
             if(list_view_cookie === 'card'){
                 showUsers(data, 'created_at', 'desc', '#card-template');
