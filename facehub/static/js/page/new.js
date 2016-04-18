@@ -74,7 +74,7 @@
         success: function(data) {
             data.users = addPinYinName(data.new_users);
             
-            if($.cookie('_list_view_') === 'card'){
+            if(list_view_cookie === 'card'){
                 showUsers(data, 'created_at', 'desc', '#card-template');
             }else{
                 showUsers(data, 'pinYinName ', 'asc', '#list-template');
