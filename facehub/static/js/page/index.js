@@ -94,9 +94,18 @@
         return data;
     }
 
+    var capitalizeFirstLetter = function(string) {
+        var reg = /^[a-z]/;
+        if (reg.test(string)){
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        return string;
+    }
+
     var addPinYinName = function(users){
         for(index in users) {
-            users[index].pinyYinName = pinyin.getFullChars(users[index].name);
+            var user = users[index];
+            user.pinYinName = capitalizeFirstLetter(pinyin.getFullChars(user.name));
         }
         return users
     }
@@ -112,7 +121,7 @@
             if($.cookie('_list_view_') === 'card'){
                 showUsers(data, 'created_at', 'desc', '#card-template');
             }else{
-                showUsers(data, 'pinyYinName', 'asc', '#list-template');
+                showUsers(data, 'pinYinName', 'asc', '#list-template');
             }
 
             showCrown(data);
@@ -135,7 +144,7 @@
     })
     $('.btn-group .list').click(function(){
         $(this).addClass('active').siblings('.top-button').removeClass('active');
-        showUsers(userData, 'pinyYinName', 'asc', '#list-template');
+        showUsers(userData, 'pinYinName', 'asc', '#list-template');
         showCrown(userData);
         showBadge(userData);
 

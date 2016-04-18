@@ -59,9 +59,17 @@
         });
     }
 
+    var capitalizeFirstLetter = function(string) {
+        var reg = /^[a-z]/;
+        if (reg.test(string)){
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        return string;
+    }
+
     var addPinYinName = function(users){
         for(index in users) {
-            users[index].pinyYinName = pinyin.getFullChars(users[index].name);
+            users[index].pinyYinName = capitalizeFirstLetter(pinyin.getFullChars(users[index].name));
         }
         return users
     }
