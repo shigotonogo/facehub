@@ -29,6 +29,8 @@ provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.sec
 
 @app.hook('before_request')
 def before_request():
+    if request.headers['host'] == 'www.facehub.net':
+        redirect("%s%s" % ("http://facehub.net", request.path), 301)
     if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith("/assets/") or request.path == '/api/users_count' or request.path == '/verify':
         return
     token = request.get_cookie("token")
