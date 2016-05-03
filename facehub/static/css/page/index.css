@@ -82,12 +82,12 @@
 
 .swiper-pagination .swiper-pagination-bullet {
     margin:0 5px;
-    border: 2px solid #ff5700;
+    border: 2px solid #F50057;
     background-color: transparent;
     opacity: 1;
 }
 .swiper-pagination .swiper-pagination-bullet-active {
-    background-color: #ff5700;
+    background-color: #F50057;
 }
 .banner .swiper-button-prev, .banner .swiper-button-next {
     width: 50px;
