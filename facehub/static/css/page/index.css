@@ -41,6 +41,8 @@
     display: inline-block;
     width: 75px;
     margin-right: 10px;
+    vertical-align: top;
+    line-height: 1;
     text-align: center;
     font-size: 14px;
 }
