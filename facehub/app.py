@@ -78,7 +78,7 @@ def verify():
     except User.DoesNotExist:
         user = User.create(name="", title="", birthday="", onboard="", email=email, token=token)
 
-    response.set_cookie("token", token, max_age=60*60*24*7)
+    response.set_cookie("token", token, max_age=60*60*24*7, httponly=True)
     redirect('/')
 
 
