@@ -78,7 +78,7 @@ def verify():
     except User.DoesNotExist:
         user = User.create(name="", title="", birthday="", onboard="", email=email, token=token)
 
-    response.set_cookie("token", token, max_age=60*60*24*30)
+    response.set_cookie("token", token, max_age=60*60*24*7)
     redirect('/')
 
 
@@ -109,7 +109,7 @@ def user(id):
     user = User.get(User.id == id)
     if user is not None and user.completion is True:
         user.birthday = user.birthday.strftime("%-m-%-d")
-        return dumps(ser.serialize_object(user, exclude={User:['updated_at', 'created_at', 'id', 'avatar', 'raw_image', 'completion']}))
+        return dumps(ser.serialize_object(user, exclude={User:['updated_at', 'created_at', 'id', 'avatar', 'raw_image', 'completion', 'token']}))
     else:
         abort(404, "No such user.")
 
