@@ -6,8 +6,9 @@ from qiniu import Auth, put_file, put_data, BucketManager
 
 from utils import hash
 
+
 def provider(access_key, secret_key, bucket_name, image_server_url):
-    api =  QiNiuProvider(access_key, secret_key, bucket_name, image_server_url)
+    api = QiNiuProvider(access_key, secret_key, bucket_name, image_server_url)
     return Storage(api)
 
 
@@ -27,7 +28,6 @@ class Storage(object):
 
 
 class QiNiuProvider(object):
-
     def __init__(self, access_key, secret_key, bucket_name, imageServerUrl):
         self.access_key = access_key
         self.secret_key = secret_key
@@ -46,7 +46,6 @@ class QiNiuProvider(object):
             return "%s/%s" % (self.imageServerUrl, ret['key'])
         else:
             logging.error('upload error.')
-
 
     def store_file(self, file_path, file_name):
         upload_token = self.credentials.upload_token(self.bucket_name, file_name)

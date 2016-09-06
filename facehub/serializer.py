@@ -7,6 +7,7 @@ try:
 except ImportError:
     from facehub.utils import get_dictionary_from_model, get_model_from_dictionary
 
+
 class Serializer(object):
     date_format = '%Y-%m-%d'
     time_format = '%H:%M:%S'

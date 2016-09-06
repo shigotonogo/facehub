@@ -5,13 +5,15 @@ from peewee import *
 
 db_proxy = Proxy()
 
+
 def initDatabase(db):
     db_proxy.initialize(db)
 
-class BaseModel(Model):
 
+class BaseModel(Model):
     class Meta:
         database = db_proxy
+
 
 class User(BaseModel):
     id = PrimaryKeyField()

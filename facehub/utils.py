@@ -28,6 +28,7 @@ def get_dictionary_from_model(model, fields=None, exclude=None):
             data[field_name] = field_data
     return data
 
+
 def get_model_from_dictionary(model, field_dict):
     if isinstance(model, Model):
         model_instance = model
