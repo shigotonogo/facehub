@@ -3,3 +3,4 @@ peewee==2.6.0
 pillow==3.1.1
 qiniu==7.0.3
 paste
+itsdangerous==0.24

@@ -1,15 +1,17 @@
 # -*- coding: UTF-8 -*-
+import datetime as date_time
 import logging
 import urllib
 from json import dumps
+import requests
+
 from bottle import *
-from facehub.model import *
-from facehub.serializer import Serializer
 from facehub import storage
 from facehub.image import crop_image
-from datetime import date, datetime
-import datetime as date_time
+from facehub.model import *
+from facehub.serializer import Serializer
 from playhouse.db_url import connect
+from itsdangerous import URLSafeTimedSerializer
 
 app = Bottle()
 TEMPLATE_PATH.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), './templates')))
@@ -28,6 +30,15 @@ ser = Serializer()
 
 provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.secretkey'], app.config['cloud.bucket'],
                             app.config['cloud.imageserverurl'])
+
+EMAIL_SUBJECT = u'欢迎加入Facehub'
+EMAIL_CONTENT = u"<p>亲爱的ThoughtWorker,</p> \
+    <p>欢迎你加入Facehub,请点击<a href=\"https://%s/verify/%s\">链接</a>进入.</p> \
+            <p>或者您可以拷贝下面这个地址到您的浏览器中访问来进入 https://%s/verify/%s </p> \
+            <br> \
+            <p>Regards</p> \
+            <p>---</p> \
+            <p>Facehub team</p>"
 
 
 @app.hook('before_request')
@@ -137,15 +148,18 @@ def user(id):
 @app.route('/send-invitation', method="POST")
 def send_invitation():
     user_email = request.forms.getunicode('user', None)
-    if user_email == None:
+    if user_email is None:
         abort(404, 'Missing required parameter "user".')
 
-    data = urllib.urlencode({'user': user_email})
-    response = urllib.urlopen(app.config['app.authentication'], bytearray(data, 'utf-8'))
-    if response.code == 200:
-        return dumps({"result": 'OK'})
-    else:
-        abort(500, 'Failed to send invitation.')
+    return requests.post(app.config['email.api_url'],
+                         auth=("api", app.config['email.api_key']),
+                         data={"from": "noreply@facehub.net",
+                               "to": [user_email],
+                               "subject": EMAIL_SUBJECT,
+                               "html": EMAIL_CONTENT % (app.config['app.domain'],
+                                                        generate_token(user_email),
+                                                        app.config['app.domain'],
+                                                        generate_token(user_email))})
 
 
 @app.route('/api/users', method='POST')
@@ -247,6 +261,23 @@ def editPhoto():
         abort(500, "Failed to crop image for user: %s " % email)
 
     return 'Success'
+
+
+def generate_token(email):
+    """generate confirmation token using user's email via itsdangerous"""
+    serializer = URLSafeTimedSerializer(app.config['email.secret_key'])
+    return serializer.dumps(email, salt=app.config['email.salt'])
+
+
+def validate_token(token, expire_time=3600):
+    """from token and expire_time to confirm user's email"""
+    serializer = URLSafeTimedSerializer(app.config['email.secret_key'])
+    try:
+        email = serializer.loads(token, max_age=expire_time, salt=config['email.salt'])
+    except Exception:
+        logging.exception("Error occured when validate token.")
+        return False
+    return email
 
 
 mimetypes = {"js": 'application/javascript', "css": "text/css", "images": "image/png"}
