@@ -32,13 +32,22 @@ provider = storage.provider(app.config['cloud.accesskey'], app.config['cloud.sec
                             app.config['cloud.imageserverurl'])
 
 EMAIL_SUBJECT = u'欢迎加入Facehub'
-EMAIL_CONTENT = u"<p>亲爱的ThoughtWorker,</p> \
-    <p>欢迎你加入Facehub,请点击<a href=\"https://%s/verify/%s\">链接</a>进入.</p> \
-            <p>或者您可以拷贝下面这个地址到您的浏览器中访问来进入 https://%s/verify/%s </p> \
+EMAIL_CONTENT = u"<!DOCTYPE html> \
+<html><head><meta charset=\"utf-8\"></head> \
+    <body style=\"padding: 50px; font: 14px Helvetica, Arial, sans-serif; border: 1px solid darkgray;\"> \
+        <div style=\"height: 40px; background-color: rgb(245,0,87); color: white; height: 50px; line-height: 50px; padding-left: 50px;font-size: 18px;\">Facehub</div> \
+        <div style=\"padding-left: 50px;\"> \
+            <p>亲爱的ThoughtWorker,</p> \
+            <p>欢迎你加入Facehub,请点击<a href=\"%s/verify/%s\">链接</a>进入.</p> \
+            <p>或者您可以拷贝下面这个地址到您的浏览器中访问来进入</p> \
+            <p>%s/verify/%s</p> \
             <br> \
-            <p>Regards</p> \
-            <p>---</p> \
-            <p>Facehub team</p>"
+            <p>Regards \
+            <br> \
+            ------ \
+            <br> \
+            Facehub team</p> \
+        </div></body></html>"
 
 
 @app.hook('before_request')
