@@ -1,13 +1,19 @@
 [app]
 model = debug
-authentication = http://localhost:3000/sendtoken
+domain = http://facehub.net
+
+[email]
+api_url = https://api.mailgun.net/v3/facehub.net/messages
+api_key = mailgun-api-key
+secret_key = mailgun-secret-key
+salt = salt-value
 
 [database]
-url = sqlite:///test.db
+url = sqlite:///facehub.db
 
 [cloud]
-bucket = 
-accesskey = 
-secretkey = 
-imageserverurl =
+bucket = facehub
+accesskey = qiniu-accesskey
+secretkey = qiniu-secret-key
+imageserverurl = qiniu-bucket-url
 
