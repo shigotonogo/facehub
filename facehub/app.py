@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import datetime as date_time
 import logging
-import urllib
 from json import dumps
 import requests
 
@@ -38,9 +37,9 @@ EMAIL_CONTENT = u"<!DOCTYPE html> \
         <div style=\"height: 40px; background-color: rgb(245,0,87); color: white; height: 50px; line-height: 50px; padding-left: 50px;font-size: 18px;\">Facehub</div> \
         <div style=\"padding-left: 50px;\"> \
             <p>亲爱的ThoughtWorker,</p> \
-            <p>欢迎你加入Facehub,请点击<a href=\"%s/verify/%s\">链接</a>进入.</p> \
+            <p>欢迎你加入Facehub,请点击<a href=\"%s/verify?usk=%s\">链接</a>进入.</p> \
             <p>或者您可以拷贝下面这个地址到您的浏览器中访问来进入</p> \
-            <p>%s/verify/%s</p> \
+            <p>%s/verify?usk=%s</p> \
             <br> \
             <p>Regards \
             <br> \
@@ -54,7 +53,6 @@ EMAIL_CONTENT = u"<!DOCTYPE html> \
 def before_request():
     if request.headers['host'] == 'www.facehub.net':
         redirect("%s%s" % ("http://facehub.net", request.path), 301)
-
     if request.path == '/login' or request.path == '/send-invitation' or request.path.startswith(
             "/assets/") or request.path == '/api/users_count' or request.path == '/verify':
         return
@@ -81,31 +79,34 @@ def _close_db():
         db.close()
 
 
-@app.route('/verify')
+@app.route('/verify', method='GET')
 def verify():
-    def verify_token(token, email):
-        response = urllib.urlopen("%s?token=%s&uid=%s" % (app.config['app.authentication'], token, email))
+    serializer = URLSafeTimedSerializer(app.config['email.secret_key'])
+
+    def validate_token(secret_key, expire_time=3600):
+        """from token and expire_time to confirm user's email"""
         try:
-            status = json.loads(response.read()).get('status')
-        except ValueError:
-            status = 'ERROR'
-        return status
-
-    token = request.params.get('token')
-    email = request.params.get('uid')
-    if not token or not email:
+            serialized_email = serializer.loads(secret_key, max_age=expire_time, salt=app.config['email.salt'])
+            return serialized_email
+        except Exception:
+            logging.exception("Error occured when validate token.")
+            return False
+    import pdb; pdb.set_trace()
+    url_secret_key = request.params.get('usk')
+    if not url_secret_key:
         redirect('/login')
 
-    token_verified_status = verify_token(token, email)
-    if token_verified_status != 'OK':
+    user_email = validate_token(url_secret_key)
+    if not user_email:
         redirect('/login')
 
+    token = serializer.dumps(user_email, salt=app.config['email.salt'])
     try:
-        user = User.get(email=email)
+        user = User.get(email=user_email)
         user.token = token
         user.save()
     except User.DoesNotExist:
-        user = User.create(name="", title="", birthday="", onboard="", email=email, token=token)
+        User.create(name="", title="", birthday="", onboard="", email=user_email, token=token)
 
     response.set_cookie("token", token, max_age=60 * 60 * 24 * 7, httponly=True)
     redirect('/')
@@ -118,8 +119,8 @@ def current_user():
 @app.route("/api/users", method='GET')
 def users():
     response.content_type = 'application/json'
-    current_month = datetime.now().month
-    current_year = datetime.now().year
+    current_month = date_time.datetime.now().month
+    current_year = date_time.datetime.now().year
     query_users = [user for user in User.select() if user.completion == True]
     all_users = [ser.serialize_object(u, fields={
         User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'photo', 'title', 'office', 'project']}) for u
@@ -132,7 +133,7 @@ def users():
                          query_users if (user.onboard.month == current_month) and (user.onboard.year < current_year)]
     new_users = [ser.serialize_object(user, fields={
         User: ['id', 'name', 'avatar', 'created_at', 'onboard', 'email', 'title', 'office', 'project']}) for user in
-                 query_users if (user.onboard > (datetime.today() - date_time.timedelta(days=60)).date())]
+                 query_users if (user.onboard > (date_time.datetime.today() - date_time.timedelta(days=60)).date())]
     resp = {"users": all_users,
             "current_user_email": current_user().email,
             "birthday_users": birthday_users,
@@ -174,7 +175,7 @@ def send_invitation():
 @app.route('/api/users', method='POST')
 def createUser():
     def parse(date_str):
-        return datetime.strptime(date_str, "%m/%d/%Y")
+        return date_time.datetime.strptime(date_str, "%m/%d/%Y")
 
     try:
         u = current_user()
@@ -228,8 +229,8 @@ def crop_photo():
 @view("edit-profile")
 def crop_photo():
     user = current_user()
-    birthday = datetime.strftime(user.birthday, "%m/%d/%Y") if user.birthday else ""
-    onboard = datetime.strftime(user.onboard, "%m/%d/%Y") if user.onboard else ""
+    birthday = date_time.datetime.strftime(user.birthday, "%m/%d/%Y") if user.birthday else ""
+    onboard = date_time.datetime.strftime(user.onboard, "%m/%d/%Y") if user.onboard else ""
 
     return {"photo": user.photo,
             "avatar": user.avatar,
@@ -278,15 +279,7 @@ def generate_token(email):
     return serializer.dumps(email, salt=app.config['email.salt'])
 
 
-def validate_token(token, expire_time=3600):
-    """from token and expire_time to confirm user's email"""
-    serializer = URLSafeTimedSerializer(app.config['email.secret_key'])
-    try:
-        email = serializer.loads(token, max_age=expire_time, salt=config['email.salt'])
-    except Exception:
-        logging.exception("Error occured when validate token.")
-        return False
-    return email
+
 
 
 mimetypes = {"js": 'application/javascript', "css": "text/css", "images": "image/png"}
